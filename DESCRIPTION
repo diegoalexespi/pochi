@@ -1,8 +1,8 @@
-Package: seurathelper
+Package: poochy
 Version: 0.1.0
 Author: Diego A. Espinoza
-Maintainer: d93espinoza at gmail dot com
+Maintainer: diego.espinoza@pennmedicine.upenn.edu
 Description:
-    A collection of functions that supplement the existing Seurat package from @satijalab
+    A collection of functions that provides additional functions to the existing Seurat package from @satijalab
 Encoding: UTF-8
 LazyData: true
