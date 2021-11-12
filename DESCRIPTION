@@ -7,8 +7,13 @@ Description:
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
-Collate: 
-    'RunAUCell.R'
-    'BuildAnnoyUMAP.R'
-    'seurat_helper_functions.R'
-    'z_unfinished_functions.R'
+Imports: 
+  Seurat,
+  tidyr,
+  dplyr,
+  tibble,
+  patchwork,
+  cowplot,
+  ggpubr,
+  ggforce,
+  ggplot2
