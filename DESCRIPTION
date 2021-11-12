@@ -1,7 +1,7 @@
 Package: pochi
 Version: 0.1.0
-Author: Diego A. Espinoza
-Maintainer: diego dot espinoza at pennmedicine dot upenn dot edu
+Authors@R: c(
+    person("Diego", "A", "Espinoza", email = "diego.espinoza@pennmedicine.upenn.edu", role = c("cre", "aut")))
 Description:
     A collection of functions that provides additional functions to the existing Seurat package from @satijalab
 Encoding: UTF-8
