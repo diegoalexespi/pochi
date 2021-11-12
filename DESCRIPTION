@@ -6,3 +6,8 @@ Description:
     A collection of functions that provides additional functions to the existing Seurat package from @satijalab
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.2
+Collate: 
+    'RunAUCell.R'
+    'seurat_helper_functions.R'
+    'z_unfinished_functions.R'

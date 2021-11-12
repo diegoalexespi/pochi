@@ -1,11 +1,7 @@
-#' @include internal.R
-#'
-NULL
-
 #' Run AUCell on a Seurat object
 #'
 #' @param object Seurat object
-#' @param assay Assay to use for building rankings. Will use default if NULL.
+#' @param assay Assay to use for building rankings. Will use default assay if NULL.
 #' @param slot Slot to use for building rankings
 #' @param genesets A list of vectors of features for expression programs; each entry should be a vector of feature names. If the list of vectors is named, the resulting AUCell score for the expression program will be a row in the AUCell assay returned.
 #' @param ranking.save If TRUE, will save a new Assay `rankings` into `object` with the rankings of each gene per cell.
@@ -16,10 +12,10 @@ NULL
 #'
 #' @details (Copied verbatim from AUCell::AUCell_calcAUC) _In a simplified way, the AUC value represents the fraction of genes, within the top X genes in the ranking, that are included in the signature. The parameter 'aucMaxRank' allows to modify the number of genes (maximum ranking) that is used to perform this computation. By default, it is set to 5% of the total number of genes in the rankings. Common values may range from 1 to 20%._
 #'
-#' @return Returns a Seurat object with the CoGAPS results stored as a \code{\link{DimReduc}} object
+#' @return Returns a Seurat object with the AUCell results stored as a \code{\link{Assay}} object within the Seurat object
 #' @seealso \code{\link[AUCell]{AUCell_buildRankings}}
 #' @seealso \code{\link[AUCell]{AUCell_calcAUC}}
-#' @references Aiber et al. (2017) SCENIC: single-cell regulatory network inference and clustering. Nature Methods. doi: 10.1038/nmeth.4463
+#' @references Aibar et al. (2017) SCENIC: single-cell regulatory network inference and clustering. Nature Methods. doi: 10.1038/nmeth.4463
 #'
 #' @importFrom rlang %||%
 #'
@@ -37,7 +33,7 @@ RunAUCell <- function(
   auc_assay_name = "AUC",
   ...
 ) {
-  SeuratWrappers:::CheckPackage(package = 'AUCell', repository = "bioconductor")
+  #SeuratWrappers:::CheckPackage(package = 'AUCell', repository = "bioconductor")
   assay <- assay %||% Seurat::DefaultAssay(object = object)
   my_data <- Seurat::GetAssayData(object = object, assay = assay, slot = slot)
   aucMaxRank <- ceiling(aucMaxRank*nrow(my_data))
