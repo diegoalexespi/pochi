@@ -1,7 +1,7 @@
 Package: pochi
 Version: 0.1.0
 Author: Diego A. Espinoza
-Maintainer: diego.espinoza@pennmedicine.upenn.edu
+Maintainer: diego dot espinoza at pennmedicine dot upenn dot edu
 Description:
     A collection of functions that provides additional functions to the existing Seurat package from @satijalab
 Encoding: UTF-8
@@ -9,5 +9,6 @@ LazyData: true
 RoxygenNote: 7.1.2
 Collate: 
     'RunAUCell.R'
+    'BuildAnnoyUMAP.R'
     'seurat_helper_functions.R'
     'z_unfinished_functions.R'
