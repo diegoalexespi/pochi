@@ -22,7 +22,7 @@ MetaDataPlot <- function(object,
                          text.size = 3,
                          label.angle = 45){
 
-  seurat_metadata <- seurat_object@meta.data
+  seurat_metadata <- object@meta.data
   grouped_count <- seurat_metadata %>%
     dplyr::group_by(!!sym(split.by), !!sym(group.by)) %>%
     dplyr::tally() %>%
@@ -32,7 +32,7 @@ MetaDataPlot <- function(object,
   }
   g <- ggplot(grouped_count, aes(x = !!sym(split.by), y = y, fill = !!sym(group.by)))+
     geom_col(color = "black")+
-    theme_cowplot()
+    cowplot::theme_cowplot()
   if(label.angle == 90){
     g <- g + theme(axis.text.x = element_text(angle  = label.angle, hjust = 1, vjust = 0.5))
   } else if (label.angle == 45){

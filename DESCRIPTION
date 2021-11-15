@@ -9,11 +9,18 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
   Seurat,
+  magrittr,
+  reticulate,
   tidyr,
   dplyr,
+  proxy,
+  sparseMatrixStats,
+  matrixStats,
   tibble,
   patchwork,
   cowplot,
   ggpubr,
   ggforce,
-  ggplot2
+  ggplot2,
+  viridis,
+  forcats

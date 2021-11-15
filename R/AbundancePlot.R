@@ -63,14 +63,14 @@ AbundancePlot <- function(object,
   x_lab <- if(is.null(x_lab)) split.by else x_lab
   y_lab <- if(is.null(y_lab)) "percentage" else y_lab
 
-  seurat_metadata <- seurat_object@meta.data
+  seurat_metadata <- object@meta.data
   seurat_metadata_filtered <- seurat_metadata %>%
     dplyr::group_by(!!sym(replicate.by), !!sym(split.by), !!sym(group.by)) %>%
     dplyr::tally() %>%
     dplyr::mutate(Frequency = n/sum(n)) %>%
     dplyr::ungroup() %>%
     droplevels() %>%
-    tidyr::complete(nesting(!!sym(replicate.by), !!sym(split.by)), !!sym(group.by), fill = list(Frequency = 0, n = 0))
+    tidyr::complete(tidyr::nesting(!!sym(replicate.by), !!sym(split.by)), !!sym(group.by), fill = list(Frequency = 0, n = 0))
 
   split.by.values <- unique(seurat_metadata_filtered[[split.by]])
 
@@ -104,24 +104,24 @@ AbundancePlot <- function(object,
     }
 
     #start ggplot
-    g <- ggplot(target_group_frequencies, aes(x = split_by,
-                                              y = Frequency,
-                                              fill = split_by,
-                                              group = split_by))+
-      scale_fill_manual(values = fill_colors)+
-      theme(title = element_text(size = title_size),
-            panel.background = element_rect(fill = "white"),
-            axis.line.x.bottom = element_line(color = 'black'),
-            axis.line.y.left   = element_line(color = 'black'))+
-      ggtitle(target_group)+
-      xlab(x_lab)+
-      NoLegend()
+    g <- ggplot2::ggplot(target_group_frequencies, aes(x = split_by,
+                                                       y = Frequency,
+                                                       fill = split_by,
+                                                       group = split_by))+
+      ggplot2::scale_fill_manual(values = fill_colors)+
+      ggplot2::theme(title = ggplot2::element_text(size = title_size),
+                     panel.background = ggplot2::element_rect(fill = "white"),
+                     axis.line.x.bottom = ggplot2::element_line(color = 'black'),
+                     axis.line.y.left   = ggplot2::element_line(color = 'black'))+
+      ggplot2::ggtitle(target_group)+
+      ggplot2::xlab(x_lab)+
+      Seurat::NoLegend()
 
     #plot either violin or boxplot
     if(plot_type == "violin"){
-      g <- g + geom_violin()
+      g <- g + ggplot2::geom_violin()
     } else if (plot_type == "box") {
-      g <- g + geom_boxplot(outlier.shape = NA)
+      g <- g + ggplot2::geom_boxplot(outlier.shape = NA)
     } else {
       stop("plot_type must be one of violin or box")
     }
@@ -136,7 +136,7 @@ AbundancePlot <- function(object,
 
     #draw lines between replicates if applicable
     if(draw_paths){
-      g <- g + geom_line(inherit.aes = FALSE, aes(x = split_by, y = Frequency, group = replicate_by))
+      g <- g + ggplot2::geom_line(inherit.aes = FALSE, aes(x = split_by, y = Frequency, group = replicate_by))
     }
 
     #set plot minimum to 0 if needed (sometimes helpful)
@@ -168,14 +168,14 @@ AbundancePlot <- function(object,
                                           label = paste0(p_column, ": ",signif(!!sym(p_column), 2))),
                                       y.position = my_bracket_floor,
                                       step.increase = step.increase)+
-          scale_y_continuous(limits = c(ylim_min,my_plot_ceiling), labels = function(x) paste0(x*100, "%"), name = y_lab)
+          ggplot2::scale_y_continuous(limits = c(ylim_min,my_plot_ceiling), labels = function(x) paste0(x*100, "%"), name = y_lab)
       } else {
-        g <- g + scale_y_continuous(limits = c(ylim_min,NA), labels = function(x) paste0(x*100, "%"), name = y_lab)
+        g <- g + ggplot2::scale_y_continuous(limits = c(ylim_min,NA), labels = function(x) paste0(x*100, "%"), name = y_lab)
       }
 
       #if no plotting of p values, do:
     } else {
-      g <- g + scale_y_continuous(limits = c(ylim_min,NA), labels = function(x) paste0(x*100, "%"), name = y_lab)
+      g <- g + ggplot2::scale_y_continuous(limits = c(ylim_min,NA), labels = function(x) paste0(x*100, "%"), name = y_lab)
     }
 
   })
@@ -189,7 +189,7 @@ AbundancePlot <- function(object,
   final_plot <- patchwork::wrap_plots(plotlist = my_plot_list, ncol = ncols)
   if(same_y_limit){
     final_plot <- final_plot &
-      scale_y_continuous(labels = function(x) paste0(x*100, "%"),limits = c(y_plot_limit_low, y_plot_limit_high), name = y_lab)
+      ggplot2::scale_y_continuous(labels = function(x) paste0(x*100, "%"),limits = c(y_plot_limit_low, y_plot_limit_high), name = y_lab)
   }
   final_plot
 }
