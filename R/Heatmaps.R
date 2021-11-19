@@ -28,7 +28,7 @@ DoStarHeatmap <- function(object,
                           cluster_cols = TRUE,
                           cluster_rows = TRUE,
                           viridis_option = "C",
-                          viridis_direction = -1){
+                          viridis_direction = 1){
 
   if(!is.null(diff_exp_results)){
     if(all(c("logFC", "auc", "padj") %in% colnames(diff_exp_results))){
@@ -174,7 +174,7 @@ DoClusteredHeatmap <- function(object,
                                cluster_cols = TRUE,
                                cluster_rows = TRUE,
                                viridis_option = "B",
-                               viridis_direction = -1){
+                               viridis_direction = 1){
 
   my_data <- TrueAverageExpression(object, slot = slot, assay = assay, group.by = group.by)
   my_data <- my_data[features,]
