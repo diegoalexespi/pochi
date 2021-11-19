@@ -283,21 +283,20 @@ DoGenesetHeatmap <- function(seurat_object,
                              y_text_size = 10,
                              scale_rows = TRUE,
                              p_val_choice = 0.01,
-                             logFC = 0.4,
+                             logFC_choice = 0.4,
                              plot_all = FALSE,
-                             plot_dendro = FALSE,
-                             auc_choice = 0.6){
+                             plot_dendro = FALSE){
 
   if(all(c("logFC", "auc", "padj") %in% colnames(diff_exp_results))){
     message("diff_exp_results in Presto format")
     diff_exp_results <- diff_exp_results %>%
-      dplyr::mutate(is_significant = ifelse(auc > auc_choice, "*", "")) %>%
+      dplyr::mutate(is_significant = ifelse((padj < p_val_choice) & (logFC > logFC_choice), "*", "")) %>%
       dplyr::mutate(cluster = group)
     sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% pull(feature) %>% unique()
   } else if (all(c("p_val_adj", "avg_log2FC")) %in% colnames(diff_exp_results)){
     message("diff_exp_results in Seurat format")
     diff_exp_results <- diff_exp_results %>%
-      dplyr::mutate(is_significant = ifelse((p_val_adj < p_val_choice) & (avg_log2FC > avg_log2FC_choice), "*", "")) %>%
+      dplyr::mutate(is_significant = ifelse((p_val_adj < p_val_choice) & (avg_log2FC > logFC_choice), "*", "")) %>%
       dplyr::mutate(feature = gene)
     sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% pull(feature) %>% unique()
   } else {
@@ -311,6 +310,7 @@ DoGenesetHeatmap <- function(seurat_object,
 
   if(!plot_all){
     my_data <- my_data[sig_genes,]
+    diff_exp_results <- diff_exp_results[diff_exp_results$feature %in% sig_genes,]
   }
 
   my_data[my_data > max_zed] <- max_zed
