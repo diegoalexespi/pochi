@@ -16,16 +16,22 @@ DoStarHeatmap(
   y_text_size = 10,
   scale_rows = TRUE,
   p_val_choice = 0.01,
-  logFC = 0.4,
+  logFC_choice = 0.4,
   plot_all = FALSE,
   plot_dendro = FALSE,
   subset_features = NULL,
-  auc_choice = 0.6,
-  cluster_cols = TRUE
+  cluster_cols = TRUE,
+  cluster_rows = TRUE,
+  viridis_option = "C",
+  viridis_direction = -1
 )
 }
 \arguments{
 \item{object}{Seurat object}
+
+\item{viridis_option}{The viridis color scale to use}
+
+\item{viridis_direction}{The direction of the viridis color scale}
 }
 \value{
 Returns a patchwork object of a heatmap and dendrogram if specified

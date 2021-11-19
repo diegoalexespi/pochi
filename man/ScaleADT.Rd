@@ -10,7 +10,8 @@ ScaleADT(
   slot = "data",
   split.by = NULL,
   low.p = 0.001,
-  high.p = 0.999
+  high.p = 0.999,
+  new.assay = "sADT"
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ scaling.}
 \item{low.p}{Which percentile to set as 0}
 
 \item{high.p}{Which percentile to set as 1}
+
+\item{new.assay}{Name of new assay to save values to}
 }
 \value{
 Returns a Seurat object with scaled values in the data slot of the

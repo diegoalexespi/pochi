@@ -8,15 +8,17 @@ DoClusteredHeatmap(
   object,
   features = NULL,
   assay = "RNA",
-  slot = "scale.data",
+  slot = "data",
   group.by = "seurat_clusters",
   max_zed = 3,
   y_text_size = 10,
-  scale_rows = FALSE,
+  scale_rows = TRUE,
   plot_dendro = FALSE,
   dot.scale = 5,
   cluster_cols = TRUE,
-  cluster_rows = TRUE
+  cluster_rows = TRUE,
+  viridis_option = "B",
+  viridis_direction = -1
 )
 }
 \arguments{
@@ -43,6 +45,10 @@ DoClusteredHeatmap(
 \item{cluster_cols}{Whether to cluster the columns}
 
 \item{cluster_rows}{Whether to cluster the rows}
+
+\item{viridis_option}{The viridis color scale to use}
+
+\item{viridis_direction}{The direction of the viridis color scale}
 }
 \value{
 Returns a patchwork object of a heatmap and dendrogram if specified
