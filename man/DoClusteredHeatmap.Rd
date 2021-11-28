@@ -18,7 +18,7 @@ DoClusteredHeatmap(
   cluster_cols = TRUE,
   cluster_rows = TRUE,
   viridis_option = "B",
-  viridis_direction = -1
+  viridis_direction = 1
 )
 }
 \arguments{

@@ -333,9 +333,8 @@ HotspotComputeAutocorrelations <- function(seurat_object,
                                            Z.cutoff = 0.1,
                                            FDR.cutoff.2 = 0.01,
                                            n.genes = 500,
-                                           min.gene.threshold = 15
-
-){
+                                           min.gene.threshold = 15,
+                                           return_list = FALSE){
 
   #fetch graphs from Seurat
   message("extracting Seurat graphs")
@@ -417,7 +416,12 @@ HotspotComputeAutocorrelations <- function(seurat_object,
                                         fdr_threshold=FDR.cutoff.2)
 
   my_modules_df <- data.frame(gene = names(my_modules), module = setNames(my_modules,NULL))
-  return(my_modules_df)
+  if(return_list){
+    return(list(local_correlations = as.matrix(local_correlations), modules = my_modules_df))
+  } else {
+    return(my_modules_df)
+  }
+
 
 }
 
