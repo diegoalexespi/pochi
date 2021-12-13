@@ -238,14 +238,15 @@ BuildRealWKNN <- function(seurat_object, neighbors_name = "weighted.nn", new_gra
 
 
 
-MiloGetIDs <- function(milo_object, milo_results, p_cutoff = 0.1, p_choice = "FDR"){
+MiloGetIDs <- function(milo_object, milo_results, nhood_column = "Nhood", p_cutoff = 0.1, p_choice = "FDR"){
+
   milo_sig_results <- milo_results %>%
     dplyr::filter(!!sym(p_choice) < p_cutoff)
   if(nrow(milo_sig_results) < 1){
     stop("No statisticaly significant results in milo_results")
   }
-  sig_nbhds_ix <- milo_sig_results[["Nhood"]]
-  sig_nbhds_id <- as.numeric(nhoodIndex(milo_object)[sig_nbhds_ix])
+  sig_nbhds_id <- as.numeric(as.character(milo_sig_results[[nhood_column]]))
+  sig_nbhds_ix <- which(unlist(as.numeric(nhoodIndex(milo_object))) == sig_nbhds_id)
   milo_nhoods <- nhoods(milo_object)
   all_ids <- 1:nrow(milo_nhoods)
   nbhd_list <- lapply(seq_along(sig_nbhds_ix), function(i){
@@ -320,6 +321,18 @@ MiloHeatmap <- function(seurat_object, features, milo_ids, slot = "data", assay 
           legend.key.height = unit(10, "pt"))+
     ylab(NULL)+
     xlab(NULL)
+}
+
+SeuratAddNhds <- function(seurat_object, nhd_list, nhd_directions, milo_results_name = "milo_results"){
+  nhd_df <- stack(nhd_list) %>%
+    dplyr::mutate(nhd = as.numeric(as.character(ind)), cells = as.numeric(values)) %>%
+    dplyr::select(nhd, cells)
+  nhd_df$milo_results <- plyr::mapvalues(nhd_df$nhd, from = nhd_directions$nhd, to = nhd_directions$nhd_dir)
+  nhd_dups <- nhd_df %>%
+    dplyr::group_by(ind, directions) %>%
+    dplyr::summarize()
+  return(nhd_dups)
+  #seurat_object[[milo_results_name]] <- ifelse(colnames(seurat_object) %in% nhd_df$)
 }
 
 HotspotComputeAutocorrelations <- function(seurat_object,

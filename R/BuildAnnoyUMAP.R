@@ -185,8 +185,8 @@ BuildAnnoyUMAP <- function(
     nn_list <- list(nn_metric_sparse_dist, nn_metric_sparse_adj, nn_metric_sparse_snn, nn_fuzzy)
 
     for(i in 1:length(nn_list)){
-      colnames(nn_list[[i]]) <- colnames(seurat_object)
-      rownames(nn_list[[i]]) <- colnames(seurat_object)
+      colnames(nn_list[[i]]) <- colnames(data_use)
+      rownames(nn_list[[i]]) <- colnames(data_use)
       nn_list[[i]] <- as.Graph(nn_list[[i]])
       DefaultAssay(nn_list[[i]]) <- assay
     }

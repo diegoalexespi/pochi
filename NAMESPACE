@@ -2,6 +2,7 @@
 
 export(AbundancePlot)
 export(AssignQuantiles)
+export(BackgatePlot)
 export(BuildAnnoyUMAP)
 export(BuildSNNfromKNN)
 export(DimPlotEdges)
