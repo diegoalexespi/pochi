@@ -33,8 +33,8 @@ BackgatePlot <- function(object,
                          pt.size = 1,
                          add.density = FALSE,
                          density.col = "black"){
-  DefaultAssay(seurat_object) <- assay
-  plotting_data <- FetchData(seurat_object, vars = c(feature1, feature2, metadata.col), slot = slot)
+  DefaultAssay(object) <- assay
+  plotting_data <- FetchData(object, vars = c(feature1, feature2, metadata.col), slot = slot)
   plotting_data$selected_cells <- ifelse(plotting_data[[metadata.col]] == metadata.selection,
                                          metadata.selection,
                                          "non-selected")
