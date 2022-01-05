@@ -102,3 +102,4 @@ DoGenesetHeatmap <- function(seurat_object,
     g_heatmap
   }
 }
+

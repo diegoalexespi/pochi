@@ -3,7 +3,8 @@
 #' @param object Seurat object
 #' @param feature Which feature to use for quantile calculation
 #' @param assay Which assay the feature is located within
-#' @param split.by If not NULL, which metadata feature to split by  before
+#' @param slot Which slot the to pull from within specified assay
+#' @param split.by If not NULL, which metadata feature to split by before
 #' calculating quantiles. Will then calculate quantiles within each split object
 #' @param quantile.probs Which quantiles to split at
 #' @details Determines the quantile of expression for each cell
@@ -20,6 +21,13 @@ AssignQuantiles <- function(object,
                             slot = "data",
                             split.by = "run_10x",
                             quantile.probs = c(0,.25,.5,.75,1)){
+
+
+  DefaultAssay(object) <- assay
+  if(length(feature) != 1){
+    stop("feature must be length 1")
+  }
+
   if(!is.null(split.by)){
     split_objects <- SplitObject(object, split.by = split.by)
   } else {
@@ -28,8 +36,11 @@ AssignQuantiles <- function(object,
 
   split_objects <- lapply(seq_along(split_objects), function(i){
     temp_object <- split_objects[[i]]
-    temp_vector <- temp_object[[assay]][feature,]
+    temp_vector <- Seurat::FetchData(temp_object, vars = feature, slot = slot)[,1]
     temp_quantiles <- quantile(temp_vector, probs = quantile.probs)
+    if(length(unique(temp_quantiles)) < length(temp_quantiles)){
+      stop("quantiles are non-unique, set to different values")
+    }
     temp_cuts <- cut(temp_vector, breaks = temp_quantiles, include.lowest = TRUE)
     temp_cuts_levels <- levels(temp_cuts)
     temp_cuts <- forcats::fct_recode(temp_cuts, !!!setNames(temp_cuts_levels, paste0(feature, ".q", 1:length(temp_cuts_levels))))

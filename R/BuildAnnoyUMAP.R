@@ -186,7 +186,7 @@ BuildAnnoyUMAP <- function(
 
     for(i in 1:length(nn_list)){
       colnames(nn_list[[i]]) <- rownames(data_use)
-      rownames(nn_list[[i]]) <- rownames(data_use)
+      rownames(nn_list[[i]]) <- rownames(data_use) #fixed?
       nn_list[[i]] <- as.Graph(nn_list[[i]])
       DefaultAssay(nn_list[[i]]) <- assay
     }

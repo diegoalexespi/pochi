@@ -22,6 +22,7 @@ DoStarHeatmap <- function(object,
                           scale_rows = TRUE,
                           p_val_choice = 0.01,
                           logFC_choice = 0.4,
+                          auc_choice = NULL,
                           plot_all = FALSE,
                           plot_dendro = FALSE,
                           subset_features = NULL,
@@ -30,13 +31,25 @@ DoStarHeatmap <- function(object,
                           viridis_option = "C",
                           viridis_direction = 1){
 
+  Idents(object) <- group.by
+  og.levels <- levels(Idents(object))
+
   if(!is.null(diff_exp_results)){
     if(all(c("logFC", "auc", "padj") %in% colnames(diff_exp_results))){
       message("diff_exp_results in Presto format")
-      diff_exp_results <- diff_exp_results %>%
-        dplyr::mutate(is_significant = ifelse((padj < p_val_choice) & (logFC > logFC_choice), "*", "")) %>%
-        dplyr::mutate(cluster = group)
-      sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% dplyr::pull(feature) %>% unique()
+      if(!is.null(auc_choice)){
+        message("using auc_choice and ignoring logFC_choice and p_val_choice")
+        diff_exp_results <- diff_exp_results %>%
+          dplyr::mutate(is_significant = ifelse(auc > auc_choice, "*", "")) %>%
+          dplyr::mutate(cluster = group)
+        sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% dplyr::pull(feature) %>% unique()
+      } else {
+        diff_exp_results <- diff_exp_results %>%
+          dplyr::mutate(is_significant = ifelse((padj < p_val_choice) & (logFC > logFC_choice), "*", "")) %>%
+          dplyr::mutate(cluster = group)
+        sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% dplyr::pull(feature) %>% unique()
+      }
+
     } else if (all(c("p_val_adj", "avg_log2FC") %in% colnames(diff_exp_results))){
       message("diff_exp_results in Seurat format")
       diff_exp_results <- diff_exp_results %>%
@@ -77,6 +90,10 @@ DoStarHeatmap <- function(object,
     cluster_order <- hclust_results_2$labels[hclust_results_2$order]
     my_data_long <- my_data_long %>%
       dplyr::mutate(cluster = factor(cluster, levels = cluster_order))
+  } else {
+    message("i")
+    my_data_long <- my_data_long %>%
+      dplyr::mutate(cluster = factor(cluster, levels = og.levels))
   }
   if(cluster_rows){
     hclust_results <- hclust(dist(my_data))
@@ -283,7 +300,7 @@ TrueAverageExpression <- function(object,
 
   # loop through all idents, averaging them in data
   ident.names <- unique(idents)
-  if (verbose > 0) pb <- txtProgressBar(char = "=", style = 3, max = length(ident.names), width = 50)
+  if (verbose > 0) pb <- txtProgressBar(char = "=", style = 1, max = length(ident.names), width = 50)
   m <- list()
   for (i in 1:length(ident.names)) {
     m[[i]] <- Matrix::rowMeans(my_data[, which(idents == ident.names[i])])

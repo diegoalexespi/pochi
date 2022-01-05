@@ -98,7 +98,7 @@ DimPlotEdges <- function(object,
 #' @importFrom rlang %||%
 #'
 #' @export
-DimPlotPlus <- function(object,
+DimPlotPlus <- function(
                         reduction = "umap",
                         shape.choice = 21,
                         pt.size = 1.75,
@@ -115,6 +115,76 @@ DimPlotPlus <- function(object,
   }
   temp_dimplot
 }
+
+
+#' Seurat DimPlot enhancement III
+#'
+#' @inheritParams Seurat::DimPlot
+#' @param metadata.col The column within the object meta.data to select from
+#' @param metadata.selection The entry within metadata.col to highlight in the
+#' Seurat DimPlot
+#' @details Identical to DimPlot with the additional step of highlighting a
+#' specific piece of given metadata
+#'
+#' @return Returns a DimPlot
+#'
+#' @importFrom rlang %||%
+#' @importFrom ggplot2 ggtitle
+#'
+#' @export
+DimPlotHighlight <- function(object,
+                             dims = c(1, 2),
+                             cells = NULL,
+                             cols = NULL,
+                             pt.size = NULL,
+                             reduction = NULL,
+                             group.by = NULL,
+                             split.by = NULL,
+                             shape.by = NULL,
+                             order = NULL,
+                             shuffle = FALSE,
+                             seed = 1,
+                             label = FALSE,
+                             label.size = 4,
+                             label.color = "black",
+                             label.box = FALSE,
+                             repel = FALSE,
+                             cols.highlight = "#DE2D26",
+                             sizes.highlight = 1,
+                             na.value = "grey50",
+                             ncol = NULL,
+                             combine = TRUE,
+                             raster = NULL,
+                             metadata.col,
+                             metadata.selection){
+  Idents(object) <- metadata.col
+  DimPlot(object,
+          dims,
+          cells,
+          cols,
+          pt.size,
+          reduction,
+          group.by,
+          split.by,
+          shape.by,
+          order,
+          shuffle,
+          seed,
+          label,
+          label.size,
+          label.color,
+          label.box,
+          repel,
+          cols.highlight,
+          sizes.highlight,
+          na.value,
+          ncol,
+          combine,
+          raster,
+          cells.highlight = WhichCells(object, idents = metadata.selection))+
+    ggplot2::ggtitle(paste0(metadata.col, ", ", metadata.selection))
+}
+
 
 
 #' Seurat DotPlot enhancement with hierarchical clustering

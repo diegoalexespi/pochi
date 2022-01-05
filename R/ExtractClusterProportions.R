@@ -1,4 +1,4 @@
-#' Extract cell proportions across groups in a Seurat object
+#' Extract cell proportions and counts across groups in a Seurat object
 #'
 #' @param object Seurat object
 #' @param group.by Which meta.data slot to use for grouping the cells
@@ -32,9 +32,10 @@ ExtractClusterProportions <- function(object,
 
   frequencies <- lapply(seq_along(split.by.values), function(i){
     seurat_metadata_filtered %>%
+      dplyr::mutate(count = n) %>%
       dplyr::filter(!!sym(split.by) == split.by.values[i]) %>%
       dplyr::ungroup() %>%
-      dplyr::select(!!sym(replicate.by), !!sym(group.by), percent) %>%
+      dplyr::select(!!sym(replicate.by), !!sym(group.by), percent, count) %>%
       dplyr::mutate(split_by = split.by.values[i], replicate_by = !!sym(replicate.by), group_by = !!sym(group.by))
   }) %>% do.call(rbind, .)
   return(frequencies)

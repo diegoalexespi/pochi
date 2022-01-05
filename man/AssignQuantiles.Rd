@@ -20,7 +20,9 @@ AssignQuantiles(
 
 \item{assay}{Which assay the feature is located within}
 
-\item{split.by}{If not NULL, which metadata feature to split by  before
+\item{slot}{Which slot the to pull from within specified assay}
+
+\item{split.by}{If not NULL, which metadata feature to split by before
 calculating quantiles. Will then calculate quantiles within each split object}
 
 \item{quantile.probs}{Which quantiles to split at}

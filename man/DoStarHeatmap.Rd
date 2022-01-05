@@ -17,6 +17,7 @@ DoStarHeatmap(
   scale_rows = TRUE,
   p_val_choice = 0.01,
   logFC_choice = 0.4,
+  auc_choice = NULL,
   plot_all = FALSE,
   plot_dendro = FALSE,
   subset_features = NULL,

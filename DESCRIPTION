@@ -24,3 +24,7 @@ Imports:
   ggplot2,
   viridis,
   forcats
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr

@@ -1,0 +1,117 @@
+---
+title: "pochi"
+shorttitle: "pochi function manual"
+author: "Diego A. Espinoza"
+package: pochi
+date: (`r format(Sys.Date(), "%d %B %Y")`)
+abstract: > 
+    [pochi](http://github.com/diegoalexespi/pochi) is an R package developed for the supplementation of analysis and visualization of single-cell -omics data with [Seurat](http://github.com/satijalab/Seurat).
+output:
+  html_document
+ ---
+
+``` {r setup, echo = FALSE}
+knitr::opts_chunk$set(tidy = FALSE,
+                      dpi = 72,
+                      fig.width = 6,
+                      fig.height = 6,
+                      width=80,
+                      cache = FALSE,
+                      dev = "png",
+                      message = TRUE,
+                      error = TRUE,
+                      warning = TRUE)
+```
+
+# Introduction
+
+## Installation
+Currently, [pochi](http://github.com/diegoalexespi/pochi) is available at Github and can be downloaded using the devtools (or remotes) package.
+```{r installation, eval = FALSE}
+devtools::install_github("diegoalexespi/pochi")
+```
+
+
+# Loading data
+
+## Loading required packages
+
+The [pochi](http://github.com/diegoalexespi/pochi) package operates on [Seurat](http://github.com/satijalab/Seurat) objects. We load the `Seurat`, `SeuratData`, and `pochi` packages here for our analyses, as well as the `magrittr` package in order to improve legibility of code through using the pipe `%>%` operator.
+
+```{r load packages required, eval = TRUE, warning=FALSE, message=FALSE}
+
+require("Seurat")
+require("SeuratData")
+require("pochi")
+require("ggplot2")
+require("tidyr")
+
+```
+
+We load the pbmc3k data from the `SeuratData` package.
+```{r loading pbmc3k data, eval = TRUE}
+pbmc3k_seurat <- pbmc3k.SeuratData::pbmc3k.final
+set.seed(789)
+pbmc3k_seurat$condition <- sample(c("WT", "KO"), size = ncol(pbmc3k_seurat), replace = TRUE)
+pbmc3k_seurat$replicate <- sample(1:3, size = ncol(pbmc3k_seurat), replace = TRUE)
+pbmc3k_seurat@meta.data %>% head()
+```
+
+# Visualizations
+
+## `AbundancePlot`
+
+```{r AbundancePlot, eval=TRUE, fig.width = 7, fig.height=4}
+AbundancePlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "condition", replicate.by = "replicate")
+AbundancePlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "condition", replicate.by = "replicate", paired = TRUE, draw_paths = TRUE, sina_shift = FALSE)
+```
+
+## `AssignQuantiles`
+
+```{r AssignQuantiles, eval = TRUE}
+pbmc3k_seurat <- AssignQuantiles(pbmc3k_seurat, feature = "B2M", assay = "RNA", slot = "data", split.by = "condition", quantile.probs = c(0,0.4,0.8,1))
+
+RidgePlot(pbmc3k_seurat, group.by = "B2M.quantile", features = "B2M")
+```
+
+## `BackGatePlot`
+
+```{r backgateplot, eval = TRUE}
+BackgatePlot(pbmc3k_seurat, feature1 = "CD4", feature2 = "CD8A", metadata.col = "seurat_annotations", metadata.selection = "Memory CD4 T")
+BackgatePlot(pbmc3k_seurat, feature1 = "CD4", feature2 = "CD8A", metadata.col = "seurat_annotations", metadata.selection = "CD8 T")
+```
+
+## `Heatmaps`
+
+```{r heatmaps, eval = TRUE}
+rna_markers <- presto::wilcoxauc(pbmc3k_seurat, group_by = "seurat_annotations")
+top_rna_markers <- rna_markers %>% 
+    dplyr::filter(padj < 0.01, logFC > 0) %>%
+    dplyr::group_by(group) %>% 
+    dplyr::slice_min(padj, with_ties = FALSE, n = 3)
+
+DoStarHeatmap(pbmc3k_seurat, diff_exp_results = rna_markers %>% dplyr::filter(group != "Platelet"), assay = "RNA", slot = "data", group.by = "seurat_annotations", p_val_choice = 0.01, logFC_choice = 2)
+
+DoClusteredHeatmap(pbmc3k_seurat, features = top_rna_markers$feature, assay = "RNA", group.by = "seurat_annotations")
+
+```
+
+## `MetaDataPlot`
+
+```{r metadataplot, eval = TRUE}
+MetaDataPlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "replicate")
+```
+
+## `ModulePlot`
+
+```{r moduleplot, eval = TRUE}
+pbmc3k_seurat <- CellCycleScoring(pbmc3k_seurat, s.features = cc.genes.updated.2019$s.genes, g2m.features = cc.genes.updated.2019$g2m.genes)
+
+ModulePlot(pbmc3k_seurat, features = "S.Score", assay = "RNA", split.by = "condition", replicate.by = "replicate")
+```
+
+
+# Session Info
+```{r session info, eval=TRUE, width=6}
+sessionInfo()
+```

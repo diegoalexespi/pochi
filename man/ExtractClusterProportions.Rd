@@ -2,7 +2,7 @@
 % Please edit documentation in R/ExtractClusterProportions.R
 \name{ExtractClusterProportions}
 \alias{ExtractClusterProportions}
-\title{Extract cell proportions across groups in a Seurat object}
+\title{Extract cell proportions and counts across groups in a Seurat object}
 \usage{
 ExtractClusterProportions(object, group.by, split.by, replicate.by)
 }
@@ -20,7 +20,7 @@ Returns a data frame of group.by abundances per replicate in the
 split.by variable
 }
 \description{
-Extract cell proportions across groups in a Seurat object
+Extract cell proportions and counts across groups in a Seurat object
 }
 \details{
 Returns the abundances of specific groups in the Seurat object

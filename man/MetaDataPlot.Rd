@@ -11,6 +11,7 @@ MetaDataPlot(
   as.freq = TRUE,
   label.count = FALSE,
   text.size = 3,
+  angled.text = TRUE,
   label.angle = 45
 )
 }
@@ -25,6 +26,8 @@ MetaDataPlot(
 proportion}
 
 \item{label.count}{Whether to add count on top of bar graph}
+
+\item{angled.text}{Whether to angle the text to 45 degrees}
 }
 \value{
 Returns a metadata plot
