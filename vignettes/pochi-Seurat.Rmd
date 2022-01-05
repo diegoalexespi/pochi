@@ -37,13 +37,11 @@ devtools::install_github("diegoalexespi/pochi")
 The [pochi](http://github.com/diegoalexespi/pochi) package operates on [Seurat](http://github.com/satijalab/Seurat) objects. We load the `Seurat`, `SeuratData`, and `pochi` packages here for our analyses, as well as the `magrittr` package in order to improve legibility of code through using the pipe `%>%` operator.
 
 ```{r load packages required, eval = TRUE, warning=FALSE, message=FALSE}
-
 require("Seurat")
 require("SeuratData")
 require("pochi")
 require("ggplot2")
 require("tidyr")
-
 ```
 
 We load the pbmc3k data from the `SeuratData` package.
@@ -68,7 +66,6 @@ AbundancePlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "condit
 
 ```{r AssignQuantiles, eval = TRUE}
 pbmc3k_seurat <- AssignQuantiles(pbmc3k_seurat, feature = "B2M", assay = "RNA", slot = "data", split.by = "condition", quantile.probs = c(0,0.4,0.8,1))
-
 RidgePlot(pbmc3k_seurat, group.by = "B2M.quantile", features = "B2M")
 ```
 
@@ -87,11 +84,8 @@ top_rna_markers <- rna_markers %>%
     dplyr::filter(padj < 0.01, logFC > 0) %>%
     dplyr::group_by(group) %>% 
     dplyr::slice_min(padj, with_ties = FALSE, n = 3)
-
 DoStarHeatmap(pbmc3k_seurat, diff_exp_results = rna_markers %>% dplyr::filter(group != "Platelet"), assay = "RNA", slot = "data", group.by = "seurat_annotations", p_val_choice = 0.01, logFC_choice = 2)
-
 DoClusteredHeatmap(pbmc3k_seurat, features = top_rna_markers$feature, assay = "RNA", group.by = "seurat_annotations")
-
 ```
 
 ## `MetaDataPlot`
@@ -104,7 +98,6 @@ MetaDataPlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "replica
 
 ```{r moduleplot, eval = TRUE}
 pbmc3k_seurat <- CellCycleScoring(pbmc3k_seurat, s.features = cc.genes.updated.2019$s.genes, g2m.features = cc.genes.updated.2019$g2m.genes)
-
 ModulePlot(pbmc3k_seurat, features = "S.Score", assay = "RNA", split.by = "condition", replicate.by = "replicate")
 ```
 
@@ -113,4 +106,3 @@ ModulePlot(pbmc3k_seurat, features = "S.Score", assay = "RNA", split.by = "condi
 ```{r session info, eval=TRUE, width=6}
 sessionInfo()
 ```
-
