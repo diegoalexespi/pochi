@@ -1,0 +1,13 @@
+citHeader("To cite pochi in publications use:")
+
+citEntry(entry = "Article",
+         title        = "pochi",
+         author       = personList(as.person("Diego A. Espinoza")),
+         journal      = "GitHub",
+         year         = "2022",
+         url          = "https://github.com/diegoalexespi/pochi/",
+         textVersion  =
+  paste("pochi",
+        "A companion to the Seurat package.",
+        "Diego A. Espinoza.",
+        "https://github.com/diegoalexespi/pochi/."))
