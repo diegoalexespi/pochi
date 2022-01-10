@@ -2,7 +2,7 @@
 title: "Using pochi with Seurat"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{pochi-Seurat}
+  %\VignetteIndexEntry{Using pochi with Seurat}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,7 +11,7 @@ vignette: >
 ``` {r setup, echo = FALSE}
 knitr::opts_chunk$set(tidy = FALSE,
                       dpi = 72,
-                      fig.width = 6,
+                      fig.width = 9,
                       fig.height = 6,
                       width=80,
                       cache = FALSE,
@@ -45,9 +45,12 @@ require("tidyr")
 ```
 
 We load the pbmc3k data from the `SeuratData` package.
-```{r loading pbmc3k data, eval = TRUE}
-pbmc3k_seurat <- pbmc3k.SeuratData::pbmc3k.final
+```{r loading pbmc3k data, eval = TRUE, warning=FALSE}
+InstallData("pbmc3k")
+pbmc3k_seurat <- LoadData("pbmc3k")
 set.seed(789)
+pbmc3k_seurat <- pbmc3k_seurat[,!is.na(pbmc3k_seurat$seurat_annotations)]
+pbmc3k_seurat <- NormalizeData(pbmc3k_seurat)
 pbmc3k_seurat$condition <- sample(c("WT", "KO"), size = ncol(pbmc3k_seurat), replace = TRUE)
 pbmc3k_seurat$replicate <- sample(1:3, size = ncol(pbmc3k_seurat), replace = TRUE)
 pbmc3k_seurat@meta.data %>% head()
@@ -57,7 +60,7 @@ pbmc3k_seurat@meta.data %>% head()
 
 ## `AbundancePlot`
 
-```{r AbundancePlot, eval=TRUE, fig.width = 7, fig.height=4}
+```{r AbundancePlot, eval=TRUE, fig.width = 9, fig.height=8}
 AbundancePlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "condition", replicate.by = "replicate")
 AbundancePlot(pbmc3k_seurat, group.by = "seurat_annotations", split.by = "condition", replicate.by = "replicate", paired = TRUE, draw_paths = TRUE, sina_shift = FALSE)
 ```
