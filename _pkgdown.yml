@@ -1,4 +1,4 @@
-url: https://diegoalexespi.github.io/pochi/
+url: ~
 template:
-  bootswatch: flatly
+  bootstrap: 5
 
