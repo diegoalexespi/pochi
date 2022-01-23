@@ -1,6 +1,19 @@
 url: https://diegoalexespi.github.io/pochi/
+
 template:
   bootswatch: spacelab
+
+sidebar:
+    structure: [license, citation, dev, links]
+
+
+home:
+  title: An R package supplementing Seurat
+  links:
+  - text: Seurat
+    href: https://satijalab.org/seurat
+
+
 
 reference:
 - title: "Computation with pochi"
