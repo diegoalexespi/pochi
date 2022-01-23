@@ -1,24 +1,23 @@
-#' Heatmap of average expression values per group
-#'
-#' @param object Seurat object
-#' @param features Which features to plot
-#' @param assay Which assay to get expression values from
-#' @param slot Which slot to pull the assay data from
-#' @param group.by Which metadata slot to group cells by
-#' @param max_zed Cutoff for maximum z-scores (absolute value)
-#' @param y_text_size Size of text on y axis (features)
-#' @param scale_rows Whether to scale the expression per row
-#' @param plot_dendro Whether to plot accompanying x-axis and y-axis dendrograms
-#' @param dot.scale Value by which to scale the dots in DotPlot
-#' @param cluster_cols Whether to cluster the columns
-#' @details Plots the average expression value of the specified genes/features
-#' for each group in the Seurat object, optionally using hierarchical
-#' clustering for prettier visualization
-#'
-#' @return Returns a patchwork object of a heatmap and dendrogram if specified
-#'
-#' @importFrom rlang %||%
-#'
+# Heatmap of average expression values per group
+#
+# @param object Seurat object
+# @param features Which features to plot
+# @param assay Which assay to get expression values from
+# @param slot Which slot to pull the assay data from
+# @param group.by Which metadata slot to group cells by
+# @param max_zed Cutoff for maximum z-scores (absolute value)
+# @param y_text_size Size of text on y axis (features)
+# @param scale_rows Whether to scale the expression per row
+# @param plot_dendro Whether to plot accompanying x-axis and y-axis dendrograms
+# @param dot.scale Value by which to scale the dots in DotPlot
+# @param cluster_cols Whether to cluster the columns
+# @details Plots the average expression value of the specified genes/features
+# for each group in the Seurat object, optionally using hierarchical
+# clustering for prettier visualization
+#
+# @return Returns a patchwork object of a heatmap and dendrogram if specified
+#
+# @importFrom rlang %||%
 DoGenesetHeatmap <- function(seurat_object,
                              assay = "AUC",
                              slot = "counts",

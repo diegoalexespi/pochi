@@ -2,4 +2,46 @@ url: https://diegoalexespi.github.io/pochi/
 template:
   bootswatch: spacelab
 
+reference:
+- title: "Computation with pochi"
+  desc: >
+    Some tools to build useful structures/statistics from Seurat objects
+  contents:
+  - AssignQuantiles
+  - BuildAnnoyUMAP
+  - BuildSNNfromKNN
+  - ExtractClusterProportions
+  - FindClustersLeiden
+  - ScaleADT
+  - ScaleDSB
+  - TrueAverageExpression
+- title: "Visualization with pochi"
+  desc: >
+    Additional tools to supplement Seurat visualizations
+  contents:
+  - AbundancePlot
+  - BackgatePlot
+  - DimPlotEdges
+  - DimPlotHighlight
+  - DimPlotPlus
+  - DoClusteredHeatmap
+  - DoClusteredDotPlot
+  - DoStarHeatmap
+  - FeaturePlotPlus
+  - MetaDataPlot
+  - ModulePlot
+- title: "Using non-Seurat tools with Seurat"
+  desc: >
+    Tools for Seurat <-> non-Seurat interaction
+  contents:
+  - RunAUCell
+  - RunHarmony2
+  - RunSCA
+  - SeuratToAnnData
+- title: "Miscellaneous tools"
+  desc: >
+    Potentially useful geneset tools
+  contents:
+  - FindJaccard
+  - ReadGMT
 

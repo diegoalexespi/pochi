@@ -2,7 +2,7 @@
 % Please edit documentation in R/RunHarmony2.R
 \name{RunHarmony2}
 \alias{RunHarmony2}
-\title{Plot Seurat metadata distribution as a bar graph for indicated groups.}
+\title{Run Harmony with necessary internal object tinkering for Symphony}
 \usage{
 RunHarmony2(
   object,
@@ -30,10 +30,11 @@ RunHarmony2(
 }
 \value{
 Runs Harmony in the implementation of Symphony such that the Harmony
-model is stored within the Seurat object for later use with Symphony
+model is stored within the Seurat object for later use with Symphony, see
+https://github.com/immunogenomics/symphony/blob/main/vignettes/utils_seurat.R
 }
 \description{
-Plot Seurat metadata distribution as a bar graph for indicated groups.
+Run Harmony with necessary internal object tinkering for Symphony
 }
 \references{
 copy-pasted from @immunogenomics/symphony github repo

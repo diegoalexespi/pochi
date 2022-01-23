@@ -1,7 +1,8 @@
-#' Plot Seurat metadata distribution as a bar graph for indicated groups.
+#' Run Harmony with necessary internal object tinkering for Symphony
 #'
 #' @return Runs Harmony in the implementation of Symphony such that the Harmony
-#' model is stored within the Seurat object for later use with Symphony
+#' model is stored within the Seurat object for later use with Symphony, see
+#' https://github.com/immunogenomics/symphony/blob/main/vignettes/utils_seurat.R
 #' @references copy-pasted from @immunogenomics/symphony github repo
 #'
 #' @importFrom rlang %||%
