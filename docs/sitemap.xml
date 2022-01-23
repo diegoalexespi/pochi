@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/404.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/pochi-Seurat.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/articles/pochi-Seurat.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/index.html</loc>
   </url>
   <url>
-    <loc>/reference/AbundancePlot.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/AbundancePlot.html</loc>
   </url>
   <url>
-    <loc>/reference/AssignQuantiles.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/AssignQuantiles.html</loc>
   </url>
   <url>
-    <loc>/reference/BackgatePlot.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/BackgatePlot.html</loc>
   </url>
   <url>
-    <loc>/reference/BuildAnnoyUMAP.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/BuildAnnoyUMAP.html</loc>
   </url>
   <url>
-    <loc>/reference/BuildSNNfromKNN.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/BuildSNNfromKNN.html</loc>
   </url>
   <url>
-    <loc>/reference/DimPlotEdges.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DimPlotEdges.html</loc>
   </url>
   <url>
-    <loc>/reference/DimPlotHighlight.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DimPlotHighlight.html</loc>
   </url>
   <url>
-    <loc>/reference/DimPlotPlus.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DimPlotPlus.html</loc>
   </url>
   <url>
-    <loc>/reference/DoClusteredDotPlot.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DoClusteredDotPlot.html</loc>
   </url>
   <url>
-    <loc>/reference/DoClusteredHeatmap.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DoClusteredHeatmap.html</loc>
   </url>
   <url>
-    <loc>/reference/DoGenesetHeatmap.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DoGenesetHeatmap.html</loc>
   </url>
   <url>
-    <loc>/reference/DoStarHeatmap.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/DoStarHeatmap.html</loc>
   </url>
   <url>
-    <loc>/reference/ExtractClusterProportions.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/ExtractClusterProportions.html</loc>
   </url>
   <url>
-    <loc>/reference/FeaturePlotPlus.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/FeaturePlotPlus.html</loc>
   </url>
   <url>
-    <loc>/reference/FindClustersLeiden.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/FindClustersLeiden.html</loc>
   </url>
   <url>
-    <loc>/reference/FindJaccard.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/FindJaccard.html</loc>
   </url>
   <url>
-    <loc>/reference/MetaDataPlot.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/MetaDataPlot.html</loc>
   </url>
   <url>
-    <loc>/reference/ModulePlot.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/ModulePlot.html</loc>
   </url>
   <url>
-    <loc>/reference/ReadGMT.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/ReadGMT.html</loc>
   </url>
   <url>
-    <loc>/reference/RunAUCell.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/RunAUCell.html</loc>
   </url>
   <url>
-    <loc>/reference/RunHarmony2.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/RunHarmony2.html</loc>
   </url>
   <url>
-    <loc>/reference/RunSCA.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/RunSCA.html</loc>
   </url>
   <url>
-    <loc>/reference/ScaleADT.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/ScaleADT.html</loc>
   </url>
   <url>
-    <loc>/reference/ScaleDSB.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/ScaleDSB.html</loc>
   </url>
   <url>
-    <loc>/reference/SeuratToAnnData.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/SeuratToAnnData.html</loc>
   </url>
   <url>
-    <loc>/reference/TrueAverageExpression.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/TrueAverageExpression.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://diegoalexespi.github.io/pochi/reference/index.html</loc>
   </url>
 </urlset>

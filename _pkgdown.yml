@@ -1,5 +1,5 @@
 url: https://diegoalexespi.github.io/pochi/
 template:
-  bootstrap: 5
-  bootswatch: flatly
+  bootswatch: spacelab
+
 
