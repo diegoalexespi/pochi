@@ -48,21 +48,13 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p>
+          <h2 id="computation-with-pochi">Computation with pochi <a href="#computation-with-pochi" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Some tools to build useful structures/statistics from Seurat objects</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="AbundancePlot.html">AbundancePlot()</a></code> </p>
-        </td>
-        <td><p>Plot cell abundances across groups in a Seurat object</p></td>
-      </tr><tr><td>
           <p><code><a href="AssignQuantiles.html">AssignQuantiles()</a></code> </p>
         </td>
         <td><p>Assign cells to feature-specific quantiles.</p></td>
-      </tr><tr><td>
-          <p><code><a href="BackgatePlot.html">BackgatePlot()</a></code> </p>
-        </td>
-        <td><p>Plot a metadata selection in a biaxial FeatureScatter plot</p></td>
       </tr><tr><td>
           <p><code><a href="BuildAnnoyUMAP.html">BuildAnnoyUMAP()</a></code> </p>
         </td>
@@ -71,6 +63,38 @@
           <p><code><a href="BuildSNNfromKNN.html">BuildSNNfromKNN()</a></code> </p>
         </td>
         <td><p>Derive an SNN from a kNN Graph object in Seurat</p></td>
+      </tr><tr><td>
+          <p><code><a href="ExtractClusterProportions.html">ExtractClusterProportions()</a></code> </p>
+        </td>
+        <td><p>Extract cell proportions and counts across groups in a Seurat object</p></td>
+      </tr><tr><td>
+          <p><code><a href="FindClustersLeiden.html">FindClustersLeiden()</a></code> </p>
+        </td>
+        <td><p>Calculate Leiden clustering for a Graph object in Seurat</p></td>
+      </tr><tr><td>
+          <p><code><a href="ScaleADT.html">ScaleADT()</a></code> </p>
+        </td>
+        <td><p>Scale ADT assay from 0 to 1 per feature</p></td>
+      </tr><tr><td>
+          <p><code><a href="ScaleDSB.html">ScaleDSB()</a></code> </p>
+        </td>
+        <td><p>Scale DSB assay to a global max per feature</p></td>
+      </tr><tr><td>
+          <p><code><a href="TrueAverageExpression.html">TrueAverageExpression()</a></code> </p>
+        </td>
+        <td><p>Average feature expression across clustered samples in a Seurat object using fast sparse matrix methods</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="visualization-with-pochi">Visualization with pochi <a href="#visualization-with-pochi" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Additional tools to supplement Seurat visualizations</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="AbundancePlot.html">AbundancePlot()</a></code> </p>
+        </td>
+        <td><p>Plot cell abundances across groups in a Seurat object</p></td>
+      </tr><tr><td>
+          <p><code><a href="BackgatePlot.html">BackgatePlot()</a></code> </p>
+        </td>
+        <td><p>Plot a metadata selection in a biaxial FeatureScatter plot</p></td>
       </tr><tr><td>
           <p><code><a href="DimPlotEdges.html">DimPlotEdges()</a></code> </p>
         </td>
@@ -84,37 +108,21 @@
         </td>
         <td><p>Seurat DimPlot enhancement II</p></td>
       </tr><tr><td>
-          <p><code><a href="DoClusteredDotPlot.html">DoClusteredDotPlot()</a></code> </p>
-        </td>
-        <td><p>Seurat DotPlot enhancement with hierarchical clustering</p></td>
-      </tr><tr><td>
           <p><code><a href="DoClusteredHeatmap.html">DoClusteredHeatmap()</a></code> </p>
         </td>
         <td><p>Heatmap of average expression values per group</p></td>
       </tr><tr><td>
-          <p><code><a href="DoGenesetHeatmap.html">DoGenesetHeatmap()</a></code> </p>
+          <p><code><a href="DoClusteredDotPlot.html">DoClusteredDotPlot()</a></code> </p>
         </td>
-        <td><p>Heatmap of average expression values per group</p></td>
+        <td><p>Seurat DotPlot enhancement with hierarchical clustering</p></td>
       </tr><tr><td>
           <p><code><a href="DoStarHeatmap.html">DoStarHeatmap()</a></code> </p>
         </td>
         <td><p>Heatmap of average expression values per group with stars</p></td>
       </tr><tr><td>
-          <p><code><a href="ExtractClusterProportions.html">ExtractClusterProportions()</a></code> </p>
-        </td>
-        <td><p>Extract cell proportions and counts across groups in a Seurat object</p></td>
-      </tr><tr><td>
           <p><code><a href="FeaturePlotPlus.html">FeaturePlotPlus()</a></code> </p>
         </td>
         <td><p>Seurat FeaturePlot enhancement</p></td>
-      </tr><tr><td>
-          <p><code><a href="FindClustersLeiden.html">FindClustersLeiden()</a></code> </p>
-        </td>
-        <td><p>Calculate Leiden clustering for a Graph object in Seurat</p></td>
-      </tr><tr><td>
-          <p><code><a href="FindJaccard.html">FindJaccard()</a></code> </p>
-        </td>
-        <td><p>Determine overlap measure between a list of genes</p></td>
       </tr><tr><td>
           <p><code><a href="MetaDataPlot.html">MetaDataPlot()</a></code> </p>
         </td>
@@ -123,38 +131,38 @@
           <p><code><a href="ModulePlot.html">ModulePlot()</a></code> </p>
         </td>
         <td><p>Plot avereage feature expression per sample across groups in a Seurat object</p></td>
-      </tr><tr><td>
-          <p><code><a href="ReadGMT.html">ReadGMT()</a></code> </p>
-        </td>
-        <td><p>Read in a GMT file</p></td>
-      </tr><tr><td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="using-non-seurat-tools-with-seurat">Using non-Seurat tools with Seurat <a href="#using-non-seurat-tools-with-seurat" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Tools for Seurat &lt;-&gt; non-Seurat interaction</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="RunAUCell.html">RunAUCell()</a></code> </p>
         </td>
         <td><p>Run AUCell on a Seurat object</p></td>
       </tr><tr><td>
           <p><code><a href="RunHarmony2.html">RunHarmony2()</a></code> </p>
         </td>
-        <td><p>Plot Seurat metadata distribution as a bar graph for indicated groups.</p></td>
+        <td><p>Run Harmony with necessary internal object tinkering for Symphony</p></td>
       </tr><tr><td>
           <p><code><a href="RunSCA.html">RunSCA()</a></code> </p>
         </td>
         <td><p>Perform Shannon Component Analysis on a Seurat object</p></td>
       </tr><tr><td>
-          <p><code><a href="ScaleADT.html">ScaleADT()</a></code> </p>
-        </td>
-        <td><p>Scale ADT assay from 0 to 1 per feature</p></td>
-      </tr><tr><td>
-          <p><code><a href="ScaleDSB.html">ScaleDSB()</a></code> </p>
-        </td>
-        <td><p>Scale DSB assay to a global max per feature</p></td>
-      </tr><tr><td>
           <p><code><a href="SeuratToAnnData.html">SeuratToAnnData()</a></code> </p>
         </td>
         <td><p>Save a Seurat object as an anndata h5ad file</p></td>
-      </tr><tr><td>
-          <p><code><a href="TrueAverageExpression.html">TrueAverageExpression()</a></code> </p>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="miscellaneous-tools">Miscellaneous tools <a href="#miscellaneous-tools" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Potentially useful geneset tools</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="FindJaccard.html">FindJaccard()</a></code> </p>
         </td>
-        <td><p>Average feature expression across clustered samples in a Seurat object using fast sparse matrix methods</p></td>
+        <td><p>Determine overlap measure between a list of genes</p></td>
+      </tr><tr><td>
+          <p><code><a href="ReadGMT.html">ReadGMT()</a></code> </p>
+        </td>
+        <td><p>Read in a GMT file</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
