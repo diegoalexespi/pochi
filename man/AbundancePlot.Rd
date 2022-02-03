@@ -27,7 +27,8 @@ AbundancePlot(
   x_lab = NULL,
   y_lab = NULL,
   point_size = 1,
-  same_y_limit = FALSE
+  same_y_limit = FALSE,
+  selected.groups = NULL
 )
 }
 \arguments{
@@ -79,6 +80,9 @@ testing}
 
 \item{same_y_limit}{Whether to keep the upper y limit constant across all
 groups.}
+
+\item{selected.groups}{Optional. If not NULL, will only plot the groups
+specified in this argument.}
 }
 \value{
 Returns a patchwork plot of separate ggplots per group.by variable

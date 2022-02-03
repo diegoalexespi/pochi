@@ -27,6 +27,8 @@
 #' @param point_size Size of the points plotted
 #' @param same_y_limit Whether to keep the upper y limit constant across all
 #' groups.
+#' @param selected.groups Optional. If not NULL, will only plot the groups
+#' specified in this argument.
 #' @details Plots the abundances of specific groups in the Seurat object
 #' across a split.by variable, using replicate.by as replicates for each
 #' split.by condition
@@ -58,7 +60,8 @@ AbundancePlot <- function(object,
                           x_lab = NULL,
                           y_lab = NULL,
                           point_size = 1,
-                          same_y_limit = FALSE){
+                          same_y_limit = FALSE,
+                          selected.groups = NULL){
 
   x_lab <- if(is.null(x_lab)) split.by else x_lab
   y_lab <- if(is.null(y_lab)) "percentage" else y_lab
@@ -81,6 +84,13 @@ AbundancePlot <- function(object,
       dplyr::select(!!sym(replicate.by), !!sym(group.by), Frequency) %>%
       dplyr::mutate(split_by = split.by.values[i], replicate_by = !!sym(replicate.by), group_by = !!sym(group.by))
   }) %>% do.call(rbind, .)
+
+  if(!is.null(selected.groups)){
+    frequencies <- frequencies %>% dplyr::filter(group_by %in% selected.groups)
+    if(nrow(frequencies) < 1){
+      stop("Must select at least 1 group if using selected.groups argument")
+    }
+  }
 
   group.by.names <- sort(unique(frequencies[["group_by"]]))
 
