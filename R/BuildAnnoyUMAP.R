@@ -203,38 +203,47 @@ BuildAnnoyUMAP <- function(
 
 
   if(save.graphs){
-    nn_metric <- umap_results$nn[[metric]]
-    nn_metric_vertices <- nrow(nn_metric$idx)
-    nn_metric_sparse_dist <- Matrix::sparseMatrix(i = rep(1:nn_metric_vertices, each = n.neighbors),
-                                                  j = as.vector(t(nn_metric$idx)),
-                                                  x = as.vector(t(nn_metric$dist)))
-    nn_metric_sparse_adj <- Matrix::sparseMatrix(i = rep(1:nn_metric_vertices, each = n.neighbors),
-                                                 j = as.vector(t(nn_metric$idx)),
-                                                 x = 1)
-    nn_metric_sparse_snn <- Matrix::tcrossprod(nn_metric_sparse_adj)
-    nn_metric_sparse_snn@x <- nn_metric_sparse_snn@x / (2 * n.neighbors - nn_metric_sparse_snn@x)
-    nn_metric_sparse_snn@x[nn_metric_sparse_snn@x < prune.snn] <- 0
-    nn_metric_sparse_snn <- Matrix::drop0(nn_metric_sparse_snn)
-    nn_fuzzy <- umap_results$fgraph
+    if(!is.null(neighbors_slot)){
+      nn_fuzzy <- umap_results$fgraph
+      colnames(nn_fuzzy) <- rownames(umap_results$embedding)
+      rownames(nn_fuzzy) <- rownames(umap_results$embedding) #fixed?
+      nn_fuzzy <- as.Graph(nn_fuzzy)
+      DefaultAssay(nn_fuzzy) <- assay
+      object[[paste0(graph_key, "_fuzzy")]] <- nn_fuzzy
+    } else {
+      nn_metric <- umap_results$nn[[metric]]
+      nn_metric_vertices <- nrow(nn_metric$idx)
+      nn_metric_sparse_dist <- Matrix::sparseMatrix(i = rep(1:nn_metric_vertices, each = n.neighbors),
+                                                    j = as.vector(t(nn_metric$idx)),
+                                                    x = as.vector(t(nn_metric$dist)))
+      nn_metric_sparse_adj <- Matrix::sparseMatrix(i = rep(1:nn_metric_vertices, each = n.neighbors),
+                                                   j = as.vector(t(nn_metric$idx)),
+                                                   x = 1)
+      nn_metric_sparse_snn <- Matrix::tcrossprod(nn_metric_sparse_adj)
+      nn_metric_sparse_snn@x <- nn_metric_sparse_snn@x / (2 * n.neighbors - nn_metric_sparse_snn@x)
+      nn_metric_sparse_snn@x[nn_metric_sparse_snn@x < prune.snn] <- 0
+      nn_metric_sparse_snn <- Matrix::drop0(nn_metric_sparse_snn)
+      nn_fuzzy <- umap_results$fgraph
 
-    nn_list <- list(nn_metric_sparse_dist, nn_metric_sparse_adj, nn_metric_sparse_snn, nn_fuzzy)
+      nn_list <- list(nn_metric_sparse_dist, nn_metric_sparse_adj, nn_metric_sparse_snn, nn_fuzzy)
 
-    for(i in 1:length(nn_list)){
-      colnames(nn_list[[i]]) <- rownames(data_use)
-      rownames(nn_list[[i]]) <- rownames(data_use) #fixed?
-      nn_list[[i]] <- as.Graph(nn_list[[i]])
-      DefaultAssay(nn_list[[i]]) <- assay
+      for(i in 1:length(nn_list)){
+        colnames(nn_list[[i]]) <- rownames(data_use)
+        rownames(nn_list[[i]]) <- rownames(data_use) #fixed?
+        nn_list[[i]] <- as.Graph(nn_list[[i]])
+        DefaultAssay(nn_list[[i]]) <- assay
+      }
+
+      object[[paste0(graph_key, paste0("_nn_", metric))]] <- nn_list[[1]]
+      object[[paste0(graph_key, "_nn_nn")]] <- nn_list[[2]]
+      object[[paste0(graph_key, "_nn_snn")]] <- nn_list[[3]]
+      object[[paste0(graph_key, "_fuzzy")]] <- nn_list[[4]]
     }
-
-    object[[paste0(graph_key, paste0("_nn_", metric))]] <- nn_list[[1]]
-    object[[paste0(graph_key, "_nn_nn")]] <- nn_list[[2]]
-    object[[paste0(graph_key, "_nn_snn")]] <- nn_list[[3]]
-    object[[paste0(graph_key, "_fuzzy")]] <- nn_list[[4]]
   }
 
   umap_output <- umap_results$embedding
   colnames(x = umap_output) <- paste0(reduction_key, 1:ncol(x = umap_output))
-  rownames(x = umap_output) <- rownames(data_use)
+  rownames(x = umap_output) <- rownames(umap_results$embedding)
   umap_reduction <- Seurat::CreateDimReducObject(
     embeddings = umap_output,
     key = reduction_key,
