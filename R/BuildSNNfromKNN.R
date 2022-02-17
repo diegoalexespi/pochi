@@ -18,7 +18,7 @@ BuildSNNfromKNN <- function(object,
                             knn_choice = "RNA_nn",
                             snn_name = paste0(knn_choice, "_snn"),
                             prune_snn = 1/15) {
-  my_knn <- as(Graphs(seurat_object, knn_choice), "dgCMatrix")
+  my_knn <- as(Graphs(object, knn_choice), "dgCMatrix")
 
   nn_k <- unique(Matrix::rowSums(my_knn))
   if(length(nn_k) != 1){
@@ -30,6 +30,6 @@ BuildSNNfromKNN <- function(object,
   my_snn@x <- my_snn@x / (2 * nn_k - my_snn@x)
   my_snn@x[my_snn@x < (prune_snn)] <- 0
   my_snn <- Matrix::drop0(my_snn)
-  seurat_object[[snn_name]] <- as.Graph(my_snn)
-  return(seurat_object)
+  object[[snn_name]] <- as.Graph(my_snn)
+  return(object)
 }
