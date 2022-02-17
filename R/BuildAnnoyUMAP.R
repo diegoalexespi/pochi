@@ -150,7 +150,7 @@ BuildAnnoyUMAP <- function(
     } else {
       data_use <- Seurat::Embeddings(object[[reduction]])[, dims]
     }
-    uwot::umap(
+    umap_results <- uwot::umap(
       X = data_use,
       init = init.pos,
       n_neighbors  = as.integer(x = n.neighbors),
@@ -170,17 +170,17 @@ BuildAnnoyUMAP <- function(
       verbose = verbose,
       ret_extra = graph_vector,
       scale = scale,
-      ret_model = TRUE
+      ret_model = return.model
     )
   } else {
 
     neighbors_object <- object[[neighbors_slot]]
     neighbors_list <- list(idx = Seurat::Indices(neighbors_object),
                            dist = Seurat::Distances(neighbors_object))
-    uwot::umap(
+    umap_results <- uwot::umap(
       X = NULL,
-      n_threads = nbrOfWorkers(),
       nn_method = neighbors_list,
+      init = init.pos,
       n_components = as.integer(x = n.components),
       metric = metric,
       n_epochs = n.epochs,
@@ -195,6 +195,8 @@ BuildAnnoyUMAP <- function(
       b = b,
       fast_sgd = uwot.sgd,
       verbose = verbose,
+      ret_extra = graph_vector,
+      scale = scale,
       ret_model = return.model
     )
   }
