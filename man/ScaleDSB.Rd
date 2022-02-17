@@ -9,8 +9,8 @@ ScaleDSB(
   assay = "DSB",
   slot = "data",
   split.by = NULL,
-  low.p = 0.001,
   high.p = 0.999,
+  scale.to.one = TRUE,
   new.assay = "sDSB"
 )
 }
@@ -25,6 +25,9 @@ ScaleDSB(
 scaling.}
 
 \item{high.p}{Which percentile to set as the global max per object}
+
+\item{scale.to.one}{Whether to set global max per feature as 1 (helpful when
+needing equally weighted features)}
 
 \item{new.assay}{Name of new assay to save values to}
 }

@@ -6,6 +6,8 @@
 #' @param split.by If not NULL, which metadata feature to split by  before
 #' scaling.
 #' @param high.p Which percentile to set as the global max per object
+#' @param scale.to.one Whether to set global max per feature as 1 (helpful when
+#' needing equally weighted features)
 #' @param new.assay Name of new assay to save values to
 #' @details Scales the expression values for each feature in the specified assay
 #' from 0 to a global max, with an optional split.by argument. The 0 is assumed
@@ -19,7 +21,7 @@
 #'
 #' @export
 ScaleDSB <- function(object, assay = "DSB", slot = "data", split.by = NULL,
-                     low.p = 0.001,high.p = 0.999,new.assay = "sDSB"){
+                     high.p = 0.999, scale.to.one = TRUE, new.assay = "sDSB"){
 
   #split the object or not...
   if(!is.null(split.by)){
@@ -29,19 +31,25 @@ ScaleDSB <- function(object, assay = "DSB", slot = "data", split.by = NULL,
   }
 
   #get global maximum first
-  object_global_maxs_mat <- lapply(split_object, function(x){
-    object_assay <- SeuratObject::GetAssayData(x, assay = assay, slot = slot)
-    features_to_scale <- rownames(object_assay)
-    global_maxs <- lapply(seq_along(features_to_scale), function(i){
-      value_vector <- object_assay[features_to_scale[i],]
-      percentile_limit_hi <- quantile(value_vector, high.p)
-      return(percentile_limit_hi)
-    }) %>% unlist()
-    names(global_maxs) <- features_to_scale
-    return(global_maxs)
-  }) %>% do.call(rbind, .)
-  feature_global_maxs <- matrixStats::colMaxs(object_global_maxs_mat)
-  names(feature_global_maxs) <- colnames(object_global_maxs_mat)
+  if(scale.to.one){
+    feature_global_maxs <- rep(1, length(rownames(object)))
+    names(feature_global_maxs) <- rownames(object)
+  } else {
+    object_global_maxs_mat <- lapply(split_object, function(x){
+      object_assay <- SeuratObject::GetAssayData(x, assay = assay, slot = slot)
+      features_to_scale <- rownames(object_assay)
+      global_maxs <- lapply(seq_along(features_to_scale), function(i){
+        value_vector <- object_assay[features_to_scale[i],]
+        percentile_limit_hi <- quantile(value_vector, high.p)
+        return(percentile_limit_hi)
+      }) %>% unlist()
+      names(global_maxs) <- features_to_scale
+      return(global_maxs)
+    }) %>% do.call(rbind, .)
+    feature_global_maxs <- matrixStats::colMaxs(object_global_maxs_mat)
+    names(feature_global_maxs) <- colnames(object_global_maxs_mat)
+  }
+
 
   #get the assay from each object
   split_assays <- lapply(seq_along(split_object), function(i){
@@ -54,7 +62,7 @@ ScaleDSB <- function(object, assay = "DSB", slot = "data", split.by = NULL,
       percentile_limit_hi <- quantile(value_vector_nonzero, high.p)
       hi_scale_limit <- feature_global_maxs[features_to_scale[i]]
       value_vector_nonzero[value_vector_nonzero > percentile_limit_hi] <- percentile_limit_hi
-      value_vector[value_vector > 0] <- scales::rescale(value_vector_nonzero, to = c(nonzero_min,hi_scale_limit))
+      value_vector[value_vector > 0] <- scales::rescale(value_vector_nonzero, to = c(nonzero_min, hi_scale_limit))
       value_matrix <- data.frame(feature = value_vector)
       colnames(value_matrix) <- features_to_scale[i]
       return(t(value_matrix))
