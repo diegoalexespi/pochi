@@ -139,17 +139,17 @@ BuildAnnoyUMAP <- function(
     set.seed(seed = seed.use)
   }
 
-  if(!is.null(features)){
-    data_use <- t(as.matrix(Seurat::GetAssayData(object, slot = slot, assay = assay)))
-    data_use <- data_use[,colnames(data_use) %in% features]
-  } else {
-    data_use <- Seurat::Embeddings(object[[reduction]])[, dims]
-  }
 
   if(save.graphs) graph_vector <- c("nn", "fgraph") else graph_vector <- c()
 
 
   if (is.null(neighbors_slot)) {
+    if(!is.null(features)){
+      data_use <- t(as.matrix(Seurat::GetAssayData(object, slot = slot, assay = assay)))
+      data_use <- data_use[,colnames(data_use) %in% features]
+    } else {
+      data_use <- Seurat::Embeddings(object[[reduction]])[, dims]
+    }
     uwot::umap(
       X = data_use,
       init = init.pos,
