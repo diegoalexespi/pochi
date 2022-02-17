@@ -1,6 +1,9 @@
 #' Run UMAP on a Seurat object
 #'
 #' @param object A Seurat object
+#' @param neighbors_slot Name of the Neighbors slot in object to utilize for
+#' pre-computed kNN, such as with FindMultiModalNeighbors. Leave NULL if
+#' want to calculate kNN utilizing the remaining arguments in this function.
 #' @param dims Which dimensions from the reduction to use as input features
 #' @param reduction Which dimensional reduction to use for the
 #' UMAP input.
@@ -99,12 +102,13 @@
 #'
 #' @export
 BuildAnnoyUMAP <- function(
-  seurat_object,
+  object,
+  neighbors_slot = NULL,
   dims,
   reduction = "pca",
   features = NULL,
   graph_key = "annoy",
-  assay = DefaultAssay(seurat_object),
+  assay = DefaultAssay(object),
   slot = "scale.data",
   n.neighbors = 30L,
   n.components = 2L,
@@ -136,36 +140,65 @@ BuildAnnoyUMAP <- function(
   }
 
   if(!is.null(features)){
-    data_use <- t(as.matrix(Seurat::GetAssayData(seurat_object, slot = slot, assay = assay)))
+    data_use <- t(as.matrix(Seurat::GetAssayData(object, slot = slot, assay = assay)))
     data_use <- data_use[,colnames(data_use) %in% features]
   } else {
-    data_use <- Seurat::Embeddings(seurat_object[[reduction]])[, dims]
+    data_use <- Seurat::Embeddings(object[[reduction]])[, dims]
   }
 
   if(save.graphs) graph_vector <- c("nn", "fgraph") else graph_vector <- c()
 
-  umap_results <- uwot::umap(
-    X = data_use,
-    init = init.pos,
-    n_neighbors  = as.integer(x = n.neighbors),
-    n_components = as.integer(x = n.components),
-    metric = metric,
-    n_epochs = n.epochs,
-    learning_rate = learning.rate,
-    min_dist = min.dist,
-    spread = spread,
-    set_op_mix_ratio = set.op.mix.ratio,
-    local_connectivity = local.connectivity,
-    repulsion_strength = repulsion.strength,
-    negative_sample_rate = negative.sample.rate,
-    a = a,
-    b = b,
-    fast_sgd = uwot.sgd,
-    verbose = verbose,
-    ret_extra = graph_vector,
-    scale = scale,
-    ret_model = TRUE
-  )
+
+  if (is.null(neighbors_slot)) {
+    uwot::umap(
+      X = data_use,
+      init = init.pos,
+      n_neighbors  = as.integer(x = n.neighbors),
+      n_components = as.integer(x = n.components),
+      metric = metric,
+      n_epochs = n.epochs,
+      learning_rate = learning.rate,
+      min_dist = min.dist,
+      spread = spread,
+      set_op_mix_ratio = set.op.mix.ratio,
+      local_connectivity = local.connectivity,
+      repulsion_strength = repulsion.strength,
+      negative_sample_rate = negative.sample.rate,
+      a = a,
+      b = b,
+      fast_sgd = uwot.sgd,
+      verbose = verbose,
+      ret_extra = graph_vector,
+      scale = scale,
+      ret_model = TRUE
+    )
+  } else {
+
+    neighbors_object <- object[[neighbors_slot]]
+    neighbors_list <- list(idx = Seurat::Indices(neighbors_object),
+                           dist = Seurat::Distances(neighbors_object))
+    uwot::umap(
+      X = NULL,
+      n_threads = nbrOfWorkers(),
+      nn_method = neighbors_list,
+      n_components = as.integer(x = n.components),
+      metric = metric,
+      n_epochs = n.epochs,
+      learning_rate = learning.rate,
+      min_dist = min.dist,
+      spread = spread,
+      set_op_mix_ratio = set.op.mix.ratio,
+      local_connectivity = local.connectivity,
+      repulsion_strength = repulsion.strength,
+      negative_sample_rate = negative.sample.rate,
+      a = a,
+      b = b,
+      fast_sgd = uwot.sgd,
+      verbose = verbose,
+      ret_model = return.model
+    )
+  }
+
 
   if(save.graphs){
     nn_metric <- umap_results$nn[[metric]]
@@ -191,10 +224,10 @@ BuildAnnoyUMAP <- function(
       DefaultAssay(nn_list[[i]]) <- assay
     }
 
-    seurat_object[[paste0(graph_key, paste0("_nn_", metric))]] <- nn_list[[1]]
-    seurat_object[[paste0(graph_key, "_nn_nn")]] <- nn_list[[2]]
-    seurat_object[[paste0(graph_key, "_nn_snn")]] <- nn_list[[3]]
-    seurat_object[[paste0(graph_key, "_fuzzy")]] <- nn_list[[4]]
+    object[[paste0(graph_key, paste0("_nn_", metric))]] <- nn_list[[1]]
+    object[[paste0(graph_key, "_nn_nn")]] <- nn_list[[2]]
+    object[[paste0(graph_key, "_nn_snn")]] <- nn_list[[3]]
+    object[[paste0(graph_key, "_fuzzy")]] <- nn_list[[4]]
   }
 
   umap_output <- umap_results$embedding
@@ -211,6 +244,6 @@ BuildAnnoyUMAP <- function(
     Misc(umap_reduction, slot = "model") <- umap_results
   }
 
-  seurat_object[[reduction.name]] <- umap_reduction
-  return(seurat_object)
+  object[[reduction.name]] <- umap_reduction
+  return(object)
 }

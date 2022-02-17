@@ -5,12 +5,13 @@
 \title{Run UMAP on a Seurat object}
 \usage{
 BuildAnnoyUMAP(
-  seurat_object,
+  object,
+  neighbors_slot = NULL,
   dims,
   reduction = "pca",
   features = NULL,
   graph_key = "annoy",
-  assay = DefaultAssay(seurat_object),
+  assay = DefaultAssay(object),
   slot = "scale.data",
   n.neighbors = 30L,
   n.components = 2L,
@@ -40,6 +41,12 @@ BuildAnnoyUMAP(
 )
 }
 \arguments{
+\item{object}{A Seurat object}
+
+\item{neighbors_slot}{Name of the Neighbors slot in object to utilize for
+pre-computed kNN, such as with FindMultiModalNeighbors. Leave NULL if
+want to calculate kNN utilizing the remaining arguments in this function.}
+
 \item{dims}{Which dimensions from the reduction to use as input features}
 
 \item{reduction}{Which dimensional reduction to use for the
@@ -140,8 +147,6 @@ the Seurat object}
 for more details.}
 
 \item{scale}{Scaling to apply to embeddings. See uwot::umap}
-
-\item{object}{A Seurat object}
 
 \item{densmap}{Whether to use the density-augmented objective of densMAP.
 Turning on this option generates an embedding where the local densities
