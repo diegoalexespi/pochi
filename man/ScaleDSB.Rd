@@ -2,7 +2,7 @@
 % Please edit documentation in R/ScaleDSB.R
 \name{ScaleDSB}
 \alias{ScaleDSB}
-\title{Scale DSB assay to a global max per feature}
+\title{Scale DSB assay to [0-1] per feature}
 \usage{
 ScaleDSB(
   object,
@@ -10,7 +10,6 @@ ScaleDSB(
   slot = "data",
   split.by = NULL,
   high.p = 0.999,
-  scale.to.one = TRUE,
   new.assay = "sDSB"
 )
 }
@@ -24,10 +23,7 @@ ScaleDSB(
 \item{split.by}{If not NULL, which metadata feature to split by  before
 scaling.}
 
-\item{high.p}{Which percentile to set as the global max per object}
-
-\item{scale.to.one}{Whether to set global max per feature as 1 (helpful when
-needing equally weighted features)}
+\item{high.p}{Which percentile to set as the global 1 per feature}
 
 \item{new.assay}{Name of new assay to save values to}
 }
@@ -36,11 +32,9 @@ Returns a Seurat object with scaled values in the data slot of the
 specified assay
 }
 \description{
-Scale DSB assay to a global max per feature
+Scale DSB assay to [0-1] per feature
 }
 \details{
 Scales the expression values for each feature in the specified assay
-from 0 to a global max, with an optional split.by argument. The 0 is assumed
-to be the 0 values in the slot, in line with DSB's procedure. We only scale
-the high percentile.
+from 0 to 1, with an optional split.by argument.
 }

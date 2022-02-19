@@ -15,7 +15,9 @@ BackgatePlot(
   label.cols = c("red", "grey"),
   pt.size = 1,
   add.density = FALSE,
-  density.col = "black"
+  density.col = "black",
+  noise.zero = FALSE,
+  noise.zero.bound = -0.01
 )
 }
 \arguments{
@@ -41,9 +43,15 @@ BackgatePlot(
 
 \item{density.col}{The color of the density contour (if added)}
 
-\item{high.p}{Which percentile to set as 1}
+\item{noise.zero}{Whether to simulate values from 0 to a negative value,
+done for visual purposes ONLY and for kernel density estimation when
+overlaying a density visualization. Will simulate values using a normal
+distribution centered at 0, take absolute values, and then scale from
+noise.zero.bound to 0.}
 
-\item{new.assay}{Name of new assay to save values to}
+\item{noise.zero.bound}{The negative value to which to simulate zeros to.}
+
+\item{high.p}{Which percentile to set as 1}
 }
 \value{
 Returns a Seurat object with scaled values in the data slot of the
