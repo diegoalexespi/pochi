@@ -51,14 +51,16 @@ MiloHeatmap <- function(seurat_object, features, milo_ids, slot = "data", assay 
   seurat_object <- seurat_object[features,]
   nbhd_expr <- lapply(seq_along(milo_ids), function(i){
     seurat_object[["tempID"]] <- ifelse(colnames(seurat_object) %in% milo_ids[[i]], "in_cluster", "out_cluster")
-    my_data <- TrueAverageExpression(seurat_object, group.by = "tempID")
+    my_data <- TrueAverageExpression(seurat_object, group.by = "tempID", assay = assay, slot = slot)
     my_data <- my_data[,"in_cluster", drop = FALSE]
     colnames(my_data) <- names(milo_ids)[[i]]
     return(my_data)
   }) %>% do.call(cbind, .)
-  nbhd_expr <- as.data.frame(t(scale(t(nbhd_expr), center = TRUE, scale = TRUE)))
-  nbhd_expr[nbhd_expr > max_zed] <- max_zed
-  nbhd_expr[nbhd_expr < -max_zed] <- -max_zed
+  if(scale_rows){
+    nbhd_expr <- as.data.frame(t(scale(t(nbhd_expr), center = TRUE, scale = TRUE)))
+    nbhd_expr[nbhd_expr > max_zed] <- max_zed
+    nbhd_expr[nbhd_expr < -max_zed] <- -max_zed
+  }
   hclust_results <- hclust(dist(nbhd_expr))
   feature_order <- hclust_results$labels[hclust_results$order]
   hclust_results_2 <- hclust(dist(t(nbhd_expr)))
