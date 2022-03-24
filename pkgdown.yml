@@ -3,7 +3,7 @@ pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   pochi-Seurat: pochi-Seurat.html
-last_built: 2022-03-23T18:17Z
+last_built: 2022-03-24T00:14Z
 urls:
   reference: https://diegoalexespi.github.io/pochi/reference
   article: https://diegoalexespi.github.io/pochi/articles
