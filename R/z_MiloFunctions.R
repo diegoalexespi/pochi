@@ -8,7 +8,7 @@ MiloGetIDs <- function(milo_object, milo_results, nhood_column = "Nhood", p_cuto
   }
 
   sig_nhdx_ix <- milo_sig_results[[nhood_column]]
-  sig_nhds_id <- unlist(nhoodIndex(t_milo)[sig_nhdx_ix])
+  sig_nhds_id <- unlist(nhoodIndex(milo_object)[sig_nhdx_ix])
 
   milo_nhoods <- nhoods(milo_object)
   all_ids <- 1:nrow(milo_nhoods)
