@@ -57,6 +57,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">TrueAverageExpression</span><span class="op">(</span>
   <span class="va">object</span>,
   group.by <span class="op">=</span> <span class="st">"seurat_clusters"</span>,
+  group.by.delim <span class="op">=</span> <span class="st">"_"</span>,
   assay <span class="op">=</span> <span class="st">"RNA"</span>,
   slot <span class="op">=</span> <span class="st">"data"</span>,
   verbose <span class="op">=</span> <span class="cn">TRUE</span>
@@ -68,7 +69,13 @@
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
 <dt>group.by</dt>
-<dd><p>Ident with sample clustering information (default is seurat_clusters)</p></dd>
+<dd><p>Ident with sample clustering information (default is
+seurat_clusters). Can also input a vector with multiple idents specified and
+TrueAverageExpression will return specified idents concatenated into new
+a new output ident with group.by.delim as the separator.</p></dd>
+<dt>group.by.delim</dt>
+<dd><p>The delimiter used if group.by is a vector of
+length &gt; 1.</p></dd>
 <dt>assay</dt>
 <dd><p>Assay to average (default is the active assay)</p></dd>
 <dt>slot</dt>
@@ -97,7 +104,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
