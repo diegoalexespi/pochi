@@ -17,7 +17,9 @@ BackgatePlot(
   add.density = FALSE,
   density.col = "black",
   noise.zero = FALSE,
-  noise.zero.bound = -0.01
+  noise.zero.bound = -0.01,
+  raster = TRUE,
+  raster.dpi = c(512, 512)
 )
 }
 \arguments{

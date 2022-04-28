@@ -25,6 +25,7 @@
 #' specified assay
 #'
 #' @importFrom rlang %||%
+#' @importFrom scattermore geom_scattermore
 #'
 #' @export
 BackgatePlot <- function(object,
@@ -39,7 +40,9 @@ BackgatePlot <- function(object,
                          add.density = FALSE,
                          density.col = "black",
                          noise.zero = FALSE,
-                         noise.zero.bound = -0.01){
+                         noise.zero.bound = -0.01,
+                         raster = TRUE,
+                         raster.dpi = c(512, 512)){
   DefaultAssay(object) <- assay
   plotting_data <- FetchData(object, vars = c(feature1, feature2, metadata.col), slot = slot)
   if(noise.zero){
@@ -62,10 +65,19 @@ BackgatePlot <- function(object,
     dplyr::mutate(selected_cells = factor(selected_cells, levels = c(metadata.selection, "non-selected"))) %>%
     dplyr::arrange(desc(selected_cells))
 
-  g <- ggplot(plotting_data, aes(x = !!sym(feature1), y = !!sym(feature2), color = selected_cells, group = selected_cells ))+
-    geom_point(size = pt.size)+
+
+  g <- ggplot(plotting_data, aes(x = !!sym(feature1), y = !!sym(feature2), color = selected_cells, group = selected_cells ))
+
+  if(raster){
+    g <- g + geom_scattermore(pixels = raster.dpi, pointsize = pt.size)
+  } else {
+    g <- g + geom_point(size = pt.size)
+  }
+
+  g <- g +
     scale_color_manual(values = c(label.cols))+
     theme_classic()
+
   if(add.density){
     g <- g + geom_density_2d(data = plotting_data[plotting_data$selected_cells == metadata.selection,], color = density.col)
   }

@@ -277,7 +277,12 @@ DoClusteredHeatmap <- function(object,
 #' Average feature expression across clustered samples in a Seurat object using fast sparse matrix methods
 #'
 #' @param object Seurat object
-#' @param group.by Ident with sample clustering information (default is seurat_clusters)
+#' @param group.by Ident with sample clustering information (default is
+#' seurat_clusters). Can also input a vector with multiple idents specified and
+#' TrueAverageExpression will return specified idents concatenated into new
+#' a new output ident with group.by.delim as the separator.
+#' @param group.by.delim The delimiter used if group.by is a vector of
+#' length > 1.
 #' @param assay Assay to average (default is the active assay)
 #' @param slot Slot to average (default is counts)
 #' @param verbose Boolean or integer, show progress bar (default is TRUE)
@@ -289,14 +294,16 @@ DoClusteredHeatmap <- function(object,
 #' @export
 TrueAverageExpression <- function(object,
                                   group.by = "seurat_clusters",
+                                  group.by.delim = "_",
                                   assay = "RNA",
                                   slot = "data",
                                   verbose = TRUE) {
 
   my_data <- GetAssayData(object, assay = assay, slot = slot)
 
-  # get the group over which to average
-  idents <- as.vector(object@meta.data[,group.by])
+  idents <- object@meta.data[,group.by,drop=FALSE] %>%
+    tidyr::unite("ident_vector", group.by) %>%
+    dplyr::pull(ident_vector)
 
   # loop through all idents, averaging them in data
   ident.names <- unique(idents)

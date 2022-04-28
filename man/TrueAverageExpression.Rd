@@ -7,6 +7,7 @@
 TrueAverageExpression(
   object,
   group.by = "seurat_clusters",
+  group.by.delim = "_",
   assay = "RNA",
   slot = "data",
   verbose = TRUE
@@ -15,7 +16,13 @@ TrueAverageExpression(
 \arguments{
 \item{object}{Seurat object}
 
-\item{group.by}{Ident with sample clustering information (default is seurat_clusters)}
+\item{group.by}{Ident with sample clustering information (default is
+seurat_clusters). Can also input a vector with multiple idents specified and
+TrueAverageExpression will return specified idents concatenated into new
+a new output ident with group.by.delim as the separator.}
+
+\item{group.by.delim}{The delimiter used if group.by is a vector of
+length > 1.}
 
 \item{assay}{Assay to average (default is the active assay)}
 

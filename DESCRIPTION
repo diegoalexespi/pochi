@@ -23,7 +23,8 @@ Imports:
   ggforce,
   ggplot2,
   viridis,
-  forcats
+  forcats,
+  scattermore
 Suggests: 
     rmarkdown,
     knitr
