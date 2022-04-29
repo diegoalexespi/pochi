@@ -196,7 +196,9 @@ DoClusteredHeatmap <- function(object,
   my_data <- TrueAverageExpression(object, slot = slot, assay = assay, group.by = group.by)
   my_data <- my_data[features,]
   if(!is.null(levels(object@meta.data[,group.by]))){
-    my_data <- my_data[,levels(object@meta.data[,group.by])]
+    these_levels <- levels(object@meta.data[,group.by])
+    these_levels <- these_levels[these_levels %in% colnames(my_data)]
+    my_data <- my_data[,these_levels]
   }
 
   if(scale_rows){
