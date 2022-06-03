@@ -172,12 +172,13 @@ BuildRealWKNN <- function(seurat_object, neighbors_name = "weighted.nn", new_gra
   if(weighted){
     my_wnn_edgelist$weight <- c(my_neighbors_object@nn.dist)
     my_wnn_adjacency <- igraph::get.adjacency(igraph::graph_from_data_frame(my_wnn_edgelist), attr = "weight")
+    Matrix::diag(my_wnn_adjacency) <- 0
   } else {
     my_wnn_adjacency <- igraph::get.adjacency(igraph::graph_from_data_frame(my_wnn_edgelist))
+    Matrix::diag(my_wnn_adjacency) <- 1
   }
   my_wnn_adjacency@Dimnames[[1]] <- colnames(seurat_object)
   my_wnn_adjacency@Dimnames[[2]] <- colnames(seurat_object)
-  Matrix::diag(my_wnn_adjacency) <- 1
   seurat_object@graphs[[new_graph_name]] <- as.Graph(my_wnn_adjacency)
   return(seurat_object)
 }
