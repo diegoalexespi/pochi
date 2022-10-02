@@ -7,9 +7,11 @@
 FindClustersLeiden(
   object,
   graph.name = NULL,
+  group.singletons = TRUE,
   resolution = c(0.8),
   min.cluster.size = 5,
   n_iterations = 2,
+  verbose = TRUE,
   pythondir = "~/miniconda3/bin/python",
   partition_type = "RBConfigurationVertexPartition"
 )
@@ -19,9 +21,15 @@ FindClustersLeiden(
 
 \item{graph.name}{Name of Graph slot in object to use for Leiden clustering}
 
+\item{group.singletons}{Group singletons into nearest cluster. If FALSE, the
+clusters will remain as single-member clusters.}
+
 \item{resolution}{Vector of resolution to input into Leiden}
 
-\item{min.cluster.size}{Minimum cluster size trimmed after clustering}
+\item{min.cluster.size}{Minimum cluster size trimmed after clustering (not
+currently used)}
+
+\item{verbose}{Control verbosity}
 
 \item{pythondir}{Specified director for python binary that has the leidenalg
 library installed}

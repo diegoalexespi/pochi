@@ -102,10 +102,8 @@ FindClustersLeiden <- function(object,
     #   message(sprintf("WARNING: for resolution %f, %d/%d points removed from small clusters", resolution, n_na, length(cres_membership$membership)))
     # }
     ###
-
     return(clustering_results)
   })
-
   .res <-  .res_list %>%
     purrr::reduce(left_join, by = "nodes")
 

@@ -307,7 +307,7 @@ TrueAverageExpression <- function(object,
   my_data <- GetAssayData(object, assay = assay, slot = slot)
 
   idents <- object@meta.data[,group.by,drop=FALSE] %>%
-    tidyr::unite("ident_vector", group.by) %>%
+    tidyr::unite("ident_vector", group.by, sep = group.by.delim) %>%
     dplyr::pull(ident_vector)
 
   # loop through all idents, averaging them in data
@@ -315,7 +315,12 @@ TrueAverageExpression <- function(object,
   if (verbose > 0) pb <- txtProgressBar(char = "=", style = 1, max = length(ident.names), width = 50)
   m <- list()
   for (i in 1:length(ident.names)) {
-    m[[i]] <- Matrix::rowMeans(my_data[, which(idents == ident.names[i])])
+    x <- my_data[, which(idents == ident.names[i])]
+    if(ncol(x) == 0){
+      return()
+    } else {
+      m[[i]] <- Matrix::rowMeans(x)
+    }
     if (verbose > 0) setTxtProgressBar(pb = pb, value = i)
   }
   result <- do.call(cbind, m)
