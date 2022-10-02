@@ -315,6 +315,7 @@ TrueAverageExpression <- function(object,
   if (verbose > 0) pb <- txtProgressBar(char = "=", style = 1, max = length(ident.names), width = 50)
   m <- list()
   for (i in 1:length(ident.names)) {
+    print(i)
     x <- my_data[, which(idents == ident.names[i])]
     if(ncol(x) == 0){
       return()
