@@ -54,107 +54,158 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">DimPlotHighlight</span><span class="op">(</span>
-  <span class="va">object</span>,
-  dims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
-  cells <span class="op">=</span> <span class="cn">NULL</span>,
-  cols <span class="op">=</span> <span class="cn">NULL</span>,
-  pt.size <span class="op">=</span> <span class="cn">NULL</span>,
-  reduction <span class="op">=</span> <span class="cn">NULL</span>,
-  group.by <span class="op">=</span> <span class="cn">NULL</span>,
-  split.by <span class="op">=</span> <span class="cn">NULL</span>,
-  shape.by <span class="op">=</span> <span class="cn">NULL</span>,
-  order <span class="op">=</span> <span class="cn">NULL</span>,
-  shuffle <span class="op">=</span> <span class="cn">FALSE</span>,
-  seed <span class="op">=</span> <span class="fl">1</span>,
-  label <span class="op">=</span> <span class="cn">FALSE</span>,
-  label.size <span class="op">=</span> <span class="fl">4</span>,
-  label.color <span class="op">=</span> <span class="st">"black"</span>,
-  label.box <span class="op">=</span> <span class="cn">FALSE</span>,
-  repel <span class="op">=</span> <span class="cn">FALSE</span>,
-  cols.highlight <span class="op">=</span> <span class="st">"#DE2D26"</span>,
-  sizes.highlight <span class="op">=</span> <span class="fl">1</span>,
-  na.value <span class="op">=</span> <span class="st">"grey50"</span>,
-  ncol <span class="op">=</span> <span class="cn">NULL</span>,
-  combine <span class="op">=</span> <span class="cn">TRUE</span>,
-  raster <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">metadata.col</span>,
-  <span class="va">metadata.selection</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">DimPlotHighlight</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  dims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  cells <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cols <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pt.size <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  reduction <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  group.by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  split.by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  shape.by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  order <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  shuffle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  label.size <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  label.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  label.box <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  repel <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cols.highlight <span class="op">=</span> <span class="st">"#DE2D26"</span>,</span>
+<span>  sizes.highlight <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  na.value <span class="op">=</span> <span class="st">"grey50"</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  combine <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  raster <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">metadata.col</span>,</span>
+<span>  <span class="va">metadata.selection</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>dims</dt>
 <dd><p>Dimensions to plot, must be a two-length numeric vector specifying x- and y-dimensions</p></dd>
+
+
 <dt>cells</dt>
 <dd><p>Vector of cells to plot (default is all cells)</p></dd>
+
+
 <dt>cols</dt>
 <dd><p>Vector of colors, each color corresponds to an identity class. This may also be a single character
 or numeric value corresponding to a palette as specified by <code><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal.info</a></code>.
 By default, ggplot2 assigns colors. We also include a number of palettes from the pals package.
 See <code><a href="https://satijalab.org/seurat/reference/DiscretePalette.html" class="external-link">DiscretePalette</a></code> for details.</p></dd>
+
+
 <dt>pt.size</dt>
 <dd><p>Adjust point size for plotting</p></dd>
+
+
 <dt>reduction</dt>
 <dd><p>Which dimensionality reduction to use. If not specified, first searches for umap, then tsne, then pca</p></dd>
+
+
 <dt>group.by</dt>
 <dd><p>Name of one or more metadata columns to group (color) cells by
 (for example, orig.ident); pass 'ident' to group by identity class</p></dd>
+
+
 <dt>split.by</dt>
 <dd><p>Name of a metadata column to split plot by;
 see <code><a href="https://mojaveazure.github.io/seurat-object/reference/FetchData.html" class="external-link">FetchData</a></code> for more details</p></dd>
+
+
 <dt>shape.by</dt>
 <dd><p>If NULL, all points are circles (default). You can specify any
 cell attribute (that can be pulled with FetchData) allowing for both
 different colors and different shapes on cells.  Only applicable if <code>raster = FALSE</code>.</p></dd>
+
+
 <dt>order</dt>
 <dd><p>Specify the order of plotting for the idents. This can be
 useful for crowded plots if points of interest are being buried. Provide
 either a full list of valid idents or a subset to be plotted last (on top)</p></dd>
+
+
 <dt>shuffle</dt>
 <dd><p>Whether to randomly shuffle the order of points. This can be
 useful for crowded plots if points of interest are being buried. (default is FALSE)</p></dd>
+
+
 <dt>seed</dt>
 <dd><p>Sets the seed if randomly shuffling the order of points.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Whether to label the clusters</p></dd>
+
+
 <dt>label.size</dt>
 <dd><p>Sets size of labels</p></dd>
+
+
 <dt>label.color</dt>
 <dd><p>Sets the color of the label text</p></dd>
+
+
 <dt>label.box</dt>
 <dd><p>Whether to put a box around the label text (geom_text vs
 geom_label)</p></dd>
+
+
 <dt>repel</dt>
 <dd><p>Repel labels</p></dd>
+
+
 <dt>cols.highlight</dt>
 <dd><p>A vector of colors to highlight the cells as; will
 repeat to the length groups in cells.highlight</p></dd>
+
+
 <dt>sizes.highlight</dt>
 <dd><p>Size of highlighted cells; will repeat to the length
 groups in cells.highlight</p></dd>
+
+
 <dt>na.value</dt>
 <dd><p>Color value for NA points when using custom scale</p></dd>
+
+
 <dt>ncol</dt>
 <dd><p>Number of columns for display when combining plots</p></dd>
+
+
 <dt>combine</dt>
 <dd><p>Combine plots into a single <code><a href="https://patchwork.data-imaginist.com/reference/patchwork-package.html" class="external-link">patchwork</a>ed</code>
 ggplot object. If <code>FALSE</code>, return a list of ggplot objects</p></dd>
+
+
 <dt>raster</dt>
 <dd><p>Convert points to raster format, default is <code>NULL</code> which
 automatically rasterizes if plotting more than 100,000 cells</p></dd>
+
+
 <dt>metadata.col</dt>
 <dd><p>The column within the object meta.data to select from</p></dd>
+
+
 <dt>metadata.selection</dt>
 <dd><p>The entry within metadata.col to highlight in the
 Seurat DimPlot</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a DimPlot</p>
+    
+
+<p>Returns a DimPlot</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -174,7 +225,7 @@ specific piece of given metadata</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

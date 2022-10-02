@@ -54,48 +54,67 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">FlowPlot</span><span class="op">(</span>
-  <span class="va">object</span>,
-  <span class="va">feature1</span>,
-  <span class="va">feature2</span>,
-  assay <span class="op">=</span> <span class="st">"ADT"</span>,
-  slot <span class="op">=</span> <span class="st">"data"</span>,
-  pt.size <span class="op">=</span> <span class="fl">1</span>,
-  noise.zero <span class="op">=</span> <span class="cn">FALSE</span>,
-  noise.zero.bound <span class="op">=</span> <span class="op">-</span><span class="fl">0.01</span>,
-  gg_bandwidth <span class="op">=</span> <span class="fl">0.1</span>,
-  rasterize <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">FlowPlot</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  <span class="va">feature1</span>,</span>
+<span>  <span class="va">feature2</span>,</span>
+<span>  assay <span class="op">=</span> <span class="st">"ADT"</span>,</span>
+<span>  slot <span class="op">=</span> <span class="st">"data"</span>,</span>
+<span>  pt.size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  noise.zero <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  noise.zero.bound <span class="op">=</span> <span class="op">-</span><span class="fl">0.01</span>,</span>
+<span>  gg_bandwidth <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>  rasterize <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>feature1</dt>
 <dd><p>The x-axis feature</p></dd>
+
+
 <dt>feature2</dt>
 <dd><p>The y-axis feature</p></dd>
+
+
 <dt>assay</dt>
 <dd><p>Which assay</p></dd>
+
+
 <dt>slot</dt>
 <dd><p>Which slot in the assay, typically data</p></dd>
+
+
 <dt>pt.size</dt>
 <dd><p>Size of geom_point</p></dd>
+
+
 <dt>noise.zero</dt>
 <dd><p>Whether to simulate values from 0 to a negative value,
 done for visual purposes ONLY and for kernel density estimation when
 overlaying a density visualization. Will simulate values using a normal
 distribution centered at 0, take absolute values, and then scale from
 noise.zero.bound to 0.</p></dd>
+
+
 <dt>noise.zero.bound</dt>
 <dd><p>The negative value to which to simulate zeros to.</p></dd>
+
+
 <dt>rasterize</dt>
 <dd><p>Whether to rasterize the resulting plot.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a biaxial plot utilizing ggpointdensity::geom_pointdensity</p>
+    
+
+<p>Returns a biaxial plot utilizing ggpointdensity::geom_pointdensity</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -115,7 +134,7 @@ from 0 to 1, with an optional split.by argument</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

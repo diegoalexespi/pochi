@@ -54,50 +54,73 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">DoClusteredDotPlot</span><span class="op">(</span>
-  <span class="va">object</span>,
-  features <span class="op">=</span> <span class="cn">NULL</span>,
-  assay <span class="op">=</span> <span class="st">"RNA"</span>,
-  slot <span class="op">=</span> <span class="st">"data"</span>,
-  group.by <span class="op">=</span> <span class="st">"seurat_clusters"</span>,
-  max_zed <span class="op">=</span> <span class="fl">3</span>,
-  y_text_size <span class="op">=</span> <span class="fl">10</span>,
-  scale_rows <span class="op">=</span> <span class="cn">TRUE</span>,
-  plot_dendro <span class="op">=</span> <span class="cn">FALSE</span>,
-  auc_choice <span class="op">=</span> <span class="fl">0.6</span>,
-  dot.scale <span class="op">=</span> <span class="fl">5</span>,
-  cluster_cols <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">DoClusteredDotPlot</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  features <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  assay <span class="op">=</span> <span class="st">"RNA"</span>,</span>
+<span>  slot <span class="op">=</span> <span class="st">"data"</span>,</span>
+<span>  group.by <span class="op">=</span> <span class="st">"seurat_clusters"</span>,</span>
+<span>  max_zed <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  y_text_size <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  scale_rows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  plot_dendro <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  auc_choice <span class="op">=</span> <span class="fl">0.6</span>,</span>
+<span>  dot.scale <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  cluster_cols <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>features</dt>
 <dd><p>Which features to plot</p></dd>
+
+
 <dt>assay</dt>
 <dd><p>Which assay to get expression values from</p></dd>
+
+
 <dt>slot</dt>
 <dd><p>Which slot to pull the assay data from</p></dd>
+
+
 <dt>group.by</dt>
 <dd><p>Which metadata slot to group cells by</p></dd>
+
+
 <dt>max_zed</dt>
 <dd><p>Cutoff for maximum z-scores (absolute value)</p></dd>
+
+
 <dt>y_text_size</dt>
 <dd><p>Size of text on y axis (features)</p></dd>
+
+
 <dt>scale_rows</dt>
 <dd><p>Whether to scale the expression per row</p></dd>
+
+
 <dt>plot_dendro</dt>
 <dd><p>Whether to plot accompanying x-axis and y-axis dendrograms</p></dd>
+
+
 <dt>dot.scale</dt>
 <dd><p>Value by which to scale the dots in DotPlot</p></dd>
+
+
 <dt>cluster_cols</dt>
 <dd><p>Whether to cluster the columns as well as the rows</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a patchwork object of a DotPlot and dendrogram if specified</p>
+    
+
+<p>Returns a patchwork object of a DotPlot and dendrogram if specified</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -117,7 +140,7 @@ clustered using hierarchical clustering for prettier visualization</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

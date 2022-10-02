@@ -54,91 +54,138 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ModulePlot</span><span class="op">(</span>
-  <span class="va">seurat_object</span>,
-  assay <span class="op">=</span> <span class="st">"AUC"</span>,
-  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">seurat_object</span><span class="op">[[</span><span class="va">assay</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,
-  <span class="va">split.by</span>,
-  <span class="va">replicate.by</span>,
-  draw_paths <span class="op">=</span> <span class="cn">FALSE</span>,
-  perform.stat.test <span class="op">=</span> <span class="cn">TRUE</span>,
-  test.choice <span class="op">=</span> <span class="st">"t.test"</span>,
-  ncols <span class="op">=</span> <span class="fl">3</span>,
-  paired <span class="op">=</span> <span class="cn">FALSE</span>,
-  set_minimum_to_zero <span class="op">=</span> <span class="cn">FALSE</span>,
-  fill_colors <span class="op">=</span> <span class="cn">NULL</span>,
-  point_colors <span class="op">=</span> <span class="cn">NULL</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"BH"</span>,
-  filter.p.above <span class="op">=</span> <span class="fl">1</span>,
-  step.increase <span class="op">=</span> <span class="fl">0.15</span>,
-  title_size <span class="op">=</span> <span class="fl">10</span>,
-  p_val_size <span class="op">=</span> <span class="fl">2.5</span>,
-  spacing_above <span class="op">=</span> <span class="fl">1.3</span>,
-  plot_type <span class="op">=</span> <span class="st">"box"</span>,
-  sina_shift <span class="op">=</span> <span class="cn">TRUE</span>,
-  x_lab <span class="op">=</span> <span class="cn">NULL</span>,
-  y_lab <span class="op">=</span> <span class="cn">NULL</span>,
-  same_y_limit <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ModulePlot</span><span class="op">(</span></span>
+<span>  <span class="va">seurat_object</span>,</span>
+<span>  assay <span class="op">=</span> <span class="st">"AUC"</span>,</span>
+<span>  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">seurat_object</span><span class="op">[[</span><span class="va">assay</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  <span class="va">split.by</span>,</span>
+<span>  <span class="va">replicate.by</span>,</span>
+<span>  draw_paths <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  perform.stat.test <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  test.choice <span class="op">=</span> <span class="st">"t.test"</span>,</span>
+<span>  ncols <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  paired <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  set_minimum_to_zero <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fill_colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  point_colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  p.adjust.method <span class="op">=</span> <span class="st">"BH"</span>,</span>
+<span>  filter.p.above <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  step.increase <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>  title_size <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  p_val_size <span class="op">=</span> <span class="fl">2.5</span>,</span>
+<span>  spacing_above <span class="op">=</span> <span class="fl">1.3</span>,</span>
+<span>  plot_type <span class="op">=</span> <span class="st">"box"</span>,</span>
+<span>  sina_shift <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  x_lab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_lab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  same_y_limit <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>assay</dt>
 <dd><p>Location of features (typically a gene module assay, not RNA...)</p></dd>
+
+
 <dt>features</dt>
 <dd><p>Which features to use for grouping cells</p></dd>
+
+
 <dt>split.by</dt>
 <dd><p>Which meta.data slot to use for splitting the groups</p></dd>
+
+
 <dt>replicate.by</dt>
 <dd><p>Which meta.data slot to use as split.by replicates</p></dd>
+
+
 <dt>draw_paths</dt>
 <dd><p>Whether or not to draw paths in the abundance plots between
 replicates if they exist</p></dd>
+
+
 <dt>perform.stat.test</dt>
 <dd><p>Whether or not to perform a statistical test between
 the splits</p></dd>
+
+
 <dt>test.choice</dt>
 <dd><p>Which choice of test to use (supports t.test of wilcox)</p></dd>
+
+
 <dt>ncols</dt>
 <dd><p>Number of columns to plot the groups as</p></dd>
+
+
 <dt>paired</dt>
 <dd><p>Whether the t.test should be paired if using t.test</p></dd>
+
+
 <dt>set_minimum_to_zero</dt>
 <dd><p>Whether to set minimum abundance on plots to 0
 globally</p></dd>
+
+
 <dt>point_colors</dt>
 <dd><p>Vector of colors to color points as</p></dd>
+
+
 <dt>p.adjust.method</dt>
 <dd><p>Which method to use for p-value adjustment for mulitple
 testing</p></dd>
+
+
 <dt>filter.p.above</dt>
 <dd><p>Plot p-values only below this filter</p></dd>
+
+
 <dt>step.increase</dt>
 <dd><p>Tweaking the space between brackets for p-values vertically</p></dd>
+
+
 <dt>title_size</dt>
 <dd><p>Text size of each group plot's title</p></dd>
+
+
 <dt>p_val_size</dt>
 <dd><p>Text size for p-values</p></dd>
+
+
 <dt>plot_type</dt>
 <dd><p>Either box or violin plot</p></dd>
+
+
 <dt>sina_shift</dt>
 <dd><p>Whether to use ggforce::geom_sina to pretty-shift the points</p></dd>
+
+
 <dt>x_lab</dt>
 <dd><p>The label on the x axis</p></dd>
+
+
 <dt>y_lab</dt>
 <dd><p>The label on the y axis</p></dd>
+
+
 <dt>same_y_limit</dt>
 <dd><p>Whether to keep the upper y limit constant across all
 groups.</p></dd>
+
+
 <dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>point_size</dt>
 <dd><p>Size of the points plotted</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a patchwork plot of separate ggplots per features specified</p>
+    
+
+<p>Returns a patchwork plot of separate ggplots per features specified</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -160,7 +207,7 @@ for RNA or single-cell expression levels that are not Gaussian.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

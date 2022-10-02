@@ -54,45 +54,64 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">RunAUCell</span><span class="op">(</span>
-  <span class="va">object</span>,
-  assay <span class="op">=</span> <span class="cn">NULL</span>,
-  slot <span class="op">=</span> <span class="st">"counts"</span>,
-  <span class="va">genesets</span>,
-  ranking.save <span class="op">=</span> <span class="cn">FALSE</span>,
-  ranking.key <span class="op">=</span> <span class="cn">NULL</span>,
-  normAUC <span class="op">=</span> <span class="cn">TRUE</span>,
-  aucMaxRank <span class="op">=</span> <span class="fl">0.05</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-  auc_assay_name <span class="op">=</span> <span class="st">"AUC"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">RunAUCell</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  assay <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  slot <span class="op">=</span> <span class="st">"counts"</span>,</span>
+<span>  <span class="va">genesets</span>,</span>
+<span>  ranking.save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ranking.key <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  normAUC <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  aucMaxRank <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  auc_assay_name <span class="op">=</span> <span class="st">"AUC"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>assay</dt>
 <dd><p>Assay to use for building rankings. Will use default assay if NULL.</p></dd>
+
+
 <dt>slot</dt>
 <dd><p>Slot to use for building rankings</p></dd>
+
+
 <dt>genesets</dt>
 <dd><p>A list of vectors of features for expression programs; each entry should be a vector of feature names. If the list of vectors is named, the resulting AUCell score for the expression program will be a row in the AUCell assay returned.</p></dd>
+
+
 <dt>ranking.save</dt>
 <dd><p>If TRUE, will save a new Assay `rankings` into `object` with the rankings of each gene per cell.</p></dd>
+
+
 <dt>ranking.key</dt>
 <dd><p>If not NULL, will pull Assay `rankings` from `object` rather than re-calculating rankings.</p></dd>
+
+
 <dt>normAUC</dt>
 <dd><p>Whether to normalize the maximum possible AUC per geneset to 1</p></dd>
+
+
 <dt>aucMaxRank</dt>
 <dd><p>Threshold to calculate the AUC (see details section below and details section of <code>AUCell_calcAUC</code>)</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Boolean. TRUE to show progress messages, FALSE to hide progress messages</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a Seurat object with the AUCell results stored as a <code>Assay</code> object within the Seurat object</p>
+    
+
+<p>Returns a Seurat object with the AUCell results stored as a <code>Assay</code> object within the Seurat object</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -120,7 +139,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
