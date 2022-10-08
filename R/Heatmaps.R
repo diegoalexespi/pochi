@@ -315,13 +315,8 @@ TrueAverageExpression <- function(object,
   if (verbose > 0) pb <- txtProgressBar(char = "=", style = 1, max = length(ident.names), width = 50)
   m <- list()
   for (i in 1:length(ident.names)) {
-    print(i)
-    x <- my_data[, which(idents == ident.names[i])]
-    if(ncol(x) == 0){
-      return()
-    } else {
-      m[[i]] <- Matrix::rowMeans(x)
-    }
+    x <- my_data[, which(idents == ident.names[i]), drop = FALSE]
+    m[[i]] <- Matrix::rowMeans(x)
     if (verbose > 0) setTxtProgressBar(pb = pb, value = i)
   }
   result <- do.call(cbind, m)
