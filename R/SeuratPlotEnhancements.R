@@ -98,7 +98,7 @@ DimPlotEdges <- function(object,
 #' @importFrom rlang %||%
 #'
 #' @export
-DimPlotPlus <- function(
+DimPlotPlus <- function(object,
                         reduction = "umap",
                         shape.choice = 21,
                         pt.size = 1.75,
