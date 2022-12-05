@@ -145,8 +145,12 @@ BuildAnnoyUMAP <- function(
 
   if (is.null(neighbors_slot)) {
     if(!is.null(features)){
-      data_use <- t(as.matrix(Seurat::GetAssayData(object, slot = slot, assay = assay)))
-      data_use <- data_use[,colnames(data_use) %in% features]
+      assay_data <- Seurat::GetAssayData(object, slot = slot, assay = assay)
+      data_use <- assay_data[rownames(assay_data) %in% features,]
+      if(nrow(data_use) < 1){
+        stop("Features not found in selected slot/assay combo.")
+      }
+      data_use <- t(as.matrix(data_use))
     } else {
       data_use <- Seurat::Embeddings(object[[reduction]])[, dims]
     }
