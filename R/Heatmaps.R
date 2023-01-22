@@ -29,7 +29,8 @@ DoStarHeatmap <- function(object,
                           cluster_cols = TRUE,
                           cluster_rows = TRUE,
                           viridis_option = "C",
-                          viridis_direction = 1){
+                          viridis_direction = 1,
+                          star_size = 8){
 
   Idents(object) <- group.by
   og.levels <- levels(Idents(object))
@@ -111,7 +112,7 @@ DoStarHeatmap <- function(object,
                          legend.key.height = unit(10, "pt"))
   base_heatmap <- ggplot2::ggplot(my_data_long, aes(x = cluster, y = feature, fill = Z_sc))+
     ggplot2::geom_tile()+
-    ggplot2::geom_text(aes(label = is_significant), vjust = 0.75)+
+    ggplot2::geom_text(aes(label = is_significant), vjust = 0.75, size = star_size)+
     scale_x_discrete(position = "bottom")+
     RotatedAxis()+
     ylab(NULL)+
