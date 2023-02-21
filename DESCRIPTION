@@ -31,3 +31,5 @@ Suggests:
     knitr
 VignetteBuilder: knitr
 URL: https://diegoalexespi.github.io/pochi/
+Depends: 
+    R (>= 2.10)
