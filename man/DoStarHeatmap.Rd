@@ -24,7 +24,8 @@ DoStarHeatmap(
   cluster_cols = TRUE,
   cluster_rows = TRUE,
   viridis_option = "C",
-  viridis_direction = 1
+  viridis_direction = 1,
+  star_size = 8
 )
 }
 \arguments{

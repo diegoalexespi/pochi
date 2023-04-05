@@ -54,38 +54,53 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ScaleADT</span><span class="op">(</span>
-  <span class="va">object</span>,
-  assay <span class="op">=</span> <span class="st">"ADT"</span>,
-  slot <span class="op">=</span> <span class="st">"data"</span>,
-  split.by <span class="op">=</span> <span class="cn">NULL</span>,
-  low.p <span class="op">=</span> <span class="fl">0.001</span>,
-  high.p <span class="op">=</span> <span class="fl">0.999</span>,
-  new.assay <span class="op">=</span> <span class="st">"sADT"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ScaleADT</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  assay <span class="op">=</span> <span class="st">"ADT"</span>,</span>
+<span>  slot <span class="op">=</span> <span class="st">"data"</span>,</span>
+<span>  split.by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  low.p <span class="op">=</span> <span class="fl">0.001</span>,</span>
+<span>  high.p <span class="op">=</span> <span class="fl">0.999</span>,</span>
+<span>  new.assay <span class="op">=</span> <span class="st">"sADT"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>assay</dt>
 <dd><p>Which assay, typically ADT</p></dd>
+
+
 <dt>slot</dt>
 <dd><p>Which slot in the assay, typically data after CLR</p></dd>
+
+
 <dt>split.by</dt>
 <dd><p>If not NULL, which metadata feature to split by  before
 scaling.</p></dd>
+
+
 <dt>low.p</dt>
 <dd><p>Which percentile to set as 0</p></dd>
+
+
 <dt>high.p</dt>
 <dd><p>Which percentile to set as 1</p></dd>
+
+
 <dt>new.assay</dt>
 <dd><p>Name of new assay to save values to</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a Seurat object with scaled values in the data slot of the
+    
+
+<p>Returns a Seurat object with scaled values in the data slot of the
 specified assay</p>
     </div>
     <div id="details">
@@ -106,7 +121,7 @@ from 0 to 1, with an optional split.by argument</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

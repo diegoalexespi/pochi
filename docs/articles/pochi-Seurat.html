@@ -84,9 +84,11 @@
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>Currently, <a href="http://github.com/diegoalexespi/pochi" class="external-link">pochi</a> is available at Github and can be downloaded using the devtools (or remotes) package.</p>
+<p>Currently, <a href="http://github.com/diegoalexespi/pochi" class="external-link">pochi</a>
+is available at Github and can be downloaded using the devtools (or
+remotes) package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"diegoalexespi/pochi"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"diegoalexespi/pochi"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -95,37 +97,42 @@
 <div class="section level3">
 <h3 id="loading-required-packages">Loading required packages<a class="anchor" aria-label="anchor" href="#loading-required-packages"></a>
 </h3>
-<p>The <a href="http://github.com/diegoalexespi/pochi" class="external-link">pochi</a> package operates on <a href="http://github.com/satijalab/Seurat" class="external-link">Seurat</a> objects. We load the <code>Seurat</code>, <code>SeuratData</code>, and <code>pochi</code> packages here for our analyses, as well as the <code>magrittr</code> package in order to improve legibility of code through using the pipe <code>%&gt;%</code> operator.</p>
+<p>The <a href="http://github.com/diegoalexespi/pochi" class="external-link">pochi</a> package
+operates on <a href="http://github.com/satijalab/Seurat" class="external-link">Seurat</a>
+objects. We load the <code>Seurat</code>, <code>SeuratData</code>, and
+<code>pochi</code> packages here for our analyses, as well as the
+<code>magrittr</code> package in order to improve legibility of code
+through using the pipe <code>%&gt;%</code> operator.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://satijalab.org/seurat" class="external-link">"Seurat"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="http://www.satijalab.org/seurat" class="external-link">"SeuratData"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://diegoalexespi.github.io/pochi/">"pochi"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://satijalab.org/seurat" class="external-link">"Seurat"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="http://www.satijalab.org/seurat" class="external-link">"SeuratData"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://diegoalexespi.github.io/pochi/">"pochi"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></span></code></pre></div>
 <p>We load the pbmc3k data from the <code>SeuratData</code> package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://satijalab.org/seurat/reference/InstallData.html" class="external-link">InstallData</a></span><span class="op">(</span><span class="st">"pbmc3k"</span><span class="op">)</span>
-<span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/LoadData.html" class="external-link">LoadData</a></span><span class="op">(</span><span class="st">"pbmc3k"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">789</span><span class="op">)</span>
-<span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="va">pbmc3k_seurat</span><span class="op">[</span>,<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">$</span><span class="va">seurat_annotations</span><span class="op">)</span><span class="op">]</span>
-<span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">)</span>
-<span class="va">pbmc3k_seurat</span><span class="op">$</span><span class="va">condition</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WT"</span>, <span class="st">"KO"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">pbmc3k_seurat</span><span class="op">$</span><span class="va">replicate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">pbmc3k_seurat</span><span class="op">@</span><span class="va">meta.data</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##                orig.ident nCount_RNA nFeature_RNA seurat_annotations condition</span>
-<span class="co">## AAACATACAACCAC     pbmc3k       2419          779       Memory CD4 T        WT</span>
-<span class="co">## AAACATTGAGCTAC     pbmc3k       4903         1352                  B        KO</span>
-<span class="co">## AAACATTGATCAGC     pbmc3k       3147         1129       Memory CD4 T        WT</span>
-<span class="co">## AAACCGTGCTTCCG     pbmc3k       2639          960         CD14+ Mono        WT</span>
-<span class="co">## AAACCGTGTATGCG     pbmc3k        980          521                 NK        KO</span>
-<span class="co">## AAACGCACTGGTAC     pbmc3k       2163          781       Memory CD4 T        WT</span>
-<span class="co">##                replicate</span>
-<span class="co">## AAACATACAACCAC         3</span>
-<span class="co">## AAACATTGAGCTAC         3</span>
-<span class="co">## AAACATTGATCAGC         3</span>
-<span class="co">## AAACCGTGCTTCCG         1</span>
-<span class="co">## AAACCGTGTATGCG         2</span>
-<span class="co">## AAACGCACTGGTAC         1</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://satijalab.org/seurat/reference/InstallData.html" class="external-link">InstallData</a></span><span class="op">(</span><span class="st">"pbmc3k"</span><span class="op">)</span></span>
+<span><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/LoadData.html" class="external-link">LoadData</a></span><span class="op">(</span><span class="st">"pbmc3k"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">789</span><span class="op">)</span></span>
+<span><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="va">pbmc3k_seurat</span><span class="op">[</span>,<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">$</span><span class="va">seurat_annotations</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">)</span></span>
+<span><span class="va">pbmc3k_seurat</span><span class="op">$</span><span class="va">condition</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WT"</span>, <span class="st">"KO"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">pbmc3k_seurat</span><span class="op">$</span><span class="va">replicate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">pbmc3k_seurat</span><span class="op">@</span><span class="va">meta.data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                orig.ident nCount_RNA nFeature_RNA seurat_annotations condition</span></span>
+<span><span class="co">## AAACATACAACCAC     pbmc3k       2419          779       Memory CD4 T        WT</span></span>
+<span><span class="co">## AAACATTGAGCTAC     pbmc3k       4903         1352                  B        KO</span></span>
+<span><span class="co">## AAACATTGATCAGC     pbmc3k       3147         1129       Memory CD4 T        WT</span></span>
+<span><span class="co">## AAACCGTGCTTCCG     pbmc3k       2639          960         CD14+ Mono        WT</span></span>
+<span><span class="co">## AAACCGTGTATGCG     pbmc3k        980          521                 NK        KO</span></span>
+<span><span class="co">## AAACGCACTGGTAC     pbmc3k       2163          781       Memory CD4 T        WT</span></span>
+<span><span class="co">##                replicate</span></span>
+<span><span class="co">## AAACATACAACCAC         3</span></span>
+<span><span class="co">## AAACATTGAGCTAC         3</span></span>
+<span><span class="co">## AAACATTGATCAGC         3</span></span>
+<span><span class="co">## AAACCGTGCTTCCG         1</span></span>
+<span><span class="co">## AAACCGTGTATGCG         2</span></span>
+<span><span class="co">## AAACGCACTGGTAC         1</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -136,10 +143,10 @@
 <code>AbundancePlot</code><a class="anchor" aria-label="anchor" href="#abundanceplot"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/AbundancePlot.html">AbundancePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, replicate.by <span class="op">=</span> <span class="st">"replicate"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/AbundancePlot.html">AbundancePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, replicate.by <span class="op">=</span> <span class="st">"replicate"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pochi-Seurat_files/figure-html/AbundancePlot-1.png" width="648"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/AbundancePlot.html">AbundancePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, replicate.by <span class="op">=</span> <span class="st">"replicate"</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, draw_paths <span class="op">=</span> <span class="cn">TRUE</span>, sina_shift <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/AbundancePlot.html">AbundancePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, replicate.by <span class="op">=</span> <span class="st">"replicate"</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, draw_paths <span class="op">=</span> <span class="cn">TRUE</span>, sina_shift <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pochi-Seurat_files/figure-html/AbundancePlot-2.png" width="648"></p>
 </div>
 <div class="section level3">
@@ -147,9 +154,9 @@
 <code>AssignQuantiles</code><a class="anchor" aria-label="anchor" href="#assignquantiles"></a>
 </h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/AssignQuantiles.html">AssignQuantiles</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, feature <span class="op">=</span> <span class="st">"B2M"</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, slot <span class="op">=</span> <span class="st">"data"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, quantile.probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.4</span>,<span class="fl">0.8</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://satijalab.org/seurat/reference/RidgePlot.html" class="external-link">RidgePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"B2M.quantile"</span>, features <span class="op">=</span> <span class="st">"B2M"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Picking joint bandwidth of 0.049</span></code></pre>
+<code class="sourceCode R"><span><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/AssignQuantiles.html">AssignQuantiles</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, feature <span class="op">=</span> <span class="st">"B2M"</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, slot <span class="op">=</span> <span class="st">"data"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, quantile.probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.4</span>,<span class="fl">0.8</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://satijalab.org/seurat/reference/RidgePlot.html" class="external-link">RidgePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"B2M.quantile"</span>, features <span class="op">=</span> <span class="st">"B2M"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Picking joint bandwidth of 0.049</span></span></code></pre>
 <p><img src="pochi-Seurat_files/figure-html/AssignQuantiles-1.png" width="648"></p>
 </div>
 <div class="section level3">
@@ -157,10 +164,10 @@
 <code>BackGatePlot</code><a class="anchor" aria-label="anchor" href="#backgateplot"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/BackgatePlot.html">BackgatePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, feature1 <span class="op">=</span> <span class="st">"CD4"</span>, feature2 <span class="op">=</span> <span class="st">"CD8A"</span>, metadata.col <span class="op">=</span> <span class="st">"seurat_annotations"</span>, metadata.selection <span class="op">=</span> <span class="st">"Memory CD4 T"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/BackgatePlot.html">BackgatePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, feature1 <span class="op">=</span> <span class="st">"CD4"</span>, feature2 <span class="op">=</span> <span class="st">"CD8A"</span>, metadata.col <span class="op">=</span> <span class="st">"seurat_annotations"</span>, metadata.selection <span class="op">=</span> <span class="st">"Memory CD4 T"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pochi-Seurat_files/figure-html/backgateplot-1.png" width="648"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/BackgatePlot.html">BackgatePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, feature1 <span class="op">=</span> <span class="st">"CD4"</span>, feature2 <span class="op">=</span> <span class="st">"CD8A"</span>, metadata.col <span class="op">=</span> <span class="st">"seurat_annotations"</span>, metadata.selection <span class="op">=</span> <span class="st">"CD8 T"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/BackgatePlot.html">BackgatePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, feature1 <span class="op">=</span> <span class="st">"CD4"</span>, feature2 <span class="op">=</span> <span class="st">"CD8A"</span>, metadata.col <span class="op">=</span> <span class="st">"seurat_annotations"</span>, metadata.selection <span class="op">=</span> <span class="st">"CD8 T"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pochi-Seurat_files/figure-html/backgateplot-2.png" width="648"></p>
 </div>
 <div class="section level3">
@@ -168,133 +175,133 @@
 <code>Heatmaps</code><a class="anchor" aria-label="anchor" href="#heatmaps"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rna_markers</span> <span class="op">&lt;-</span> <span class="fu">presto</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/presto/man/wilcoxauc.html" class="external-link">wilcoxauc</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group_by <span class="op">=</span> <span class="st">"seurat_annotations"</span><span class="op">)</span>
-<span class="va">top_rna_markers</span> <span class="op">&lt;-</span> <span class="va">rna_markers</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">padj</span> <span class="op">&lt;</span> <span class="fl">0.01</span>, <span class="va">logFC</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_min</a></span><span class="op">(</span><span class="va">padj</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="../reference/DoStarHeatmap.html">DoStarHeatmap</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, diff_exp_results <span class="op">=</span> <span class="va">rna_markers</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">group</span> <span class="op">!=</span> <span class="st">"Platelet"</span><span class="op">)</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, slot <span class="op">=</span> <span class="st">"data"</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, p_val_choice <span class="op">=</span> <span class="fl">0.01</span>, logFC_choice <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## diff_exp_results in Presto format</span></code></pre>
-<pre><code><span class="co">## ==================================================</span></code></pre>
-<pre><code><span class="co">## Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
-<pre><code><span class="co">## Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
-<pre><code><span class="co">## Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
-<pre><code><span class="co">## Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
-<pre><code><span class="co">## Warning: Removed 40 rows containing missing values (geom_text).</span></code></pre>
+<code class="sourceCode R"><span><span class="va">rna_markers</span> <span class="op">&lt;-</span> <span class="fu">presto</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/presto/man/wilcoxauc.html" class="external-link">wilcoxauc</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group_by <span class="op">=</span> <span class="st">"seurat_annotations"</span><span class="op">)</span></span>
+<span><span class="va">top_rna_markers</span> <span class="op">&lt;-</span> <span class="va">rna_markers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">padj</span> <span class="op">&lt;</span> <span class="fl">0.01</span>, <span class="va">logFC</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_min</a></span><span class="op">(</span><span class="va">padj</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/DoStarHeatmap.html">DoStarHeatmap</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, diff_exp_results <span class="op">=</span> <span class="va">rna_markers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">group</span> <span class="op">!=</span> <span class="st">"Platelet"</span><span class="op">)</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, slot <span class="op">=</span> <span class="st">"data"</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, p_val_choice <span class="op">=</span> <span class="fl">0.01</span>, logFC_choice <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## diff_exp_results in Presto format</span></span></code></pre>
+<pre><code><span><span class="co">## ==================================================</span></span></code></pre>
+<pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span></code></pre>
+<pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">x</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">x</span>, which will replace the existing scale.</span></span>
+<span><span class="co">## Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span>
+<span><span class="co">## Scale for <span style="color: #00BB00;">x</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">x</span>, which will replace the existing scale.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 40 rows containing missing values (`geom_text()`).</span></span></code></pre>
 <p><img src="pochi-Seurat_files/figure-html/heatmaps-1.png" width="648"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/DoClusteredHeatmap.html">DoClusteredHeatmap</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, features <span class="op">=</span> <span class="va">top_rna_markers</span><span class="op">$</span><span class="va">feature</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ==================================================</span></code></pre>
-<pre><code><span class="co">## Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-<span class="co">## replace the existing scale.</span>
-<span class="co">## Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
-<pre><code><span class="co">## Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
-<pre><code><span class="co">## Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-<span class="co">## replace the existing scale.</span></code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/DoClusteredHeatmap.html">DoClusteredHeatmap</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, features <span class="op">=</span> <span class="va">top_rna_markers</span><span class="op">$</span><span class="va">feature</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ==================================================</span></span></code></pre>
+<pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span>
+<span><span class="co">## Scale for <span style="color: #00BB00;">x</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">x</span>, which will replace the existing scale.</span></span>
+<span><span class="co">## Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span>
+<span><span class="co">## Scale for <span style="color: #00BB00;">x</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">x</span>, which will replace the existing scale.</span></span></code></pre>
 <p><img src="pochi-Seurat_files/figure-html/heatmaps-2.png" width="648"></p>
 </div>
 <div class="section level3">
 <h3 id="metadataplot">
 <code>MetaDataPlot</code><a class="anchor" aria-label="anchor" href="#metadataplot"></a>
 </h3>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/MetaDataPlot.html">MetaDataPlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, split.by <span class="op">=</span> <span class="st">"replicate"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/MetaDataPlot.html">MetaDataPlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, group.by <span class="op">=</span> <span class="st">"seurat_annotations"</span>, split.by <span class="op">=</span> <span class="st">"replicate"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pochi-Seurat_files/figure-html/metadataplot-1.png" width="648"></p>
 </div>
 <div class="section level3">
 <h3 id="moduleplot">
 <code>ModulePlot</code><a class="anchor" aria-label="anchor" href="#moduleplot"></a>
 </h3>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/CellCycleScoring.html" class="external-link">CellCycleScoring</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, s.features <span class="op">=</span> <span class="va">cc.genes.updated.2019</span><span class="op">$</span><span class="va">s.genes</span>, g2m.features <span class="op">=</span> <span class="va">cc.genes.updated.2019</span><span class="op">$</span><span class="va">g2m.genes</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: The following features are not present in the object: DTL, UHRF1, EXO1,</span>
-<span class="co">## CASP8AP2, E2F8, not searching for symbol synonyms</span></code></pre>
-<pre><code><span class="co">## Warning: The following features are not present in the object: PIMREG, BUB1,</span>
-<span class="co">## HJURP, CDCA3, JPT1, TTK, CDC25C, DLGAP5, CDCA2, ANLN, GAS2L3, not searching for</span>
-<span class="co">## symbol synonyms</span></code></pre>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ModulePlot.html">ModulePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, features <span class="op">=</span> <span class="st">"S.Score"</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, replicate.by <span class="op">=</span> <span class="st">"replicate"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Error in (function (x, cutpoints = c(0.3, 0.6, 0.8, 0.9, 0.95), symbols = if (numeric.x) c(" ", : argument "x" is missing, with no default</span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pbmc3k_seurat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/CellCycleScoring.html" class="external-link">CellCycleScoring</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, s.features <span class="op">=</span> <span class="va">cc.genes.updated.2019</span><span class="op">$</span><span class="va">s.genes</span>, g2m.features <span class="op">=</span> <span class="va">cc.genes.updated.2019</span><span class="op">$</span><span class="va">g2m.genes</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: The following features are not present in the object: DTL, UHRF1, EXO1,</span></span>
+<span><span class="co">## CASP8AP2, E2F8, not searching for symbol synonyms</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: The following features are not present in the object: PIMREG, BUB1,</span></span>
+<span><span class="co">## HJURP, CDCA3, JPT1, TTK, CDC25C, DLGAP5, CDCA2, ANLN, GAS2L3, not searching for</span></span>
+<span><span class="co">## symbol synonyms</span></span></code></pre>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ModulePlot.html">ModulePlot</a></span><span class="op">(</span><span class="va">pbmc3k_seurat</span>, features <span class="op">=</span> <span class="st">"S.Score"</span>, assay <span class="op">=</span> <span class="st">"RNA"</span>, split.by <span class="op">=</span> <span class="st">"condition"</span>, replicate.by <span class="op">=</span> <span class="st">"replicate"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in (function (x, cutpoints = c(0.3, 0.6, 0.8, 0.9, 0.95), symbols = if (numeric.x) c(" ", : argument "x" is missing, with no default</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## R version 4.1.1 (2021-08-10)</span>
-<span class="co">## Platform: x86_64-apple-darwin17.0 (64-bit)</span>
-<span class="co">## Running under: macOS Big Sur 10.16</span>
-<span class="co">## </span>
-<span class="co">## Matrix products: default</span>
-<span class="co">## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib</span>
-<span class="co">## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib</span>
-<span class="co">## </span>
-<span class="co">## locale:</span>
-<span class="co">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
-<span class="co">## </span>
-<span class="co">## attached base packages:</span>
-<span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
-<span class="co">## </span>
-<span class="co">## other attached packages:</span>
-<span class="co">## [1] tidyr_1.2.0             ggplot2_3.3.5           pochi_0.1.0            </span>
-<span class="co">## [4] pbmc3k.SeuratData_3.1.4 cbmc.SeuratData_3.1.4   SeuratData_0.2.1       </span>
-<span class="co">## [7] SeuratObject_4.0.4      Seurat_4.1.0           </span>
-<span class="co">## </span>
-<span class="co">## loaded via a namespace (and not attached):</span>
-<span class="co">##   [1] backports_1.4.1       systemfonts_1.0.4     plyr_1.8.6           </span>
-<span class="co">##   [4] igraph_1.2.11         lazyeval_0.2.2        splines_4.1.1        </span>
-<span class="co">##   [7] listenv_0.8.0         scattermore_0.8       digest_0.6.29        </span>
-<span class="co">##  [10] htmltools_0.5.2       viridis_0.6.2         fansi_1.0.3          </span>
-<span class="co">##  [13] magrittr_2.0.2        memoise_2.0.1         tensor_1.5           </span>
-<span class="co">##  [16] cluster_2.1.2         ROCR_1.0-11           globals_0.14.0       </span>
-<span class="co">##  [19] matrixStats_0.61.0    pkgdown_2.0.2         spatstat.sparse_2.1-0</span>
-<span class="co">##  [22] colorspace_2.0-3      rappdirs_0.3.3        ggrepel_0.9.1        </span>
-<span class="co">##  [25] textshaping_0.3.6     xfun_0.30             dplyr_1.0.8          </span>
-<span class="co">##  [28] crayon_1.5.0          jsonlite_1.8.0        spatstat.data_2.1-2  </span>
-<span class="co">##  [31] survival_3.3-1        zoo_1.8-9             glue_1.6.2           </span>
-<span class="co">##  [34] polyclip_1.10-0       gtable_0.3.0          leiden_0.3.9         </span>
-<span class="co">##  [37] car_3.0-12            future.apply_1.8.1    abind_1.4-5          </span>
-<span class="co">##  [40] scales_1.1.1          DBI_1.1.2             rstatix_0.7.0        </span>
-<span class="co">##  [43] spatstat.random_2.1-0 miniUI_0.1.1.1        Rcpp_1.0.8.3         </span>
-<span class="co">##  [46] viridisLite_0.4.0     xtable_1.8-4          reticulate_1.24      </span>
-<span class="co">##  [49] spatstat.core_2.4-0   htmlwidgets_1.5.4     httr_1.4.2           </span>
-<span class="co">##  [52] RColorBrewer_1.1-2    ellipsis_0.3.2        ica_1.0-2            </span>
-<span class="co">##  [55] farver_2.1.0          pkgconfig_2.0.3       sass_0.4.1           </span>
-<span class="co">##  [58] uwot_0.1.11           deldir_1.0-6          utf8_1.2.2           </span>
-<span class="co">##  [61] labeling_0.4.2        tidyselect_1.1.2      rlang_1.0.2          </span>
-<span class="co">##  [64] reshape2_1.4.4        later_1.3.0           munsell_0.5.0        </span>
-<span class="co">##  [67] tools_4.1.1           cachem_1.0.6          cli_3.2.0            </span>
-<span class="co">##  [70] generics_0.1.2        broom_0.7.12          ggridges_0.5.3       </span>
-<span class="co">##  [73] ggdendro_0.1.23       evaluate_0.15         stringr_1.4.0        </span>
-<span class="co">##  [76] fastmap_1.1.0         yaml_2.3.5            ragg_1.2.2           </span>
-<span class="co">##  [79] goftest_1.2-3         knitr_1.37            fs_1.5.2             </span>
-<span class="co">##  [82] fitdistrplus_1.1-8    purrr_0.3.4           RANN_2.6.1           </span>
-<span class="co">##  [85] pbapply_1.5-0         future_1.24.0         nlme_3.1-155         </span>
-<span class="co">##  [88] mime_0.12             ggrastr_1.0.1         compiler_4.1.1       </span>
-<span class="co">##  [91] rstudioapi_0.13       beeswarm_0.4.0        plotly_4.10.0        </span>
-<span class="co">##  [94] png_0.1-7             ggsignif_0.6.3        spatstat.utils_2.3-0 </span>
-<span class="co">##  [97] tweenr_1.0.2          tibble_3.1.6          bslib_0.3.1          </span>
-<span class="co">## [100] stringi_1.7.6         highr_0.9             desc_1.4.1           </span>
-<span class="co">## [103] forcats_0.5.1         lattice_0.20-45       Matrix_1.4-1         </span>
-<span class="co">## [106] vctrs_0.3.8           pillar_1.7.0          lifecycle_1.0.1      </span>
-<span class="co">## [109] spatstat.geom_2.3-2   lmtest_0.9-40         jquerylib_0.1.4      </span>
-<span class="co">## [112] RcppAnnoy_0.0.19      data.table_1.14.2     cowplot_1.1.1        </span>
-<span class="co">## [115] irlba_2.3.5           httpuv_1.6.5          patchwork_1.1.1      </span>
-<span class="co">## [118] R6_2.5.1              promises_1.2.0.1      KernSmooth_2.23-20   </span>
-<span class="co">## [121] gridExtra_2.3         vipor_0.4.5           parallelly_1.30.0    </span>
-<span class="co">## [124] codetools_0.2-18      MASS_7.3-56           assertthat_0.2.1     </span>
-<span class="co">## [127] rprojroot_2.0.2       withr_2.5.0           presto_1.0.0         </span>
-<span class="co">## [130] sctransform_0.3.3     mgcv_1.8-39           parallel_4.1.1       </span>
-<span class="co">## [133] grid_4.1.1            rpart_4.1.16          rmarkdown_2.13       </span>
-<span class="co">## [136] carData_3.0-5         Rtsne_0.15            ggpubr_0.4.0         </span>
-<span class="co">## [139] ggforce_0.3.3         shiny_1.7.1           ggbeeswarm_0.6.0</span></code></pre>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## R version 4.1.1 (2021-08-10)</span></span>
+<span><span class="co">## Platform: x86_64-apple-darwin17.0 (64-bit)</span></span>
+<span><span class="co">## Running under: macOS Big Sur 10.16</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Matrix products: default</span></span>
+<span><span class="co">## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib</span></span>
+<span><span class="co">## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## locale:</span></span>
+<span><span class="co">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attached base packages:</span></span>
+<span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## other attached packages:</span></span>
+<span><span class="co">## [1] tidyr_1.2.1             ggplot2_3.4.0           pochi_0.1.0            </span></span>
+<span><span class="co">## [4] pbmc3k.SeuratData_3.1.4 cbmc.SeuratData_3.1.4   SeuratData_0.2.1       </span></span>
+<span><span class="co">## [7] SeuratObject_4.1.3      Seurat_4.3.0           </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## loaded via a namespace (and not attached):</span></span>
+<span><span class="co">##   [1] backports_1.4.1        systemfonts_1.0.4      plyr_1.8.8            </span></span>
+<span><span class="co">##   [4] igraph_1.3.5           lazyeval_0.2.2         sp_1.5-1              </span></span>
+<span><span class="co">##   [7] splines_4.1.1          listenv_0.9.0          scattermore_0.8       </span></span>
+<span><span class="co">##  [10] digest_0.6.31          htmltools_0.5.4        viridis_0.6.2         </span></span>
+<span><span class="co">##  [13] fansi_1.0.3            magrittr_2.0.3         memoise_2.0.1         </span></span>
+<span><span class="co">##  [16] tensor_1.5             cluster_2.1.4          ROCR_1.0-11           </span></span>
+<span><span class="co">##  [19] globals_0.16.2         matrixStats_0.63.0     pkgdown_2.0.7         </span></span>
+<span><span class="co">##  [22] spatstat.sparse_3.0-0  colorspace_2.0-3       rappdirs_0.3.3        </span></span>
+<span><span class="co">##  [25] ggrepel_0.9.2          textshaping_0.3.6      xfun_0.36             </span></span>
+<span><span class="co">##  [28] dplyr_1.0.10           crayon_1.5.2           jsonlite_1.8.4        </span></span>
+<span><span class="co">##  [31] progressr_0.12.0       spatstat.data_3.0-0    survival_3.4-0        </span></span>
+<span><span class="co">##  [34] zoo_1.8-11             glue_1.6.2             polyclip_1.10-4       </span></span>
+<span><span class="co">##  [37] gtable_0.3.1           leiden_0.4.3           car_3.1-1             </span></span>
+<span><span class="co">##  [40] future.apply_1.10.0    abind_1.4-5            scales_1.2.1          </span></span>
+<span><span class="co">##  [43] DBI_1.1.3              rstatix_0.7.1          spatstat.random_3.0-1 </span></span>
+<span><span class="co">##  [46] miniUI_0.1.1.1         Rcpp_1.0.9             viridisLite_0.4.1     </span></span>
+<span><span class="co">##  [49] xtable_1.8-4           reticulate_1.26        htmlwidgets_1.6.0     </span></span>
+<span><span class="co">##  [52] httr_1.4.4             RColorBrewer_1.1-3     ellipsis_0.3.2        </span></span>
+<span><span class="co">##  [55] ica_1.0-3              farver_2.1.1           pkgconfig_2.0.3       </span></span>
+<span><span class="co">##  [58] sass_0.4.4             uwot_0.1.14            deldir_1.0-6          </span></span>
+<span><span class="co">##  [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.2.0      </span></span>
+<span><span class="co">##  [64] rlang_1.0.6            reshape2_1.4.4         later_1.3.0           </span></span>
+<span><span class="co">##  [67] munsell_0.5.0          tools_4.1.1            cachem_1.0.6          </span></span>
+<span><span class="co">##  [70] cli_3.5.0              generics_0.1.3         broom_1.0.2           </span></span>
+<span><span class="co">##  [73] ggridges_0.5.4         ggdendro_0.1.23        evaluate_0.19         </span></span>
+<span><span class="co">##  [76] stringr_1.5.0          fastmap_1.1.0          yaml_2.3.6            </span></span>
+<span><span class="co">##  [79] ragg_1.2.4             goftest_1.2-3          knitr_1.41            </span></span>
+<span><span class="co">##  [82] fs_1.5.2               fitdistrplus_1.1-8     purrr_1.0.0           </span></span>
+<span><span class="co">##  [85] RANN_2.6.1             pbapply_1.6-0          future_1.30.0         </span></span>
+<span><span class="co">##  [88] nlme_3.1-161           mime_0.12              ggrastr_1.0.1         </span></span>
+<span><span class="co">##  [91] compiler_4.1.1         rstudioapi_0.14        beeswarm_0.4.0        </span></span>
+<span><span class="co">##  [94] plotly_4.10.1          png_0.1-8              ggsignif_0.6.4        </span></span>
+<span><span class="co">##  [97] spatstat.utils_3.0-1   tweenr_2.0.2           tibble_3.1.8          </span></span>
+<span><span class="co">## [100] bslib_0.4.2            stringi_1.7.8          highr_0.10            </span></span>
+<span><span class="co">## [103] desc_1.4.2             forcats_0.5.2          lattice_0.20-45       </span></span>
+<span><span class="co">## [106] Matrix_1.5-1           vctrs_0.5.1            pillar_1.8.1          </span></span>
+<span><span class="co">## [109] lifecycle_1.0.3        spatstat.geom_3.0-3    lmtest_0.9-40         </span></span>
+<span><span class="co">## [112] jquerylib_0.1.4        RcppAnnoy_0.0.20       data.table_1.14.6     </span></span>
+<span><span class="co">## [115] cowplot_1.1.1          irlba_2.3.5.1          httpuv_1.6.7          </span></span>
+<span><span class="co">## [118] patchwork_1.1.2        R6_2.5.1               promises_1.2.0.1      </span></span>
+<span><span class="co">## [121] KernSmooth_2.23-20     gridExtra_2.3          vipor_0.4.5           </span></span>
+<span><span class="co">## [124] parallelly_1.33.0      codetools_0.2-18       MASS_7.3-58.1         </span></span>
+<span><span class="co">## [127] assertthat_0.2.1       rprojroot_2.0.3        withr_2.5.0           </span></span>
+<span><span class="co">## [130] presto_1.0.0           sctransform_0.3.5      parallel_4.1.1        </span></span>
+<span><span class="co">## [133] grid_4.1.1             rmarkdown_2.19         carData_3.0-5         </span></span>
+<span><span class="co">## [136] Rtsne_0.16             ggpubr_0.5.0           ggforce_0.4.1         </span></span>
+<span><span class="co">## [139] spatstat.explore_3.0-5 shiny_1.7.4            ggbeeswarm_0.7.1</span></span></code></pre>
 </div>
   </div>
 
@@ -315,7 +322,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

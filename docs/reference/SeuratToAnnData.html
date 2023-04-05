@@ -54,38 +54,53 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">SeuratToAnnData</span><span class="op">(</span>
-  <span class="va">object</span>,
-  outFile <span class="op">=</span> <span class="cn">NULL</span>,
-  main.assay <span class="op">=</span> <span class="st">"RNA"</span>,
-  main.layer <span class="op">=</span> <span class="st">"counts"</span>,
-  transfer.other.main.layers <span class="op">=</span> <span class="cn">NULL</span>,
-  transfer.other.assays.layers <span class="op">=</span> <span class="cn">NULL</span>,
-  transfer.graphs <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">SeuratToAnnData</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  outFile <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  main.assay <span class="op">=</span> <span class="st">"RNA"</span>,</span>
+<span>  main.layer <span class="op">=</span> <span class="st">"counts"</span>,</span>
+<span>  transfer.other.main.layers <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  transfer.other.assays.layers <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  transfer.graphs <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>outFile</dt>
 <dd><p>Name of the target file to write the anndata object</p></dd>
+
+
 <dt>main.assay</dt>
 <dd><p>Assay to transfer to AnnData as X</p></dd>
+
+
 <dt>main.layer</dt>
 <dd><p>Layer to transfer to AnnData as X</p></dd>
+
+
 <dt>transfer.other.main.layers</dt>
 <dd><p>Which other layers to transfer into AnnData</p></dd>
+
+
 <dt>transfer.other.assays.layers</dt>
 <dd><p>Which other assay-layer pairs
 to transfer into AnnData (since AnnData only takes one assay for now)</p></dd>
+
+
 <dt>transfer.graphs</dt>
 <dd><p>Whether to transfer Graphs to AnnData .uns</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Writes a Seurat object to an .h5ad file after anndata conversion</p>
+    
+
+<p>Writes a Seurat object to an .h5ad file after anndata conversion</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -104,7 +119,7 @@ to transfer into AnnData (since AnnData only takes one assay for now)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

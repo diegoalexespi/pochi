@@ -54,38 +54,53 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">RunSCA</span><span class="op">(</span>
-  <span class="va">object</span>,
-  assay <span class="op">=</span> <span class="st">"RNA"</span>,
-  slot <span class="op">=</span> <span class="st">"data"</span>,
-  n.comps <span class="op">=</span> <span class="fl">50L</span>,
-  iters <span class="op">=</span> <span class="fl">3L</span>,
-  reduction.name <span class="op">=</span> <span class="st">"sca"</span>,
-  reduction.key <span class="op">=</span> <span class="st">"sca_"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">RunSCA</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  assay <span class="op">=</span> <span class="st">"RNA"</span>,</span>
+<span>  slot <span class="op">=</span> <span class="st">"data"</span>,</span>
+<span>  n.comps <span class="op">=</span> <span class="fl">50L</span>,</span>
+<span>  iters <span class="op">=</span> <span class="fl">3L</span>,</span>
+<span>  reduction.name <span class="op">=</span> <span class="st">"sca"</span>,</span>
+<span>  reduction.key <span class="op">=</span> <span class="st">"sca_"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>assay</dt>
 <dd><p>Which assay to use for SCA calculation</p></dd>
+
+
 <dt>slot</dt>
 <dd><p>Which slot in the assay to use for SCA calculation</p></dd>
+
+
 <dt>n.comps</dt>
 <dd><p>Number of SCs to calculate</p></dd>
+
+
 <dt>iters</dt>
 <dd><p>How many iterations to perform for SCA</p></dd>
+
+
 <dt>reduction.name</dt>
 <dd><p>Name of the Reduction object to store the SCA as</p></dd>
+
+
 <dt>reduction.key</dt>
 <dd><p>Key preceding the numbers of SCA components in
 reduction.name</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a Seurat object with an SCA calculated</p>
+    
+
+<p>Returns a Seurat object with an SCA calculated</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -104,7 +119,7 @@ reduction.name</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

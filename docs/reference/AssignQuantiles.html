@@ -54,35 +54,48 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">AssignQuantiles</span><span class="op">(</span>
-  <span class="va">object</span>,
-  <span class="va">feature</span>,
-  assay <span class="op">=</span> <span class="st">"ADT"</span>,
-  slot <span class="op">=</span> <span class="st">"data"</span>,
-  split.by <span class="op">=</span> <span class="st">"run_10x"</span>,
-  quantile.probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">AssignQuantiles</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  <span class="va">feature</span>,</span>
+<span>  assay <span class="op">=</span> <span class="st">"ADT"</span>,</span>
+<span>  slot <span class="op">=</span> <span class="st">"data"</span>,</span>
+<span>  split.by <span class="op">=</span> <span class="st">"run_10x"</span>,</span>
+<span>  quantile.probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>feature</dt>
 <dd><p>Which feature to use for quantile calculation</p></dd>
+
+
 <dt>assay</dt>
 <dd><p>Which assay the feature is located within</p></dd>
+
+
 <dt>slot</dt>
 <dd><p>Which slot the to pull from within specified assay</p></dd>
+
+
 <dt>split.by</dt>
 <dd><p>If not NULL, which metadata feature to split by before
 calculating quantiles. Will then calculate quantiles within each split object</p></dd>
+
+
 <dt>quantile.probs</dt>
 <dd><p>Which quantiles to split at</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a Seurat object with quantile metadata added</p>
+    
+
+<p>Returns a Seurat object with quantile metadata added</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -102,7 +115,7 @@ for a specified feature in the Seurat object</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -5,6 +5,7 @@
 \title{Seurat DimPlot enhancement II}
 \usage{
 DimPlotPlus(
+  object,
   reduction = "umap",
   shape.choice = 21,
   pt.size = 1.75,
@@ -13,6 +14,8 @@ DimPlotPlus(
 )
 }
 \arguments{
+\item{object}{Seurat object}
+
 \item{reduction}{Which reduction to use in the DimPlot}
 
 \item{shape.choice}{Which shape to use for the points int he DimPlot}
@@ -22,8 +25,6 @@ DimPlotPlus(
 \item{st.size}{Size of DimPlot stencil around points}
 
 \item{...}{Other arguments to Seurat::DimPlot}
-
-\item{object}{Seurat object}
 }
 \value{
 Returns a DimPlot

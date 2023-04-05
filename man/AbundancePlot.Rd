@@ -28,7 +28,8 @@ AbundancePlot(
   y_lab = NULL,
   point_size = 1,
   same_y_limit = FALSE,
-  selected.groups = NULL
+  selected.groups = NULL,
+  rotated_axis = FALSE
 )
 }
 \arguments{
@@ -83,6 +84,8 @@ groups.}
 
 \item{selected.groups}{Optional. If not NULL, will only plot the groups
 specified in this argument.}
+
+\item{rotated_axis}{Whether to apply Seurat::RotatedAxis to the plots}
 }
 \value{
 Returns a patchwork plot of separate ggplots per group.by variable

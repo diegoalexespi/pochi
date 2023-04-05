@@ -54,38 +54,65 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">FindClustersLeiden</span><span class="op">(</span>
-  <span class="va">object</span>,
-  graph.name <span class="op">=</span> <span class="cn">NULL</span>,
-  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span><span class="op">)</span>,
-  min.cluster.size <span class="op">=</span> <span class="fl">5</span>,
-  n_iterations <span class="op">=</span> <span class="fl">2</span>,
-  pythondir <span class="op">=</span> <span class="st">"~/miniconda3/bin/python"</span>,
-  partition_type <span class="op">=</span> <span class="st">"RBConfigurationVertexPartition"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">FindClustersLeiden</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  graph.name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  group.singletons <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span><span class="op">)</span>,</span>
+<span>  min.cluster.size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  n_iterations <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  pythondir <span class="op">=</span> <span class="st">"~/miniconda3/bin/python"</span>,</span>
+<span>  partition_type <span class="op">=</span> <span class="st">"RBConfigurationVertexPartition"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Seurat object</p></dd>
+
+
 <dt>graph.name</dt>
 <dd><p>Name of Graph slot in object to use for Leiden clustering</p></dd>
+
+
+<dt>group.singletons</dt>
+<dd><p>Group singletons into nearest cluster. If FALSE, the
+clusters will remain as single-member clusters.</p></dd>
+
+
 <dt>resolution</dt>
 <dd><p>Vector of resolution to input into Leiden</p></dd>
+
+
 <dt>min.cluster.size</dt>
-<dd><p>Minimum cluster size trimmed after clustering</p></dd>
+<dd><p>Minimum cluster size trimmed after clustering (not
+currently used)</p></dd>
+
+
+<dt>verbose</dt>
+<dd><p>Control verbosity</p></dd>
+
+
 <dt>pythondir</dt>
 <dd><p>Specified director for python binary that has the leidenalg
 library installed</p></dd>
+
+
 <dt>partition_type</dt>
 <dd><p>The partition_type to specify for Leiden.</p></dd>
+
+
 <dt>n.iterations</dt>
 <dd><p>Number of iterations to run Leiden clustering for</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a Seurat object with the leiden clusterings stored as
+    
+
+<p>Returns a Seurat object with the leiden clusterings stored as
 object@meta.data columns</p>
     </div>
     <div id="details">
@@ -117,7 +144,7 @@ afterwards...</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
