@@ -40,7 +40,7 @@ ClipDSB <- function(object, assay = "DSB", slot = "data", split.by = NULL,
         value_vector[value_vector < percentile_limit_lo] <- percentile_limit_lo
       }
       value_vector[value_vector > percentile_limit_hi] <- percentile_limit_hi
-      value_matrix <- data.frame(feature = value_matrix)
+      value_matrix <- data.frame(feature = value_vector)
       colnames(value_matrix) <- features_to_scale[i]
       return(t(value_matrix))
     })

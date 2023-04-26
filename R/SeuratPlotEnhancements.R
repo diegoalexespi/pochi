@@ -248,14 +248,14 @@ DoClusteredDotPlot <- function(object,
   my_data <- AverageExpression(object, slot = slot, assay = assay, group.by = group.by)[[assay]]
   my_data <- my_data[features,]
   if(scale_rows){
-    my_data <- as.data.frame(t(scale(t(my_data), center = TRUE, scale = TRUE)))
+    my_data <- as.data.frame(t(scale(SeuratDisk::Transpose(my_data), center = TRUE, scale = TRUE)))
   }
 
   my_data[my_data > max_zed] <- max_zed
   my_data[my_data < -max_zed] <- -max_zed
   hclust_results <- hclust(dist(my_data))
   feature_order <- hclust_results$labels[hclust_results$order]
-  hclust_results_2 <- hclust(dist(t(my_data)))
+  hclust_results_2 <- hclust(dist(t(as.matrix(my_data))))
   cluster_order <- hclust_results_2$labels[hclust_results_2$order]
 
   my_data_long <- my_data %>%
