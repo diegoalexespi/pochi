@@ -122,6 +122,12 @@ pbmc3k_seurat = QC.n.mad(pbmc3k_seurat)
 pbmc3k_seurat = Calc.Perc.Features(pbmc3k_seurat)
 ```
 
+## `plot.UMI.cov`
+
+```{r plot.UMI.cov, eval = TRUE}
+plot.UMI.cov(pbmc3k_seurat, split.by="group")
+```
+
 # Session Info
 ```{r session info, eval=TRUE, width=6}
 sessionInfo()
