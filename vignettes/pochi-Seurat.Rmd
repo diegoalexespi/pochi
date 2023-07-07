@@ -104,6 +104,29 @@ pbmc3k_seurat <- CellCycleScoring(pbmc3k_seurat, s.features = cc.genes.updated.2
 ModulePlot(pbmc3k_seurat, features = "S.Score", assay = "RNA", split.by = "condition", replicate.by = "replicate")
 ```
 
+## `VlnPlot.median`
+
+```{r VlnPlot.median, eval = TRUE}
+VlnPlot.median(pbmc3k_seurat, features = c("CD14","CD1c"))
+```
+
+## `QC.n.mad`
+
+```{r QC.n.mad, eval = TRUE}
+pbmc3k_seurat = QC.n.mad(pbmc3k_seurat)
+```
+
+## `Calc.Perc.Features`
+
+```{r Calc.Perc.Features, eval = TRUE}
+pbmc3k_seurat = Calc.Perc.Features(pbmc3k_seurat)
+```
+
+## `plot.UMI.cov`
+
+```{r plot.UMI.cov, eval = TRUE}
+plot.UMI.cov(pbmc3k_seurat, split.by="group")
+```
 
 # Session Info
 ```{r session info, eval=TRUE, width=6}
