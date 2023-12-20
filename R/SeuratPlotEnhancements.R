@@ -221,58 +221,28 @@ DoClusteredDotPlot <- function(object,
                                dot.scale = 5,
                                cluster_cols = TRUE){
 
+  column.names <- object@meta.data[,group.by]
 
+  if (any(!(grepl("^[a-zA-Z]|^\\.[^0-9]", column.names)))) {
+    message("First group.by variable `", group.by[1], "` starts with a number, appending `g` to ensure valid variable names")
+    column.names <- ifelse(
+      !(grepl("^[a-zA-Z]|^\\.[^0-9]", column.names)),
+      paste0("g", column.names),
+    )
+    object$new.column.names <- column.names
+    group.by <- "new.column.names"
+  }
 
-  # if(!is.null(diff_exp_results)){
-  #   if(all(c("logFC", "auc", "padj") %in% colnames(diff_exp_results))){
-  #     message("diff_exp_results in Presto format")
-  #     diff_exp_results <- diff_exp_results %>%
-  #       dplyr::mutate(is_significant = ifelse(auc > auc_choice, "*", "")) %>%
-  #       dplyr::mutate(cluster = group)
-  #     sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% pull(feature) %>% unique()
-  #   } else if (all(c("p_val_adj", "avg_log2FC") %in% colnames(diff_exp_results))){
-  #     message("diff_exp_results in Seurat format")
-  #     diff_exp_results <- diff_exp_results %>%
-  #       dplyr::mutate(is_significant = ifelse((p_val_adj < p_val_choice) & (avg_log2FC > logFC), "*", "")) %>%
-  #       dplyr::mutate(feature = gene)
-  #     sig_genes <- dplyr::filter(diff_exp_results, is_significant == "*") %>% pull(feature) %>% unique()
-  #   } else {
-  #     stop("diff_exp_results must be in Seurat or Presto format")
-  #   }
-  #   if(!is.null(subset_features)){
-  #     my_data <- my_data[subset_features,]
-  #   }
-  #   if(!plot_all){
-  #     my_data <- my_data[rownames(my_data) %in% sig_genes,]
-  #   }
   my_data <- AverageExpression(object, slot = slot, assay = assay, group.by = group.by)[[assay]]
   my_data <- my_data[features,]
   if(scale_rows){
     my_data <- as.data.frame(t(scale(SeuratDisk::Transpose(my_data), center = TRUE, scale = TRUE)))
   }
 
-  my_data[my_data > max_zed] <- max_zed
-  my_data[my_data < -max_zed] <- -max_zed
   hclust_results <- hclust(dist(my_data))
   feature_order <- hclust_results$labels[hclust_results$order]
   hclust_results_2 <- hclust(dist(t(as.matrix(my_data))))
   cluster_order <- hclust_results_2$labels[hclust_results_2$order]
-
-  my_data_long <- my_data %>%
-    as.data.frame %>%
-    tibble::rownames_to_column(var = "feature") %>%
-    pivot_longer(-feature, values_to = "Z_sc", names_to = "cluster") %>%
-    dplyr::mutate(feature = factor(feature, levels = feature_order)) %>%
-    dplyr::mutate(cluster = factor(cluster, levels = colnames(my_data)))
-
-  # my_data_long <- left_join(my_data_long, diff_exp_results, by = c("cluster", "feature")) %>%
-  #   dplyr::mutate(feature = factor(feature, levels = feature_order))
-
-  if(cluster_cols){
-    my_data_long <- my_data_long %>%
-      dplyr::mutate(cluster = factor(cluster, levels = cluster_order))
-  }
-
 
   label_size <- y_text_size
   dotplot_theme <- theme(axis.text.x = element_text(size = label_size),

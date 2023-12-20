@@ -65,7 +65,6 @@ BackgatePlot <- function(object,
     dplyr::mutate(selected_cells = factor(selected_cells, levels = c(metadata.selection, "non-selected"))) %>%
     dplyr::arrange(desc(selected_cells))
 
-
   g <- ggplot(plotting_data, aes(x = !!sym(feature1), y = !!sym(feature2), color = selected_cells, group = selected_cells ))
 
   if(raster){
