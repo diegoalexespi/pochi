@@ -6,6 +6,7 @@
 #' @param split.by If not NULL, which metadata feature to split by  before
 #' scaling.
 #' @param high.p Which percentile to set as the global 1 per feature
+#' @param scale.to.one Whether to scale the high.p value to 1 for each feature
 #' @param new.assay Name of new assay to save values to
 #' @details Scales the expression values for each feature in the specified assay
 #' from 0 to 1, with an optional split.by argument.
@@ -16,8 +17,13 @@
 #' @importFrom rlang %||%
 #'
 #' @export
-ScaleDSB <- function(object, assay = "DSB", slot = "data", split.by = NULL,
-                     high.p = 0.999, new.assay = "sDSB"){
+ScaleDSB <- function(object,
+                     assay = "DSB",
+                     slot = "data",
+                     split.by = NULL,
+                     high.p = 0.999,
+                     scale.to.one = FALSE,
+                     new.assay = "sDSB"){
 
   #split the object or not...
   if(!is.null(split.by)){
@@ -57,8 +63,12 @@ ScaleDSB <- function(object, assay = "DSB", slot = "data", split.by = NULL,
       value_vector[value_vector < 0] <- 0
       percentile_limit_hi <- quantile(value_vector, high.p)
       value_vector[value_vector > percentile_limit_hi] <- percentile_limit_hi
-      scaled_vector <- scales::rescale(value_vector, to = c(0, 1))
-      value_matrix <- data.frame(feature = scaled_vector)
+      if(scale.to.one){
+        scaled_vector <- scales::rescale(value_vector, to = c(0, 1))
+        value_matrix <- data.frame(feature = scaled_vector)
+      } else {
+        value_matrix <- data.frame(feature = value_vector)
+      }
       colnames(value_matrix) <- features_to_scale[i]
       return(t(value_matrix))
     })

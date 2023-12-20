@@ -10,6 +10,7 @@ ScaleDSB(
   slot = "data",
   split.by = NULL,
   high.p = 0.999,
+  scale.to.one = FALSE,
   new.assay = "sDSB"
 )
 }
@@ -24,6 +25,8 @@ ScaleDSB(
 scaling.}
 
 \item{high.p}{Which percentile to set as the global 1 per feature}
+
+\item{scale.to.one}{Whether to scale the high.p value to 1 for each feature}
 
 \item{new.assay}{Name of new assay to save values to}
 }

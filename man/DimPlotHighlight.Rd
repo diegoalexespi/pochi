@@ -51,8 +51,8 @@ See \code{\link[Seurat]{DiscretePalette}} for details.}
 \item{group.by}{Name of one or more metadata columns to group (color) cells by
 (for example, orig.ident); pass 'ident' to group by identity class}
 
-\item{split.by}{Name of a metadata column to split plot by;
-see \code{\link[Seurat]{FetchData}} for more details}
+\item{split.by}{A factor in object metadata to split the plot by, pass 'ident'
+to split by cell identity'}
 
 \item{shape.by}{If NULL, all points are circles (default). You can specify any
 cell attribute (that can be pulled with FetchData) allowing for both
@@ -82,7 +82,8 @@ geom_label)}
 repeat to the length groups in cells.highlight}
 
 \item{sizes.highlight}{Size of highlighted cells; will repeat to the length
-groups in cells.highlight}
+groups in cells.highlight.  If \code{sizes.highlight = TRUE} size of all
+points will be this value.}
 
 \item{na.value}{Color value for NA points when using custom scale}
 
