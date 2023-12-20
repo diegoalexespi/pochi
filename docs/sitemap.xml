@@ -1,108 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/LICENSE-text.html</loc>
+    <loc>/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/LICENSE.html</loc>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/articles/index.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/articles/pochi-Seurat.html</loc>
+    <loc>/articles/pochi-Seurat.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/AbundancePlot.html</loc>
+    <loc>/reference/AbundancePlot.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/AssignQuantiles.html</loc>
+    <loc>/reference/AssignQuantiles.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/BackgatePlot.html</loc>
+    <loc>/reference/BackgatePlot.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/BuildAnnoyUMAP.html</loc>
+    <loc>/reference/BuildAnnoyUMAP.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/BuildSNNfromKNN.html</loc>
+    <loc>/reference/BuildSNNfromKNN.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DimPlotEdges.html</loc>
+    <loc>/reference/ClipDSB.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DimPlotHighlight.html</loc>
+    <loc>/reference/DimPlotEdges.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DimPlotPlus.html</loc>
+    <loc>/reference/DimPlotHighlight.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DoClusteredDotPlot.html</loc>
+    <loc>/reference/DimPlotPlus.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DoClusteredHeatmap.html</loc>
+    <loc>/reference/DoClusteredDotPlot.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DoGenesetHeatmap.html</loc>
+    <loc>/reference/DoClusteredHeatmap.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/DoStarHeatmap.html</loc>
+    <loc>/reference/DoGenesetHeatmap.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/ExtractClusterProportions.html</loc>
+    <loc>/reference/DoStarHeatmap.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/FeaturePlotPlus.html</loc>
+    <loc>/reference/ExtractClusterProportions.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/FindClustersLeiden.html</loc>
+    <loc>/reference/FeaturePlotPlus.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/FindJaccard.html</loc>
+    <loc>/reference/FindClustersLeiden.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/FlowPlot.html</loc>
+    <loc>/reference/FindJaccard.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/MetaDataPlot.html</loc>
+    <loc>/reference/FlowPlot.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/ModulePlot.html</loc>
+    <loc>/reference/MetaDataPlot.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/ReadGMT.html</loc>
+    <loc>/reference/ModulePlot.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/RunAUCell.html</loc>
+    <loc>/reference/ReadGMT.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/RunHarmony2.html</loc>
+    <loc>/reference/RunAUCell.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/RunSCA.html</loc>
+    <loc>/reference/RunHarmony2.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/ScaleADT.html</loc>
+    <loc>/reference/RunSCA.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/ScaleDSB.html</loc>
+    <loc>/reference/ScaleADT.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/SeuratToAnnData.html</loc>
+    <loc>/reference/ScaleDSB.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/TrueAverageExpression.html</loc>
+    <loc>/reference/SeuratToAnnData.html</loc>
   </url>
   <url>
-    <loc>https://diegoalexespi.github.io/pochi/reference/index.html</loc>
+    <loc>/reference/TrueAverageExpression.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dissociation.genes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
   </url>
 </urlset>
