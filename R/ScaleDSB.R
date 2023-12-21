@@ -59,7 +59,7 @@ ScaleDSB <- function(object,
       } else {
         high_value <- feature_medians[features_to_scale[i]]
         scaled_vector <- scales::rescale(value_vector, to = c(0, high_value))
-        value_matrix <- data.frame(feature = value_vector)
+        value_matrix <- data.frame(feature = scaled_vector)
       }
       colnames(value_matrix) <- features_to_scale[i]
       return(t(value_matrix))
