@@ -21,17 +21,17 @@
 #'
 #' @export
 RunAUCell <- function(
-  object,
-  assay = NULL,
-  slot = "counts",
-  genesets,
-  ranking.save = FALSE,
-  ranking.key = NULL,
-  normAUC = TRUE,
-  aucMaxRank = 0.05,
-  verbose = TRUE,
-  auc_assay_name = "AUC",
-  ...
+    object,
+    assay = NULL,
+    slot = "counts",
+    genesets,
+    ranking.save = FALSE,
+    ranking.key = NULL,
+    normAUC = TRUE,
+    aucMaxRank = 0.05,
+    verbose = TRUE,
+    auc_assay_name = "AUC",
+    ...
 ) {
   #SeuratWrappers:::CheckPackage(package = 'AUCell', repository = "bioconductor")
   assay <- assay %||% Seurat::DefaultAssay(object = object)
@@ -65,26 +65,30 @@ RunAUCell <- function(
     inter_2 <- diff(inter_1)
     inter_3 <- sum(inter_2 * y_th)
     return(inter_3)
-    })
+  })
 
 
   #get the rankings for each cell
   if(is.null(ranking.key)){
     message("building ranking matrix using sparseMatrixStats")
-    gene_names <- rownames(my_data)
-    cell_names <- colnames(my_data)
-    my_data <- sparseMatrixStats::colRanks(-my_data, preserveShape = TRUE, ties.method = "min")
 
-    dimnames(my_data) <- list(gene_names, cell_names)
-    gene_names <- rownames(my_data)
-    cell_names <- colnames(my_data)
+    #need to transpose matrix to have features as columns, cells as rows
+    my_data <- SparseM::t(my_data)
+
+    cell_names <- rownames(my_data)
+    gene_names <- colnames(my_data)
+    my_data <- sparseMatrixStats::rowRanks(-my_data, preserveShape = TRUE, ties.method = "min")
+
+    # dimnames(my_data) <- list(cell_names, gene_names)
+    # cell_names <- rownames(my_data)
+    # gene_names <- colnames(my_data)
 
     message("breaking ties in ranking matrix")
-    my_data <- matrixStats::colRanks(my_data, preserveShape = TRUE, ties.method = "random")
+    my_data <- sparseMatrixStats::rowRanks(my_data, preserveShape = TRUE, ties.method = "random")
     my_data[my_data > aucMaxRank] <- 0
     message("converting to sparse matrix")
-    my_dgc <- as(my_data, "dgCMatrix")
-    dimnames(my_dgc) = list(gene_names,cell_names)
+    my_dgc <- SparseM::t(as(my_data, "dgCMatrix"))
+    # dimnames(my_dgc) = list(gene_names,cell_names)
     if(ranking.save){
       object[["ranking"]] <- CreateAssayObject(counts = my_dgc)
     }
@@ -106,13 +110,17 @@ RunAUCell <- function(
     my_dgc_sorted_temp <- my_dgc_sorted_temp[-1,]
     my_dgc_sorted_diffs <- my_dgc_sorted_temp - my_dgc_sorted
     column_zeros <- colSums(my_dgc_sorted == 0)
-    mds_ranks <- t(matrixStats::colRanks(my_dgc_sorted,
+    #
+    my_dgc_sorted_t <- SparseM::t(my_dgc_sorted)
+    #
+    mds_ranks_t <- matrixStats::rowRanks(my_dgc_sorted_t,
                                          ties.method = "max",
-                                         preserveShape=TRUE))
+                                         preserveShape=TRUE)
+    mds_ranks <- SparseM::t(mds_ranks_t)
     colrank_matrix <- t(mds_ranks - column_zeros)
     cell_aucs <- colSums(my_dgc_sorted_diffs * colrank_matrix)
     return(cell_aucs/max_aucs[[i]])
-    }) %>% do.call(rbind, .)
+  }) %>% do.call(rbind, .)
   colnames(geneset_aucs) <- cell_names
   rownames(geneset_aucs) <- geneset_names
   object[[auc_assay_name]] <- CreateAssayObject(counts = geneset_aucs)
