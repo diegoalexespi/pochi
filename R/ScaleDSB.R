@@ -46,7 +46,7 @@ ScaleDSB <- function(object,
 
   #quantile-cap and scale the assay from each object
   split_assays <- lapply(seq_along(split_object), function(i){
-    object_assay <- SeuratObject::LayerData(x[[assay]], layer = layer)
+    object_assay <- SeuratObject::LayerData(split_object[[i]][[assay]], layer = layer)
     features_to_scale <- rownames(object_assay)
     scaled_matrix <- lapply(seq_along(features_to_scale), function(i){
       value_vector <- object_assay[features_to_scale[i],]
