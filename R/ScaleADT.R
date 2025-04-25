@@ -29,7 +29,7 @@ ScaleADT <- function(object, assay = "ADT", layer = "data", split.by = NULL,
 
   #get the assay from each object
   split_assays <- lapply(split_object, function(x){
-    object_assay <- SeuratObject::LayerData(x[[assay]], assay = assay, layer = slot)
+    object_assay <- SeuratObject::LayerData(x[[assay]], layer = layer)
     features_to_scale <- rownames(object_assay)
     scaled_matrix <- lapply(seq_along(features_to_scale), function(i){
       value_vector <- object_assay[features_to_scale[i],]
@@ -51,9 +51,10 @@ ScaleADT <- function(object, assay = "ADT", layer = "data", split.by = NULL,
   merged_assay <- merged_assay[,colnames(object)]
 
   #return object with slot updated
-  object[[new.assay]] <- CreateAssay5Object(data = merged_assay,
-                                            min.cells = 0,
-                                            min.features = 0)
+  object[[new.assay]] <- SeuratObject::CreateAssay5Object(counts = merged_assay,
+                                                          data = merged_assay,
+                                                          min.cells = 0,
+                                                          min.features = 0)
 
   return(object)
 }
