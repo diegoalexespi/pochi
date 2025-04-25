@@ -7,7 +7,7 @@
 ScaleADT(
   object,
   assay = "ADT",
-  slot = "data",
+  layer = "data",
   split.by = NULL,
   low.p = 0.001,
   high.p = 0.999,
@@ -19,9 +19,9 @@ ScaleADT(
 
 \item{assay}{Which assay, typically ADT}
 
-\item{slot}{Which slot in the assay, typically data after CLR}
+\item{layer}{Which layer in the assay, typically data after CLR}
 
-\item{split.by}{If not NULL, which metadata feature to split by  before
+\item{split.by}{If not NULL, which metadata feature to split by before
 scaling.}
 
 \item{low.p}{Which percentile to set as 0}

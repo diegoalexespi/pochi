@@ -26,7 +26,9 @@ scaling.}
 
 \item{high.p}{Which percentile to set as the global 1 per feature}
 
-\item{scale.to.one}{Whether to scale the high.p value to 1 for each feature}
+\item{scale.to.one}{Whether to scale the high.p value to 1 for each feature.
+If not, will scale to median of the high.p quantiles across the split.by
+groups.}
 
 \item{new.assay}{Name of new assay to save values to}
 }

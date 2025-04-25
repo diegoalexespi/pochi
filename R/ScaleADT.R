@@ -2,8 +2,8 @@
 #'
 #' @param object Seurat object
 #' @param assay Which assay, typically ADT
-#' @param slot Which slot in the assay, typically data after CLR
-#' @param split.by If not NULL, which metadata feature to split by  before
+#' @param layer Which layer in the assay, typically data after CLR
+#' @param split.by If not NULL, which metadata feature to split by before
 #' scaling.
 #' @param low.p Which percentile to set as 0
 #' @param high.p Which percentile to set as 1
@@ -17,7 +17,7 @@
 #' @importFrom rlang %||%
 #'
 #' @export
-ScaleADT <- function(object, assay = "ADT", slot = "data", split.by = NULL,
+ScaleADT <- function(object, assay = "ADT", layer = "data", split.by = NULL,
                      low.p = 0.001,high.p = 0.999,new.assay = "sADT"){
 
   #split the object or not...
@@ -29,7 +29,7 @@ ScaleADT <- function(object, assay = "ADT", slot = "data", split.by = NULL,
 
   #get the assay from each object
   split_assays <- lapply(split_object, function(x){
-    object_assay <- SeuratObject::GetAssayData(x, assay = assay, slot = slot)
+    object_assay <- SeuratObject::LayerData(x[[assay]], assay = assay, layer = slot)
     features_to_scale <- rownames(object_assay)
     scaled_matrix <- lapply(seq_along(features_to_scale), function(i){
       value_vector <- object_assay[features_to_scale[i],]
@@ -51,9 +51,9 @@ ScaleADT <- function(object, assay = "ADT", slot = "data", split.by = NULL,
   merged_assay <- merged_assay[,colnames(object)]
 
   #return object with slot updated
-  object[[new.assay]] <- CreateAssayObject(data = merged_assay,
-                                           min.cells = 0,
-                                           min.features = 0)
+  object[[new.assay]] <- CreateAssay5Object(data = merged_assay,
+                                            min.cells = 0,
+                                            min.features = 0)
 
   return(object)
 }
