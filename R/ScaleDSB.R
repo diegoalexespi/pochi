@@ -2,7 +2,7 @@
 #'
 #' @param object Seurat object
 #' @param assay Which assay, typically DSB
-#' @param slot Which slot in the assay, typically data after DSB correction
+#' @param layer Which layer in the assay, typically data after DSB correction
 #' @param split.by If not NULL, which metadata feature to split by  before
 #' scaling.
 #' @param high.p Which percentile to set as the global 1 per feature
@@ -21,7 +21,7 @@
 #' @export
 ScaleDSB <- function(object,
                      assay = "DSB",
-                     slot = "data",
+                     layer = "data",
                      split.by = NULL,
                      high.p = 0.999,
                      scale.to.one = FALSE,
@@ -37,7 +37,7 @@ ScaleDSB <- function(object,
   if(!scale.to.one){
     #get the median DSB high quantile value from each feature across objects
     max_dsb_values <- lapply(seq_along(split_object), function(i){
-      object_assay <- SeuratObject::GetAssayData(split_object[[i]], assay = assay, slot = slot)
+      object_assay <- SeuratObject::LayerData(split_object[[i]][[assay]], layer = layer)
       object_maxs <- matrixStats::rowQuantiles(as.matrix(object_assay), probs = high.p)
       return(data.frame(object_maxs))
     }) %>% do.call(cbind, .)
@@ -46,7 +46,7 @@ ScaleDSB <- function(object,
 
   #quantile-cap and scale the assay from each object
   split_assays <- lapply(seq_along(split_object), function(i){
-    object_assay <- SeuratObject::GetAssayData(split_object[[i]], assay = assay, slot = slot)
+    object_assay <- SeuratObject::LayerData(x[[assay]], layer = layer)
     features_to_scale <- rownames(object_assay)
     scaled_matrix <- lapply(seq_along(features_to_scale), function(i){
       value_vector <- object_assay[features_to_scale[i],]
@@ -73,10 +73,13 @@ ScaleDSB <- function(object,
   merged_assay <- do.call(cbind, split_assays)
   merged_assay <- merged_assay[,colnames(object)]
 
+
   #return object with slot updated
-  object[[new.assay]] <- CreateAssayObject(data = merged_assay,
-                                           min.cells = 0,
-                                           min.features = 0)
+  object[[new.assay]] <- SeuratObject::CreateAssay5Object(counts = merged_assay,
+                                                          data = merged_assay,
+                                                          min.cells = 0,
+                                                          min.features = 0)
+
 
   return(object)
 }
