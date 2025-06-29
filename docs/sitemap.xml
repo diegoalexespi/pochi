@@ -1,114 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/pochi-Seurat.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/AbundancePlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/AssignQuantiles.html</loc>
-  </url>
-  <url>
-    <loc>/reference/BackgatePlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/BuildAnnoyUMAP.html</loc>
-  </url>
-  <url>
-    <loc>/reference/BuildSNNfromKNN.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ClipDSB.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DimPlotEdges.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DimPlotHighlight.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DimPlotPlus.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DoClusteredDotPlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DoClusteredHeatmap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DoGenesetHeatmap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DoStarHeatmap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ExtractClusterProportions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/FeaturePlotPlus.html</loc>
-  </url>
-  <url>
-    <loc>/reference/FindClustersLeiden.html</loc>
-  </url>
-  <url>
-    <loc>/reference/FindJaccard.html</loc>
-  </url>
-  <url>
-    <loc>/reference/FlowPlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MetaDataPlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ModulePlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ReadGMT.html</loc>
-  </url>
-  <url>
-    <loc>/reference/RunAUCell.html</loc>
-  </url>
-  <url>
-    <loc>/reference/RunHarmony2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/RunSCA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ScaleADT.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ScaleDSB.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SeuratToAnnData.html</loc>
-  </url>
-  <url>
-    <loc>/reference/TrueAverageExpression.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dissociation.genes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/pochi-Seurat.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/AbundancePlot.html</loc></url>
+<url><loc>/reference/AssignQuantiles.html</loc></url>
+<url><loc>/reference/BackgatePlot.html</loc></url>
+<url><loc>/reference/BuildAnnoyUMAP.html</loc></url>
+<url><loc>/reference/BuildSNNfromKNN.html</loc></url>
+<url><loc>/reference/ClipDSB.html</loc></url>
+<url><loc>/reference/DimPlotEdges.html</loc></url>
+<url><loc>/reference/DimPlotHighlight.html</loc></url>
+<url><loc>/reference/DimPlotPlus.html</loc></url>
+<url><loc>/reference/DoClusteredDotPlot.html</loc></url>
+<url><loc>/reference/DoClusteredHeatmap.html</loc></url>
+<url><loc>/reference/DoGenesetHeatmap.html</loc></url>
+<url><loc>/reference/DoStarHeatmap.html</loc></url>
+<url><loc>/reference/ExtractClusterProportions.html</loc></url>
+<url><loc>/reference/FeaturePlotPlus.html</loc></url>
+<url><loc>/reference/FindClustersLeiden.html</loc></url>
+<url><loc>/reference/FindJaccard.html</loc></url>
+<url><loc>/reference/FlowPlot.html</loc></url>
+<url><loc>/reference/MetaDataPlot.html</loc></url>
+<url><loc>/reference/ModulePlot.html</loc></url>
+<url><loc>/reference/ReadGMT.html</loc></url>
+<url><loc>/reference/RunAUCell.html</loc></url>
+<url><loc>/reference/RunHarmony2.html</loc></url>
+<url><loc>/reference/RunHarmonyForSymphony.html</loc></url>
+<url><loc>/reference/RunSCA.html</loc></url>
+<url><loc>/reference/ScaleADT.html</loc></url>
+<url><loc>/reference/ScaleDSB.html</loc></url>
+<url><loc>/reference/SeuratToAnnData.html</loc></url>
+<url><loc>/reference/TrueAverageExpression.html</loc></url>
+<url><loc>/reference/dissociation.genes.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
 </urlset>
+

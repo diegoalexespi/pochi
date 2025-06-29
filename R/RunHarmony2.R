@@ -63,7 +63,15 @@ RunHarmonyForSymphony <- function(
   colnames(result_matrix) <- colnames(data_mat)
   harmonyEmbed <- t(result_matrix)
   # #end extraction
-
+  #
+  #
+  # now need to extract data from harmonyObject as it is a C++ object that
+  # would not be saved in R object as-is!
+  harmonyRObject <- list(R = harmonyObject$R,
+                         Z_orig = harmonyObject$Z_orig,
+                         Z_corr = harmonyObject$Z_corr,
+                         betas = harmony::moe_ridge_get_betas(harmonyObject))
+  #
   ####
 
   reduction.key <- Seurat::Key(reduction.save, quiet = TRUE)
@@ -75,7 +83,7 @@ RunHarmonyForSymphony <- function(
     stdev = as.numeric(apply(harmonyEmbed, 2, stats::sd)),
     assay = Seurat::DefaultAssay(object = object[[reduction.use]]),
     key = reduction.key,
-    misc = list(harmony_object = harmonyObject)#another change
+    misc = list(harmony_object = harmonyRObject)#another change
   )
   if (project.dim) {
     object <- Seurat::ProjectDim(
