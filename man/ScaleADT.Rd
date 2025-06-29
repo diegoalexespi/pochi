@@ -11,6 +11,7 @@ ScaleADT(
   split.by = NULL,
   low.p = 0.001,
   high.p = 0.999,
+  scale.to.one = FALSE,
   new.assay = "sADT"
 )
 }

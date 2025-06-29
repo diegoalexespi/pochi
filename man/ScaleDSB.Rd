@@ -7,7 +7,7 @@
 ScaleDSB(
   object,
   assay = "DSB",
-  slot = "data",
+  layer = "data",
   split.by = NULL,
   high.p = 0.999,
   scale.to.one = FALSE,
@@ -19,7 +19,7 @@ ScaleDSB(
 
 \item{assay}{Which assay, typically DSB}
 
-\item{slot}{Which slot in the assay, typically data after DSB correction}
+\item{layer}{Which layer in the assay, typically data after DSB correction}
 
 \item{split.by}{If not NULL, which metadata feature to split by  before
 scaling.}
