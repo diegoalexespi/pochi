@@ -118,7 +118,7 @@ RunAUCell <- function(
                                          preserveShape=TRUE)
     # mds_ranks <- SparseM::t(mds_ranks_t)
     # mds_ranks_tt <- SparseM::t(mds_ranks)
-    colrank_matrix <- t(mds_ranks_tittr - column_zeros)
+    colrank_matrix <- t(mds_ranks_t - column_zeros)
     cell_aucs <- colSums(my_dgc_sorted_diffs * colrank_matrix)
     return(cell_aucs/max_aucs[[i]])
   }) %>% do.call(rbind, .)

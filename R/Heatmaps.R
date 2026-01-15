@@ -13,7 +13,7 @@
 DoStarHeatmap <- function(object,
                           diff_exp_results = NULL,
                           assay = "ADT",
-                          slot = "data",
+                          layer = "data",
                           group.by = "seurat_clusters",
                           max_zed = 3,
                           plot_rownames = FALSE,
@@ -64,7 +64,7 @@ DoStarHeatmap <- function(object,
     stop("must input a diff_exp_results (in Seurat or Presto format)")
   }
 
-  my_data <- TrueAverageExpression(object, slot = slot, assay = assay, group.by = group.by)
+  my_data <- TrueAverageExpression(object, layer = layer, assay = assay, group.by = group.by)
   if(!is.null(subset_features)){
     my_data <- my_data[subset_features,]
   }
@@ -159,8 +159,8 @@ DoStarHeatmap <- function(object,
 #' @param object Seurat object
 #' @param features Which features to plot
 #' @param assay Which assay to get expression values from
-#' @param slot Which slot to pull the assay data from
-#' @param group.by Which metadata slot to group cells by
+#' @param layer Which layer to pull the assay data from
+#' @param group.by Which metadata layer to group cells by
 #' @param max_zed Cutoff for maximum z-scores (absolute value)
 #' @param y_text_size Size of text on y axis (features)
 #' @param scale_rows Whether to scale the expression per row
@@ -182,7 +182,7 @@ DoStarHeatmap <- function(object,
 DoClusteredHeatmap <- function(object,
                                features = NULL,
                                assay = "RNA",
-                               slot = "data",
+                               layer = "data",
                                group.by = "seurat_clusters",
                                max_zed = 3,
                                y_text_size = 10,
@@ -194,7 +194,7 @@ DoClusteredHeatmap <- function(object,
                                viridis_option = "B",
                                viridis_direction = 1){
 
-  my_data <- TrueAverageExpression(object, slot = slot, assay = assay, group.by = group.by)
+  my_data <- TrueAverageExpression(object, layer = layer, assay = assay, group.by = group.by)
   my_data <- my_data[features,]
   if(!is.null(levels(object@meta.data[,group.by]))){
     these_levels <- levels(object@meta.data[,group.by])
@@ -290,7 +290,7 @@ DoClusteredHeatmap <- function(object,
 #' @param group.by.delim The delimiter used if group.by is a vector of
 #' length > 1.
 #' @param assay Assay to average (default is the active assay)
-#' @param slot Slot to average (default is counts)
+#' @param layer Layer to average (default is counts)
 #' @param verbose Boolean or integer, show progress bar (default is TRUE)
 #'
 #' @references credit to GitHub user @zdebruine on Seurat issues!
@@ -302,10 +302,10 @@ TrueAverageExpression <- function(object,
                                   group.by = "seurat_clusters",
                                   group.by.delim = "_",
                                   assay = "RNA",
-                                  slot = "data",
+                                  layer = "data",
                                   verbose = TRUE) {
 
-  my_data <- GetAssayData(object, assay = assay, slot = slot)
+  my_data <- GetAssayData(object, assay = assay, layer = layer)
 
   idents <- object@meta.data[,group.by,drop=FALSE] %>%
     tidyr::unite("ident_vector", group.by, sep = group.by.delim) %>%
