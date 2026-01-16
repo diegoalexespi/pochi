@@ -2,7 +2,7 @@
 #'
 #' @param object Seurat object
 #' @param assay Assay to use for building rankings. Will use default assay if NULL.
-#' @param slot Slot to use for building rankings
+#' @param layer layer to use for building rankings
 #' @param genesets A list of vectors of features for expression programs; each entry should be a vector of feature names. If the list of vectors is named, the resulting AUCell score for the expression program will be a row in the AUCell assay returned.
 #' @param ranking.save If TRUE, will save a new Assay `rankings` into `object` with the rankings of each gene per cell.
 #' @param ranking.key If not NULL, will pull Assay `rankings` from `object` rather than re-calculating rankings.
@@ -23,7 +23,7 @@
 RunAUCell <- function(
     object,
     assay = NULL,
-    slot = "counts",
+    layer = "counts",
     genesets,
     ranking.save = FALSE,
     ranking.key = NULL,
@@ -35,7 +35,7 @@ RunAUCell <- function(
 ) {
   #SeuratWrappers:::CheckPackage(package = 'AUCell', repository = "bioconductor")
   assay <- assay %||% Seurat::DefaultAssay(object = object)
-  my_data <- Seurat::GetAssayData(object = object, assay = assay, slot = slot)
+  my_data <- Seurat::GetAssayData(object = object, assay = assay, layer = layer)
   aucMaxRank <- ceiling(aucMaxRank*nrow(my_data))
 
   #filter genesets to exclude genesets with >80% of its genes missing
@@ -94,7 +94,7 @@ RunAUCell <- function(
     }
   } else {
     message("using pre-built ranking assay")
-    my_dgc <- GetAssayData(object, slot = "counts", assay = "ranking")
+    my_dgc <- GetAssayData(object, layer = "counts", assay = "ranking")
     gene_names <- rownames(my_dgc)
     cell_names <- colnames(my_dgc)
   }
