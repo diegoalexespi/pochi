@@ -3,7 +3,7 @@
 #' @param object Seurat object
 #' @param feature Which feature to use for quantile calculation
 #' @param assay Which assay the feature is located within
-#' @param slot Which slot the to pull from within specified assay
+#' @param layer Which layer the to pull from within specified assay
 #' @param split.by If not NULL, which metadata feature to split by before
 #' calculating quantiles. Will then calculate quantiles within each split object
 #' @param quantile.probs Which quantiles to split at
@@ -18,7 +18,7 @@
 AssignQuantiles <- function(object,
                             feature,
                             assay = "ADT",
-                            slot = "data",
+                            layer = "data",
                             split.by = "run_10x",
                             quantile.probs = c(0,.25,.5,.75,1)){
 
@@ -36,7 +36,7 @@ AssignQuantiles <- function(object,
 
   split_objects <- lapply(seq_along(split_objects), function(i){
     temp_object <- split_objects[[i]]
-    temp_vector <- Seurat::FetchData(temp_object, vars = feature, slot = slot)[,1]
+    temp_vector <- Seurat::FetchData(temp_object, vars = feature, layer = layer)[,1]
     temp_quantiles <- quantile(temp_vector, probs = quantile.probs)
     if(length(unique(temp_quantiles)) < length(temp_quantiles)){
       stop("quantiles are non-unique, set to different values")
