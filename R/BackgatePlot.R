@@ -6,7 +6,7 @@
 #' @param metadata.col The column within the object meta.data to select from
 #' @param metadata.selection The entry within metadata.col to highlight
 #' @param assay Which assay
-#' @param slot Which slot in the assay, typically data
+#' @param layer Which layer in the assay, typically data
 #' @param label.cols 2-d vector specifying colors for labelling
 #' @param pt.size Size of geom_point
 #' @param add.density Whether to add geom_density_2d estimation to figure
@@ -21,7 +21,7 @@
 #' @details Scales the expression values for each feature in the specified assay
 #' from 0 to 1, with an optional split.by argument
 #'
-#' @return Returns a Seurat object with scaled values in the data slot of the
+#' @return Returns a Seurat object with scaled values in the data layer of the
 #' specified assay
 #'
 #' @importFrom rlang %||%
@@ -34,7 +34,7 @@ BackgatePlot <- function(object,
                          metadata.col,
                          metadata.selection,
                          assay = "RNA",
-                         slot = "data",
+                         layer = "data",
                          label.cols = c("red", "grey"),
                          pt.size = 1,
                          add.density = FALSE,
@@ -44,7 +44,7 @@ BackgatePlot <- function(object,
                          raster = TRUE,
                          raster.dpi = c(512, 512)){
   DefaultAssay(object) <- assay
-  plotting_data <- FetchData(object, vars = c(feature1, feature2, metadata.col), slot = slot)
+  plotting_data <- FetchData(object, vars = c(feature1, feature2, metadata.col), layer = layer)
   if(noise.zero){
 
     feature1_zeros <- sum(plotting_data[,feature1] == 0)
