@@ -4,7 +4,7 @@
 #' @param feature1 The x-axis feature
 #' @param feature2 The y-axis feature
 #' @param assay Which assay
-#' @param slot Which slot in the assay, typically data
+#' @param layer Which layer in the assay, typically data
 #' @param pt.size Size of geom_point
 #' @param noise.zero Whether to simulate values from 0 to a negative value,
 #' done for visual purposes ONLY and for kernel density estimation when
@@ -25,14 +25,14 @@ FlowPlot <- function(object,
                      feature1,
                      feature2,
                      assay = "ADT",
-                     slot = "data",
+                     layer = "data",
                      pt.size = 1,
                      noise.zero = FALSE,
                      noise.zero.bound = -0.01,
                      gg_bandwidth = 0.1,
                      rasterize = FALSE){
   DefaultAssay(object) <- assay
-  plotting_data <- FetchData(object, vars = c(feature1, feature2), slot = slot)
+  plotting_data <- FetchData(object, vars = c(feature1, feature2), layer = layer)
   if(noise.zero){
 
     feature1_zeros <- sum(plotting_data[,feature1] == 0)
