@@ -1,0 +1,80 @@
+# Calculate Leiden clustering for a Graph object in Seurat
+
+Calculate Leiden clustering for a Graph object in Seurat
+
+## Usage
+
+``` r
+FindClustersLeiden(
+  object,
+  graph.name = NULL,
+  group.singletons = TRUE,
+  resolution = c(0.8),
+  min.cluster.size = 5,
+  n_iterations = 2,
+  verbose = TRUE,
+  pythondir = "~/miniconda3/bin/python",
+  partition_type = "RBConfigurationVertexPartition"
+)
+```
+
+## Arguments
+
+- object:
+
+  Seurat object
+
+- graph.name:
+
+  Name of Graph slot in object to use for Leiden clustering
+
+- group.singletons:
+
+  Group singletons into nearest cluster. If FALSE, the clusters will
+  remain as single-member clusters.
+
+- resolution:
+
+  Vector of resolution to input into Leiden
+
+- min.cluster.size:
+
+  Minimum cluster size trimmed after clustering (not currently used)
+
+- verbose:
+
+  Control verbosity
+
+- pythondir:
+
+  Specified director for python binary that has the leidenalg library
+  installed
+
+- partition_type:
+
+  The partition_type to specify for Leiden.
+
+- n.iterations:
+
+  Number of iterations to run Leiden clustering for
+
+## Value
+
+Returns a Seurat object with the leiden clusterings stored as
+object@meta.data columns
+
+## Details
+
+code is adapted from @immunogenomics/singlecellmethods with some tweaks
+and flexibility added to match the arguments allowed by the leidenalg
+package. In essence, we are using reticulate to run
+leidenalg.find_partition(graph.name, partition_type) as specified here
+https://leidenalg.readthedocs.io/en/stable/intro.html. Arguments are
+input into the find_partition function here:
+https://leidenalg.readthedocs.io/en/stable/reference.html#leidenalg.find_partition.
+Singletons will be excluded for now, but ideally can be grouped in a
+step afterwards...
+
+## References
+
+code is adapted from @immunogenomics/singlecellmethods

@@ -1,0 +1,63 @@
+# Package index
+
+## All functions
+
+- [`AbundancePlot()`](https://diegoalexespi.github.io/pochi/reference/AbundancePlot.md)
+  : Plot cell abundances across groups in a Seurat object
+- [`AssignQuantiles()`](https://diegoalexespi.github.io/pochi/reference/AssignQuantiles.md)
+  : Assign cells to feature-specific quantiles.
+- [`BackgatePlot()`](https://diegoalexespi.github.io/pochi/reference/BackgatePlot.md)
+  : Plot a metadata selection in a biaxial FeatureScatter plot
+- [`BuildAnnoyUMAP()`](https://diegoalexespi.github.io/pochi/reference/BuildAnnoyUMAP.md)
+  : Run UMAP on a Seurat object
+- [`BuildSNNfromKNN()`](https://diegoalexespi.github.io/pochi/reference/BuildSNNfromKNN.md)
+  : Derive an SNN from a kNN Graph object in Seurat
+- [`ClipDSB()`](https://diegoalexespi.github.io/pochi/reference/ClipDSB.md)
+  : Clip DSB assay with quantiles per feature
+- [`DimPlotEdges()`](https://diegoalexespi.github.io/pochi/reference/DimPlotEdges.md)
+  : Seurat DimPlot enhancement
+- [`DimPlotHighlight()`](https://diegoalexespi.github.io/pochi/reference/DimPlotHighlight.md)
+  : Seurat DimPlot enhancement III
+- [`DimPlotPlus()`](https://diegoalexespi.github.io/pochi/reference/DimPlotPlus.md)
+  : Seurat DimPlot enhancement II
+- [`DoClusteredDotPlot()`](https://diegoalexespi.github.io/pochi/reference/DoClusteredDotPlot.md)
+  : Seurat DotPlot enhancement with hierarchical clustering
+- [`DoClusteredHeatmap()`](https://diegoalexespi.github.io/pochi/reference/DoClusteredHeatmap.md)
+  : Heatmap of average expression values per group
+- [`DoStarHeatmap()`](https://diegoalexespi.github.io/pochi/reference/DoStarHeatmap.md)
+  : Heatmap of average expression values per group with stars
+- [`ExtractClusterProportions()`](https://diegoalexespi.github.io/pochi/reference/ExtractClusterProportions.md)
+  : Extract cell proportions and counts across groups in a Seurat object
+- [`FeaturePlotPlus()`](https://diegoalexespi.github.io/pochi/reference/FeaturePlotPlus.md)
+  : Seurat FeaturePlot enhancement
+- [`FindClustersLeiden()`](https://diegoalexespi.github.io/pochi/reference/FindClustersLeiden.md)
+  : Calculate Leiden clustering for a Graph object in Seurat
+- [`FindJaccard()`](https://diegoalexespi.github.io/pochi/reference/FindJaccard.md)
+  : Determine overlap measure between a list of genes
+- [`FlowPlot()`](https://diegoalexespi.github.io/pochi/reference/FlowPlot.md)
+  : Plot a metadata selection in a biaxial FeatureScatter plot
+- [`MetaDataPlot()`](https://diegoalexespi.github.io/pochi/reference/MetaDataPlot.md)
+  : Plot Seurat metadata distribution as a bar graph for indicated
+  groups.
+- [`ModulePlot()`](https://diegoalexespi.github.io/pochi/reference/ModulePlot.md)
+  : Plot avereage feature expression per sample across groups in a
+  Seurat object
+- [`ReadGMT()`](https://diegoalexespi.github.io/pochi/reference/ReadGMT.md)
+  : Read in a GMT file
+- [`RunAUCell()`](https://diegoalexespi.github.io/pochi/reference/RunAUCell.md)
+  : Run AUCell on a Seurat object
+- [`RunHarmonyForSymphony()`](https://diegoalexespi.github.io/pochi/reference/RunHarmonyForSymphony.md)
+  : Run Harmony with necessary internal object tinkering for Symphony
+- [`RunSCA()`](https://diegoalexespi.github.io/pochi/reference/RunSCA.md)
+  : Perform Shannon Component Analysis on a Seurat object
+- [`ScaleADT()`](https://diegoalexespi.github.io/pochi/reference/ScaleADT.md)
+  : Scale ADT assay from 0 to 1 per feature
+- [`ScaleDSB()`](https://diegoalexespi.github.io/pochi/reference/ScaleDSB.md)
+  : Scale DSB assay to \[0-1\] per feature
+- [`SeuratToAnnData()`](https://diegoalexespi.github.io/pochi/reference/SeuratToAnnData.md)
+  : Save a Seurat object as an anndata h5ad file
+- [`TrueAverageExpression()`](https://diegoalexespi.github.io/pochi/reference/TrueAverageExpression.md)
+  : Average feature expression across clustered samples in a Seurat
+  object using fast sparse matrix methods
+- [`dissociation.genes`](https://diegoalexespi.github.io/pochi/reference/dissociation.genes.md)
+  : Dissociation-associated gene signature

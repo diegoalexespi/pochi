@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2022--2022
+    COPYRIGHT HOLDER: Diego Espinoza
