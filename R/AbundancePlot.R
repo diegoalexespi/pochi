@@ -57,7 +57,7 @@ AbundancePlot <- function(object,
                           title_size = 10,
                           p_val_size = 2.5,
                           plot_type = "box",
-                          sina_shift = TRUE,
+                          bees = TRUE,
                           x_lab = NULL,
                           y_lab = NULL,
                           point_size = 1,
@@ -140,10 +140,10 @@ AbundancePlot <- function(object,
 
 
     #plot points as sina points or regular ggplot2 points
-    if(sina_shift){
-      g <- g + ggforce::geom_sina(color = point_colors, size = point_size)
+    if(bees){
+      g <- g + ggbeeswarm::geom_quasirandom(color = point_colors, size = point_size, shape = 21)
     } else {
-      g <- g + ggplot2::geom_point(color = point_colors, size = point_size)
+      g <- g + ggplot2::geom_point(color = point_colors, size = point_size, shape = 21)
     }
 
     #draw lines between replicates if applicable
