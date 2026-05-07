@@ -86,8 +86,8 @@ specified in this argument.}
 
 \item{rotated_axis}{Whether to apply Seurat::RotatedAxis to the plots}
 
-\item{print_results}{Prints to screen the results of the abundance calculations
-and abundance statistical testing.}
+\item{print_results}{Prints to screen the results of the abundance
+calculations ($freq) and abundance statistical testing ($pvals) in a list.}
 
 \item{sina_shift}{Whether to use ggforce::geom_sina to pretty-shift the points}
 }

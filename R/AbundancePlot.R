@@ -30,8 +30,8 @@
 #' @param selected.groups Optional. If not NULL, will only plot the groups
 #' specified in this argument.
 #' @param rotated_axis Whether to apply Seurat::RotatedAxis to the plots
-#' @param print_results Prints to screen the results of the abundance calculations
-#' and abundance statistical testing.
+#' @param print_results Prints to screen the results of the abundance
+#' calculations ($freq) and abundance statistical testing ($pvals) in a list.
 #' @details Plots the abundances of specific groups in the Seurat object
 #' across a split.by variable, using replicate.by as replicates for each
 #' split.by condition
@@ -106,7 +106,10 @@ AbundancePlot <- function(object,
     fill_colors <- viridis::viridis_pal()(length(split.by.values))
   }
 
-  my_plot_list <- lapply(seq_along(group.by.names), function(i){
+
+  stat_test_df <- data.frame()
+
+  my_result_list <- lapply(seq_along(group.by.names), function(i){
     target_group <- group.by.names[i]
     target_group_frequencies <- frequencies %>%
       dplyr::filter(group_by == target_group)
@@ -117,6 +120,8 @@ AbundancePlot <- function(object,
                                               p.adjust.method = p.adjust.method,
                                               method = test.choice)
     }
+
+    temp_stat_results <- cbind(t_test_results, population = target_group)
 
     #start ggplot
     g <- ggplot2::ggplot(target_group_frequencies, aes(x = split_by,
@@ -193,7 +198,12 @@ AbundancePlot <- function(object,
       g <- g + ggplot2::scale_y_continuous(limits = c(ylim_min,NA), labels = function(x) paste0(x*100, "%"), name = y_lab)
     }
 
+    return(list(g, temp_stat_results))
+
   })
+
+  my_plot_list <- lapply(my_result_list, function(x) x[[1]])
+  my_stats_df <- lapply(my_result_list, function(x) x[[2]]) %>% do.call(rbind, .)
 
   #get lowest y and highest y limit
   y_plot_limits <- lapply(my_plot_list, function(ggp) layer_scales(ggp)$y$get_limits())
@@ -212,7 +222,7 @@ AbundancePlot <- function(object,
   }
 
   if(print_results){
-    return(list(freqs = frequencies, pvals = t_test_results))
+    return(list(freqs = frequencies, pvals = my_stats_df))
   } else {
     final_plot
   }
