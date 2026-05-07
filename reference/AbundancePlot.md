@@ -24,13 +24,14 @@ AbundancePlot(
   title_size = 10,
   p_val_size = 2.5,
   plot_type = "box",
-  sina_shift = TRUE,
+  bees = TRUE,
   x_lab = NULL,
   y_lab = NULL,
   point_size = 1,
   same_y_limit = FALSE,
   selected.groups = NULL,
-  rotated_axis = FALSE
+  rotated_axis = FALSE,
+  print_results = FALSE
 )
 ```
 
@@ -105,10 +106,6 @@ AbundancePlot(
 
   Either box or violin plot
 
-- sina_shift:
-
-  Whether to use ggforce::geom_sina to pretty-shift the points
-
 - x_lab:
 
   The label on the x axis
@@ -133,6 +130,15 @@ AbundancePlot(
 - rotated_axis:
 
   Whether to apply Seurat::RotatedAxis to the plots
+
+- print_results:
+
+  Prints to screen the results of the abundance calculations and
+  abundance statistical testing.
+
+- sina_shift:
+
+  Whether to use ggforce::geom_sina to pretty-shift the points
 
 ## Value
 

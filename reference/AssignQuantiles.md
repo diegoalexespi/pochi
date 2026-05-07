@@ -9,7 +9,7 @@ AssignQuantiles(
   object,
   feature,
   assay = "ADT",
-  slot = "data",
+  layer = "data",
   split.by = "run_10x",
   quantile.probs = c(0, 0.25, 0.5, 0.75, 1)
 )
@@ -29,9 +29,9 @@ AssignQuantiles(
 
   Which assay the feature is located within
 
-- slot:
+- layer:
 
-  Which slot the to pull from within specified assay
+  Which layer the to pull from within specified assay
 
 - split.by:
 

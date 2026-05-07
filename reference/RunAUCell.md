@@ -8,7 +8,7 @@ Run AUCell on a Seurat object
 RunAUCell(
   object,
   assay = NULL,
-  slot = "counts",
+  layer = "counts",
   genesets,
   ranking.save = FALSE,
   ranking.key = NULL,
@@ -30,9 +30,9 @@ RunAUCell(
 
   Assay to use for building rankings. Will use default assay if NULL.
 
-- slot:
+- layer:
 
-  Slot to use for building rankings
+  layer to use for building rankings
 
 - genesets:
 

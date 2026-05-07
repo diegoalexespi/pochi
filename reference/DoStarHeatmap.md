@@ -9,7 +9,7 @@ DoStarHeatmap(
   object,
   diff_exp_results = NULL,
   assay = "ADT",
-  slot = "data",
+  layer = "data",
   group.by = "seurat_clusters",
   max_zed = 3,
   plot_rownames = FALSE,

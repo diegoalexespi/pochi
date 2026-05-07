@@ -12,7 +12,7 @@ BackgatePlot(
   metadata.col,
   metadata.selection,
   assay = "RNA",
-  slot = "data",
+  layer = "data",
   label.cols = c("red", "grey"),
   pt.size = 1,
   add.density = FALSE,
@@ -50,9 +50,9 @@ BackgatePlot(
 
   Which assay
 
-- slot:
+- layer:
 
-  Which slot in the assay, typically data
+  Which layer in the assay, typically data
 
 - label.cols:
 
@@ -88,7 +88,7 @@ BackgatePlot(
 
 ## Value
 
-Returns a Seurat object with scaled values in the data slot of the
+Returns a Seurat object with scaled values in the data layer of the
 specified assay
 
 ## Details

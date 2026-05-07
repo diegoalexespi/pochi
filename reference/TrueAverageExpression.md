@@ -11,7 +11,7 @@ TrueAverageExpression(
   group.by = "seurat_clusters",
   group.by.delim = "_",
   assay = "RNA",
-  slot = "data",
+  layer = "data",
   verbose = TRUE
 )
 ```
@@ -37,9 +37,9 @@ TrueAverageExpression(
 
   Assay to average (default is the active assay)
 
-- slot:
+- layer:
 
-  Slot to average (default is counts)
+  Layer to average (default is counts)
 
 - verbose:
 

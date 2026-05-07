@@ -9,7 +9,7 @@ DoClusteredHeatmap(
   object,
   features = NULL,
   assay = "RNA",
-  slot = "data",
+  layer = "data",
   group.by = "seurat_clusters",
   max_zed = 3,
   y_text_size = 10,
@@ -37,13 +37,13 @@ DoClusteredHeatmap(
 
   Which assay to get expression values from
 
-- slot:
+- layer:
 
-  Which slot to pull the assay data from
+  Which layer to pull the assay data from
 
 - group.by:
 
-  Which metadata slot to group cells by
+  Which metadata layer to group cells by
 
 - max_zed:
 

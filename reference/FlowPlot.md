@@ -10,7 +10,7 @@ FlowPlot(
   feature1,
   feature2,
   assay = "ADT",
-  slot = "data",
+  layer = "data",
   pt.size = 1,
   noise.zero = FALSE,
   noise.zero.bound = -0.01,
@@ -37,9 +37,9 @@ FlowPlot(
 
   Which assay
 
-- slot:
+- layer:
 
-  Which slot in the assay, typically data
+  Which layer in the assay, typically data
 
 - pt.size:
 
