@@ -133,8 +133,8 @@ AbundancePlot(
 
 - print_results:
 
-  Prints to screen the results of the abundance calculations and
-  abundance statistical testing.
+  Prints to screen the results of the abundance calculations (\$freq)
+  and abundance statistical testing (\$pvals) in a list.
 
 - sina_shift:
 
