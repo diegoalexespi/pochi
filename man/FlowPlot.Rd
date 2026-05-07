@@ -9,7 +9,7 @@ FlowPlot(
   feature1,
   feature2,
   assay = "ADT",
-  slot = "data",
+  layer = "data",
   pt.size = 1,
   noise.zero = FALSE,
   noise.zero.bound = -0.01,
@@ -26,7 +26,7 @@ FlowPlot(
 
 \item{assay}{Which assay}
 
-\item{slot}{Which slot in the assay, typically data}
+\item{layer}{Which layer in the assay, typically data}
 
 \item{pt.size}{Size of geom_point}
 

@@ -9,7 +9,7 @@ TrueAverageExpression(
   group.by = "seurat_clusters",
   group.by.delim = "_",
   assay = "RNA",
-  slot = "data",
+  layer = "data",
   verbose = TRUE
 )
 }
@@ -26,7 +26,7 @@ length > 1.}
 
 \item{assay}{Assay to average (default is the active assay)}
 
-\item{slot}{Slot to average (default is counts)}
+\item{layer}{Layer to average (default is counts)}
 
 \item{verbose}{Boolean or integer, show progress bar (default is TRUE)}
 }

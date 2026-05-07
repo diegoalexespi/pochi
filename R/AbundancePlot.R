@@ -30,6 +30,8 @@
 #' @param selected.groups Optional. If not NULL, will only plot the groups
 #' specified in this argument.
 #' @param rotated_axis Whether to apply Seurat::RotatedAxis to the plots
+#' @param print_results Prints to screen the results of the abundance calculations
+#' and abundance statistical testing.
 #' @details Plots the abundances of specific groups in the Seurat object
 #' across a split.by variable, using replicate.by as replicates for each
 #' split.by condition
@@ -63,7 +65,8 @@ AbundancePlot <- function(object,
                           point_size = 1,
                           same_y_limit = FALSE,
                           selected.groups = NULL,
-                          rotated_axis = FALSE){
+                          rotated_axis = FALSE,
+                          print_results = FALSE){
 
   x_lab <- if(is.null(x_lab)) split.by else x_lab
   y_lab <- if(is.null(y_lab)) "percentage" else y_lab
@@ -207,5 +210,12 @@ AbundancePlot <- function(object,
     final_plot <- final_plot &
       Seurat::RotatedAxis()
   }
-  final_plot
+
+  if(print_results){
+    return(list(freqs = target_group_frequencies, pvals = t_test_results))
+  } else {
+    final_plot
+  }
+
+
 }

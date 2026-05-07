@@ -8,7 +8,7 @@ AssignQuantiles(
   object,
   feature,
   assay = "ADT",
-  slot = "data",
+  layer = "data",
   split.by = "run_10x",
   quantile.probs = c(0, 0.25, 0.5, 0.75, 1)
 )
@@ -20,7 +20,7 @@ AssignQuantiles(
 
 \item{assay}{Which assay the feature is located within}
 
-\item{slot}{Which slot the to pull from within specified assay}
+\item{layer}{Which layer the to pull from within specified assay}
 
 \item{split.by}{If not NULL, which metadata feature to split by before
 calculating quantiles. Will then calculate quantiles within each split object}

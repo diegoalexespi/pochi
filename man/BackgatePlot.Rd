@@ -11,7 +11,7 @@ BackgatePlot(
   metadata.col,
   metadata.selection,
   assay = "RNA",
-  slot = "data",
+  layer = "data",
   label.cols = c("red", "grey"),
   pt.size = 1,
   add.density = FALSE,
@@ -35,7 +35,7 @@ BackgatePlot(
 
 \item{assay}{Which assay}
 
-\item{slot}{Which slot in the assay, typically data}
+\item{layer}{Which layer in the assay, typically data}
 
 \item{label.cols}{2-d vector specifying colors for labelling}
 
@@ -56,7 +56,7 @@ noise.zero.bound to 0.}
 \item{high.p}{Which percentile to set as 1}
 }
 \value{
-Returns a Seurat object with scaled values in the data slot of the
+Returns a Seurat object with scaled values in the data layer of the
 specified assay
 }
 \description{

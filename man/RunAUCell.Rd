@@ -7,7 +7,7 @@
 RunAUCell(
   object,
   assay = NULL,
-  slot = "counts",
+  layer = "counts",
   genesets,
   ranking.save = FALSE,
   ranking.key = NULL,
@@ -23,7 +23,7 @@ RunAUCell(
 
 \item{assay}{Assay to use for building rankings. Will use default assay if NULL.}
 
-\item{slot}{Slot to use for building rankings}
+\item{layer}{layer to use for building rankings}
 
 \item{genesets}{A list of vectors of features for expression programs; each entry should be a vector of feature names. If the list of vectors is named, the resulting AUCell score for the expression program will be a row in the AUCell assay returned.}
 
