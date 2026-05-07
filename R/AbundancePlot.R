@@ -212,7 +212,7 @@ AbundancePlot <- function(object,
   }
 
   if(print_results){
-    return(list(freqs = target_group_frequencies, pvals = t_test_results))
+    return(list(freqs = frequencies, pvals = t_test_results))
   } else {
     final_plot
   }
